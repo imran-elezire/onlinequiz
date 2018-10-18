@@ -1,7 +1,7 @@
 <?php 
-		$sq_base_url='http://localhost/savsoftquiz_v4.0_advance/';
+		$sq_base_url='http://localhost/onlinequiz/';
 		$sq_hostname='localhost';
-		$sq_dbname='sqtry2';
+		$sq_dbname='quizmaster';
 		$sq_dbusername='root';
-		$sq_dbpassword='';
+		$sq_dbpassword='mysql';
 		?>
