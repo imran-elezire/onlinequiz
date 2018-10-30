@@ -11,65 +11,59 @@ class Login extends CI_Controller {
 	    $this->load->model("quiz_model");
 	   $this->lang->load('basic', $this->config->item('language'));
 		if($this->db->database ==''){
-		redirect('install');	
+		redirect('install');
 		}
-		 
-		 
-		 
-		
-		
+
+
+
+
+
 	 }
 
 	public function index()
 	{
-		
+
 		$this->load->helper('url');
 		if($this->session->userdata('logged_in')){
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']=='1'){
 				redirect('dashboard');
 			}else{
-				redirect('quiz');	
+				redirect('quiz');
 			}
-			
+
 		}
-		
-		
-		
+
+
+
 		$data['title']=$this->lang->line('login');
 		$data['recent_quiz']=$this->quiz_model->recent_quiz('5');
-		
+
 		$this->load->view('header_login',$data);
 		$this->load->view('login',$data);
 		$this->load->view('footer',$data);
 	}
-	
+
 	public function resend()
 	{
-		
-		
-		 $this->load->helper('url');
-		if($this->input->post('email')){
+		$this->load->helper('url');
+		if($this->input->post('email')) {
 		$status=$this->user_model->resend($this->input->post('email'));
 		$this->session->set_flashdata('message', $status);
 		redirect('login/resend');
 		}
-		
-		
+
+
 		$data['title']=$this->lang->line('resend_link');
-		 
+
 		$this->load->view('header',$data);
 		$this->load->view('resend',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
- 
-	
-	
-	
-	
-	
+
+
+
+
 		public function pre_registration()
 	{
 	$this->load->helper('url');
@@ -81,12 +75,13 @@ class Login extends CI_Controller {
 		$this->load->view('footer',$data);
 	}
 
-	
+
 		public function registration($gid='0')
 	{
 	$this->load->helper('url');
 		$data['gid']=$gid;
 		$data['title']=$this->lang->line('register_new_account');
+		$data['user_list']=$this->user_model->get_user_by_usertype('0');
 		// fetching group list
 		$data['group_list']=$this->user_model->group_list();
 		$this->load->view('header',$data);
@@ -94,9 +89,9 @@ class Login extends CI_Controller {
 		$this->load->view('footer',$data);
 	}
 
-	
+
 	public function verifylogin($p1='',$p2=''){
-		
+
 		if($p1 == ''){
 		$username=$this->input->post('email');
 		$password=$this->input->post('password');
@@ -109,19 +104,19 @@ class Login extends CI_Controller {
 			$this->load->helper('url');
 			// row exist fetch userdata
 			$user=$status['user'];
-			
-			
+
+
 			// validate if user assigned to paid group
 			if($user['price'] > '0'){
-				
+
 				// user assigned to paid group now validate expiry date.
-				if($user['subscription_expired'] <= time()){
-					// eubscription expired, redirect to payment page
-					
-					redirect('payment_gateway/subscription_expired/'.$user['uid']);
-					
-				}
-				
+				// if($user['subscription_expired'] <= time()){
+				// 	// eubscription expired, redirect to payment page
+				//
+				// 	redirect('payment_gateway/subscription_expired/'.$user['uid']);
+				//
+				// }
+
 			}
 			$user['base_url']=base_url();
 			// creating login cookie
@@ -129,19 +124,19 @@ class Login extends CI_Controller {
 			// redirect to dashboard
 			if($user['su']=='1'){
 			 redirect('dashboard');
-				 
+
 			}else{
 				$burl=$this->config->item('base_url').'index.php/quiz';
 			 header("location:$burl");
 			}
 		}else if($status['status']=='0'){
-			 
+
 			// invalid login
 			// try to auth wp
 			if($this->config->item('wp-login')){
-			 
+
 		                if($this->authentication($username, $password)){
-		               
+
 		                 $this->verifylogin($username, $password);
 		                }else{
 		                 $this->load->helper('url');
@@ -150,39 +145,39 @@ class Login extends CI_Controller {
 			 header("location:$burl");
 		                }
 		        }else{
-		        
+
 		        $this->load->helper('url');
 		        $this->session->set_flashdata('message', $status['message']);
 			redirect('login');
 		        }
-		        
-			
+
+
 		}else if($status['status']=='2'){
                         $this->load->helper('url');
 
-			 
+
 			// email not verified
 			$this->session->set_flashdata('message', $status['message']);
 			redirect('login');
 		}else if($status['status']=='3'){
                         $this->load->helper('url');
 
-			 
+
 			// email not verified
 			$this->session->set_flashdata('message', $status['message']);
 			redirect('login');
 		}
-		
-		
-		
+
+
+
 	}
-	
-	
-	
-	
-		
+
+
+
+
+
 	function verify($vcode){
-		$this->load->helper('url');	 
+		$this->load->helper('url');
 		 if($this->user_model->verify_code($vcode)){
 			 $data['title']=$this->lang->line('email_verified');
 		   $this->load->view('header',$data);
@@ -197,38 +192,36 @@ class Login extends CI_Controller {
 
 			}
 	}
-	
-	
-	
-	
+
+
+
+
 	function forgot(){
 	$this->load->helper('url');
 			if($this->input->post('email')){
 			$user_email=$this->input->post('email');
 			 if($this->user_model->reset_password($user_email)){
 				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('password_updated')." </div>");
-						
+
 			}else{
 				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('email_doesnot_exist')." </div>");
-						
+
 			}
 			redirect('login/forgot');
 			}
-			
-  
+
+
 			$data['title']=$this->lang->line('forgot_password');
 		   $this->load->view('header',$data);
 			$this->load->view('forgot_password',$data);
 		  $this->load->view('footer',$data);
 
-	
+
 	}
-	
-	
+
+
 		public function insert_user()
 	{
-		
-		
 		 $this->load->helper('url');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[savsoft_users.email]');
@@ -248,26 +241,26 @@ class Login extends CI_Controller {
 						}
 						}else{
 						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
-						
+
 					}
 					redirect('login/registration/');
-                }       
+                }
 
 	}
-	
-	
-	
-	
+
+
+
+
 	function verify_result($rid){
 		$this->load->helper('url');
 		$this->load->model("result_model");
-		
+
 			$data['result']=$this->result_model->get_result($rid);
 	if($data['result']['gen_certificate']=='0'){
 		exit();
 	}
-	
-	
+
+
 	$certificate_text=$data['result']['certificate_text'];
 	$certificate_text=str_replace('{email}',$data['result']['email'],$certificate_text);
 	$certificate_text=str_replace('{first_name}',$data['result']['first_name'],$certificate_text);
@@ -278,15 +271,15 @@ class Login extends CI_Controller {
 	$certificate_text=str_replace('{status}',$data['result']['result_status'],$certificate_text);
 	$certificate_text=str_replace('{result_id}',$data['result']['rid'],$certificate_text);
 	$certificate_text=str_replace('{generated_date}',date('Y-m-d',$data['result']['end_time']),$certificate_text);
-	
+
 	$data['certificate_text']=$certificate_text;
 	  $this->load->view('view_certificate_2',$data);
-	 
+
 
 	}
-	
-	
-	
+
+
+
 	function authentication ($user, $pass){
                   global $wp, $wp_rewrite, $wp_the_query, $wp_query;
 
@@ -296,10 +289,10 @@ class Login extends CI_Controller {
                     require_once($this->config->item('wp-path'));
                     $status = false;
                     $auth = wp_authenticate($user, $pass );
-                    if( is_wp_error($auth) ) {      
+                    if( is_wp_error($auth) ) {
                       $status = false;
                     } else {
-                    
+
                     // if username already exist in savsoft_users
                     $this->db->where('wp_user',$user);
                     $query=$this->db->get('savsoft_users');
@@ -308,24 +301,24 @@ class Login extends CI_Controller {
                     'password'=>md5($pass),
                     'wp_user'=>$user,
                     'su'=>0,
-                    'gid'=>$this->config->item('default_group')                  
-                    
+                    'gid'=>$this->config->item('default_group')
+
                     );
                     $this->db->insert('savsoft_users',$userdata);
-                    
+
                     }
-                    
-                    
+
+
                       $status = true;
                     }
                     return $status;
-                  } 
+                  }
         }
-        
-        
+
+
         public function commercial(){
         $this->load->helper('url');
-		
+
        $data['title']=$this->lang->line('files_missing');
 		   $this->load->view('header',$data);
 			$this->load->view('files_missing',$data);
@@ -334,21 +327,21 @@ class Login extends CI_Controller {
 
 
 
-		 // super admin code login controller 
+		 // super admin code login controller
 	public function superadminlogin(){
 	$this->load->helper('url');
 			$logged_in=$this->session->userdata('logged_in_super_admin');
 			if($logged_in['su']!='3'){
 				exit('permission denied');
-				
+
 			}
-			
+
 		$user=$this->user_model->admin_login();
 		$user['base_url']=base_url();
 		 $user['super']=3;
 		$this->session->set_userdata('logged_in', $user);
 		redirect('dashboard');
 	}
-	
-	
+
+
 }

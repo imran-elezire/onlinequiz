@@ -1,59 +1,59 @@
  <div class="container">
-<?php 
+<?php
 $logged_in=$this->session->userdata('logged_in');
 ?>
-   
-  
 
-<?php 
+
+
+<?php
 if($logged_in['su']=='1'){
 	?>
    <div class="row">
- 
+
   <div class="col-lg-12">
     <form method="post" action="<?php echo site_url('result/generate_report/');?>">
 	<div class="input-group">
-    <h3><?php echo $this->lang->line('generate_report');?> </h3> 
+    <h3><?php echo $this->lang->line('generate_report');?> </h3>
 <select name="quid">
 <option value="0"><?php echo $this->lang->line('select_quiz');?></option>
-<?php 
+<?php
 foreach($quiz_list as $qk => $quiz){
 	?>
 	<option value="<?php echo $quiz['quid'];?>"><?php echo $quiz['quiz_name'];?></option>
-	<?php 
+	<?php
 }
 ?>
 </select>
- 	
+
 <select name="gid">
 <option value="0"><?php echo $this->lang->line('select_group');?></option>
-<?php 
+<?php
 foreach($group_list as $gk => $group){
 	?>
 	<option value="<?php echo $group['gid'];?>"><?php echo $group['group_name'];?></option>
-	<?php 
+	<?php
 }
 ?>
 </select>
 <input type="text" name="date1" value="" placeholder="<?php echo $this->lang->line('date_from');?>">
- 
+
  <input type="text" name="date2" value="" placeholder="<?php echo $this->lang->line('date_to');?>">
 
- <button class="btn btn-info" type="submit"><?php echo $this->lang->line('generate_report');?></button>	
+ <button class="btn btn-info" type="submit"><?php echo $this->lang->line('generate_report');?></button>
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 
-<?php 
+<?php
 }
 ?>
 
 
 <h3><?php echo $title;?></h3>
- 
+
   <div class="row">
- 
+
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('result/index/');?>">
 	<div class="input-group">
@@ -61,29 +61,29 @@ foreach($group_list as $gk => $group){
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
-	 
-	  
+
+
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 
- 
+
 
   <div class="row">
- 
+
 <div class="col-md-12">
-<br> 
-			<?php 
+<br>
+			<?php
 		if($this->session->flashdata('message')){
-			echo $this->session->flashdata('message');	
+			echo $this->session->flashdata('message');
 		}
-		?>	
-		<?php 
+		?>
+		<?php
 		if($logged_in['su']=='1'){
 			?>
-				<div class='alert alert-danger'><?php echo $this->lang->line('pending_message_admin');?></div>		
-		<?php 
+				<div class='alert alert-danger'><?php echo $this->lang->line('pending_message_admin');?></div>
+		<?php
 		}
 		?>
 <table class="table table-bordered">
@@ -102,14 +102,14 @@ foreach($group_list as $gk => $group){
  <th><?php echo $this->lang->line('percentage_obtained');?></th>
 <th><?php echo $this->lang->line('action');?> </th>
 </tr>
-<?php 
+<?php
 if(count($result)==0){
 	?>
 <tr>
  <td colspan="6"><?php echo $this->lang->line('no_record_found');?></td>
-</tr>	
-	
-	
+</tr>
+
+
 	<?php
 }
 
@@ -123,17 +123,17 @@ foreach($result as $key => $val){
  <td><?php echo $val['percentage_obtained'];?>%</td>
 <td>
 <a href="<?php echo site_url('result/view_result/'.$val['rid']);?>" class="btn btn-success" ><?php echo $this->lang->line('view');?> </a>
-<?php 
+<?php
 if($logged_in['su']=='1'){
 	?>
 	<a href="javascript:remove_entry('result/remove_result/<?php echo $val['rid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
-<?php 
+<?php
 }
 ?>
 </td>
 </tr>
 
-<?php 
+<?php
 }
 ?>
 </table>

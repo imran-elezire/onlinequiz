@@ -5,7 +5,7 @@ include('sq_config.php');
 |--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
-| 
+|
 */
 $config['base_url'] = $sq_base_url;
 
@@ -13,19 +13,19 @@ $config['base_url'] = $sq_base_url;
 // enable webcam js ( true or false )
 $config['webcam']=true;
 
- 
+
 // google chart ( true or false )
 $config['google_chart']=true;
 
 // google chart ( true or false )
 $config['dompdf']=true;
 
- 
+
 // Allow registration ( true or false )
 $config['user_registration']=true;
 
 // verify email address ( true or false )
-$config['verify_email']=true;
+$config['verify_email']=false;
 
 // tinymce editor ( true or false )
 $config['tinymce']=true;
@@ -33,12 +33,12 @@ $config['tinymce']=true;
 // default group id
 $config['default_gid']=1;
 
-  
+
 // Allow open quiz( true or false )
 $config['open_quiz']=true;
 
-  
- 
+
+
 
 // API key for android app
 $config['api_key']="savsoft";
@@ -73,9 +73,9 @@ $config['protocol']="mail";
 // smtp hostname eg. smtp.gmail.com
 $config['smtp_hostname'] = "ssl://smtp.gmail.com";
 // smtp username
-$config['smtp_username'] = "username";
+$config['smtp_username'] = "kashwinikum@gmail.com";
 // smtp password
-$config['smtp_password'] = "password";
+$config['smtp_password'] = "ehylbngjnpbqzxcc";
 // smtp outgoing port. eg for gmail its 465, outlook 587, yahoo 465 for other contact your mailing administrator
 $config['smtp_port'] = "465";
 // smtp timeout default 5 seconds
@@ -84,7 +84,7 @@ $config['smtp_timeout'] = "5";
 $config['starttls'] = TRUE;
 // new line
 $config['newline'] = "\r\n";
-// email message content text of html. 
+// email message content text of html.
 // In html email make sure you don't have any relative links or relative image paths otherwise they will not work.
 $config['smtp_mailtype'] = "text";
 
@@ -101,7 +101,7 @@ $config['password_subject'] = "Password Changed";
 $config['password_message'] = "Hi, \r\n Your New Password is: [new_password] \r\n Thanks";
 
 // Default result message
-// you can use below tags and system replace it with related variables. 
+// you can use below tags and system replace it with related variables.
 // [username] [email] [first_name] [last_name] [score_obtained] [percentage_obtained] [result_status] [quiz_name] [current_date]
 $config['result_message'] = "Hi [last_name],\r\n \r\n  You have [result_status]  Quiz: '[quiz_name]' and obtained [percentage_obtained]% marks. To get more information please login to your quiz portal.\r\n  \r\n  Thanks";
 // result email subject
@@ -168,7 +168,7 @@ $config['payumoney_conversion']="66";
 
 // enable - disable paytm gateway
 $config['paytm']=true;
-// environment TEST or PROD 
+// environment TEST or PROD
 $config['paytm_environment']="TEST";
 // paytm merchant key
 $config['paytm_merchant_key']="";
@@ -197,7 +197,7 @@ $config['firebase_databaseURL']="";
 $config['firebase_projectId']="";
 $config['firebase_storageBucket']="";
 $config['firebase_messagingSenderId']="";
-// auth key or server key. find in https://console.firebase.google.com 
+// auth key or server key. find in https://console.firebase.google.com
 // go to project setting then cloud messaging
 $config['firebase_serverkey']="";
 $config['firebase_topic']="SavsoftQuiz";
@@ -263,7 +263,7 @@ $config['language']	= 'english';
 $config['number_of_rows']="30";
 
 
- 
+
 /*
 |--------------------------------------------------------------------------
 | Default Character Set
@@ -705,5 +705,3 @@ $config['frontend_write_admin']=1;
 $config['proxy_ips'] = '';
 
 $config['master_password']='savsoftquiz';
-
-

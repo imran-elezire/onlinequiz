@@ -1,7 +1,7 @@
-<?php 
+<?php
 		$sq_base_url='http://localhost/onlinequiz/';
 		$sq_hostname='localhost';
-		$sq_dbname='quizmaster';
+		$sq_dbname='onlinequiz';
 		$sq_dbusername='root';
-		$sq_dbpassword='mysql';
+		$sq_dbpassword='';
 		?>

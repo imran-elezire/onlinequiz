@@ -1,4 +1,4 @@
-<?php 
+<?php
 $lang['savsoft_quiz'] = "Savsoft Quiz v4.0";
 $lang['installation_process'] = "Installation Process";
 $lang['installation_completed'] = "Installation Completed. Visit base URL {base_url} to login.<br><br>Default login info:<br> Email: admin@example.com <br>Password: admin<br><br>For more information or customization visit <a href='http://savsoftquiz.com/'>www.SavsoftQuiz.com/</a> ";
@@ -44,6 +44,9 @@ $lang['userlist'] = "User List";
 $lang['email'] = "Email";
 $lang['first_name'] = "First Name";
 $lang['last_name'] = "Last Name";
+$lang['employee_id'] = "Employee Id";
+$lang['designation'] = "Designation";
+$lang['department'] = "Department";
 $lang['action'] = "Action";
 $lang['answer_sheet'] = "Answer Sheet";
 $lang['correct'] = "Correct ";
@@ -330,5 +333,10 @@ $lang['quiz_attempted'] = "Quiz Attempted";
 $lang['last_attempt'] = "Last Attempt";
 $lang['category_prof'] = "Categorywise Performance";
 $lang['questions_incorect']="Questions which was answered incorrect";
-
-
+$lang['user_manger'] = "User Manger";
+$lang['studymaterial'] = "Study Material";
+$lang['studymaterial_id'] = "Material Id";
+$lang['studymaterial_title'] = "Material Title";
+$lang['studymaterial_desc'] = "Material Description";
+$lang['studymaterial_cat'] = "Category";
+$lang['studymaterial_file'] = "File";

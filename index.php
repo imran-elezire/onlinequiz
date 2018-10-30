@@ -1,7 +1,7 @@
 <?php
 ob_start();
-/* 
-* Set default time zone 
+/*
+* Set default time zone
 * find supported parameter or time zones at http://php.net/manual/en/timezones.php
 */
 date_default_timezone_set('Asia/Kolkata');
@@ -59,7 +59,7 @@ date_default_timezone_set('Asia/Kolkata');
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
  *---------------------------------------------------------------
