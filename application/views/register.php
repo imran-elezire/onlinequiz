@@ -89,6 +89,7 @@
       <div class="form-group">
         <label   ><?php echo $this->lang->line('user_manger');?></label>
         <select class="form-control" name="user_manger" id="user_manger"  >
+          <option value="0">Select Manager</option>
         <?php
         foreach($user_list as $key => $value){
           ?>
