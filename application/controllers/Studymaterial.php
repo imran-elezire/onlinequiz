@@ -22,6 +22,21 @@ class Studymaterial extends CI_Controller {
 				$this->session->unset_userdata('logged_in');
 			redirect('login');
 		}
+
+		if($logged_in['token']!="")
+		{
+			$user_id=$this->user_model->check_token($logged_in['token']);
+			if($user_id!=$logged_in['uid'])
+			{
+				$this->session->unset_userdata('logged_in');
+				redirect('login');
+			}
+		}
+		else {
+			$this->session->unset_userdata('logged_in');
+			redirect('login');
+		}
+
 	 }
 
 	public function index($limit='0',$status='0')

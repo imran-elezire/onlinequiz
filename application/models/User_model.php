@@ -27,6 +27,11 @@ Class User_model extends CI_Model
 
    if($user['user_status']=='Active'){
 
+     $this->db->where("uid",$user['uid']);
+     $token=md5($user['uid'].time());
+     $this->db->update('savsoft_users',array("web_token"=>$token));
+     $user['token']=$token;
+
         return array('status'=>'1','user'=>$user);
         }else{
         return array('status'=>'3','message'=>$this->lang->line('account_inactive'));
@@ -44,6 +49,23 @@ Class User_model extends CI_Model
    {
      return array('status'=>'0','message'=>$this->lang->line('invalid_login'));
    }
+ }
+
+
+ function check_token($token)
+ {
+   $this->db->where('web_token',$token);
+   $this->db->limit(1);
+  $query = $this -> db -> get('savsoft_users');
+  if($query -> num_rows() == 1)
+  {
+  $user=$query->row_array();
+  return $user['uid'];
+  }
+  else {
+    return false;
+  }
+
  }
 
  function resend($email){

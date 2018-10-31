@@ -9,16 +9,31 @@ class Qbank extends CI_Controller {
 	   $this->load->database();
 	   $this->load->helper('url');
 	   $this->load->model("qbank_model");
+		 $this->load->model("user_model");
 	   $this->lang->load('basic', $this->config->item('language'));
 		// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-			
+
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
-		$this->session->unset_userdata('logged_in');		
+		$this->session->unset_userdata('logged_in');
 		redirect('login');
+		}
+
+		if($logged_in['token']!="")
+		{
+			$user_id=$this->user_model->check_token($logged_in['token']);
+			if($user_id!=$logged_in['uid'])
+			{
+				$this->session->unset_userdata('logged_in');
+				redirect('login');
+			}
+		}
+		else {
+			$this->session->unset_userdata('logged_in');
+			redirect('login');
 		}
 	 }
 
@@ -29,15 +44,15 @@ class Qbank extends CI_Controller {
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
 			}
-			
+
 			 $data['category_list']=$this->qbank_model->category_list();
 		 $data['level_list']=$this->qbank_model->level_list();
-		
+
 		$data['limit']=$limit;
 		$data['cid']=$cid;
 		$data['lid']=$lid;
-		 
-		
+
+
 		$data['title']=$this->lang->line('qbank');
 		// fetching user list
 		$data['result']=$this->qbank_model->question_list($limit,$cid,$lid);
@@ -45,44 +60,44 @@ class Qbank extends CI_Controller {
 		$this->load->view('question_list',$data);
 		$this->load->view('footer',$data);
 	}
-	
+
 	public function remove_question($qid){
 
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
-			} 
-			
+			}
+
 			if($this->qbank_model->remove_question($qid)){
                         $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
 					}else{
 						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
-						
+
 					}
 					redirect('qbank');
-                     
-			
+
+
 		}
-	
-	
-	
+
+
+
 	function pre_question_list($limit='0',$cid='0',$lid='0'){
 		$cid=$this->input->post('cid');
 		$lid=$this->input->post('lid');
 		redirect('qbank/index/'.$limit.'/'.$cid.'/'.$lid);
 	}
-	
-	
+
+
 	public function pre_new_question()
 	{
-	 	
-	
-		
+
+
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
 			}
-			
+
 		if($this->input->post('question_type')){
 		if($this->input->post('question_type')=='1'){
 			$nop=$this->input->post('nop');
@@ -121,16 +136,16 @@ class Qbank extends CI_Controller {
 		}
 
 		}
-		
+
 		 $data['title']=$this->lang->line('add_new').' '.$this->lang->line('question');
 		 $this->load->view('header',$data);
 		$this->load->view('pre_new_question',$data);
 		$this->load->view('footer',$data);
 	}
-	
+
 	public function new_question_1($nop='4')
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -142,8 +157,8 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
 				}
 				redirect('qbank/pre_new_question/');
-			}			
-			
+			}
+
 		 $data['nop']=$nop;
 		 $data['title']=$this->lang->line('add_new');
 		// fetching category list
@@ -154,11 +169,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('new_question_1',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 	public function new_question_2($nop='4')
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -170,8 +185,8 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
 				}
 				redirect('qbank/pre_new_question/');
-			}			
-			
+			}
+
 		 $data['nop']=$nop;
 		 $data['title']=$this->lang->line('add_new');
 		// fetching category list
@@ -182,11 +197,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('new_question_2',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 	public function new_question_3($nop='4')
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -198,8 +213,8 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
 				}
 				redirect('qbank/pre_new_question/');
-			}			
-			
+			}
+
 		 $data['nop']=$nop;
 		 $data['title']=$this->lang->line('add_new');
 		// fetching category list
@@ -210,11 +225,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('new_question_3',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 		public function new_question_4($nop='4')
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -226,8 +241,8 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
 				}
 				redirect('qbank/pre_new_question/');
-			}			
-			
+			}
+
 		 $data['nop']=$nop;
 		 $data['title']=$this->lang->line('add_new');
 		// fetching category list
@@ -238,11 +253,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('new_question_4',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 			public function new_question_5($nop='4')
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -254,8 +269,8 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
 				}
 				redirect('qbank/pre_new_question/');
-			}			
-			
+			}
+
 		 $data['nop']=$nop;
 		 $data['title']=$this->lang->line('add_new');
 		// fetching category list
@@ -266,16 +281,16 @@ class Qbank extends CI_Controller {
 		$this->load->view('new_question_5',$data);
 		$this->load->view('footer',$data);
 	}
-	
 
-	
-	
-	
-	
-	
+
+
+
+
+
+
 		public function edit_question_1($qid)
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -287,9 +302,9 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
 				}
 				redirect('qbank/edit_question_1/'.$qid);
-			}			
-			
-		 
+			}
+
+
 		 $data['title']=$this->lang->line('edit');
 		// fetching question
 		$data['question']=$this->qbank_model->get_question($qid);
@@ -302,11 +317,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('edit_question_1',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 	public function edit_question_2($qid)
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -318,9 +333,9 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
 				}
 				redirect('qbank/edit_question_2/'.$qid);
-			}			
-			
-		 
+			}
+
+
 		 $data['title']=$this->lang->line('edit');
 		// fetching question
 		$data['question']=$this->qbank_model->get_question($qid);
@@ -333,11 +348,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('edit_question_2',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 	public function edit_question_3($qid)
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -349,9 +364,9 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
 				}
 				redirect('qbank/edit_question_3/'.$qid);
-			}			
-			
-		  
+			}
+
+
 		 $data['title']=$this->lang->line('edit');
 		// fetching question
 		$data['question']=$this->qbank_model->get_question($qid);
@@ -364,11 +379,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('edit_question_3',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 		public function edit_question_4($qid)
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -380,9 +395,9 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
 				}
 				redirect('qbank/edit_question_4/'.$qid);
-			}			
-			
-		 
+			}
+
+
 		 $data['title']=$this->lang->line('edit');
 		// fetching question
 		$data['question']=$this->qbank_model->get_question($qid);
@@ -395,11 +410,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('edit_question_4',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 			public function edit_question_5($qid)
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
@@ -411,9 +426,9 @@ class Qbank extends CI_Controller {
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
 				}
 				redirect('qbank/edit_question_5/'.$qid);
-			}			
-			
-		 
+			}
+
+
 		 $data['title']=$this->lang->line('edit');
 		// fetching question
 		$data['question']=$this->qbank_model->get_question($qid);
@@ -426,11 +441,11 @@ class Qbank extends CI_Controller {
 		$this->load->view('edit_question_5',$data);
 		$this->load->view('footer',$data);
 	}
-	
+
 
 	// category functions start
 	public function category_list(){
-		
+
 		// fetching group list
 		$data['category_list']=$this->qbank_model->category_list();
 		$data['title']=$this->lang->line('category_list');
@@ -438,60 +453,60 @@ class Qbank extends CI_Controller {
 		$this->load->view('category_list',$data);
 		$this->load->view('footer',$data);
 
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 		public function insert_category()
 	{
-		
-		
+
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
 			}
-	
+
 				if($this->qbank_model->insert_category()){
                 $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
 				}else{
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
-						
+
 				}
 				redirect('qbank/category_list/');
-	
+
 	}
-	
+
 			public function update_category($cid)
 	{
-		
-		
+
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
 			}
-	
+
 				if($this->qbank_model->update_category($cid)){
                 echo "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>";
 				}else{
 				 echo "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>";
-						
+
 				}
-				 
-	
+
+
 	}
-	
-	
-	
-	
+
+
+
+
 			public function remove_category($cid){
 
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
-			} 
-			
+			}
+
 			$mcid=$this->input->post('mcid');
 $this->db->query(" update savsoft_qbank set cid='$mcid' where cid='$cid' ");
 
@@ -500,17 +515,17 @@ $this->db->query(" update savsoft_qbank set cid='$mcid' where cid='$cid' ");
                         $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
 					}else{
 						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
-						
+
 					}
 					redirect('qbank/category_list');
-                     
-			
+
+
 		}
 	// category functions end
-	
-	
-	
-	
+
+
+
+
 		public function pre_remove_category($cid){
 		$data['cid']=$cid;
 		// fetching group list
@@ -520,30 +535,30 @@ $this->db->query(" update savsoft_qbank set cid='$mcid' where cid='$cid' ");
 		$this->load->view('pre_remove_category',$data);
 		$this->load->view('footer',$data);
 
-		
-		
-		
+
+
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// level functions start
 	public function level_list(){
-		
+
 		// fetching group list
 		$data['level_list']=$this->qbank_model->level_list();
 		$data['title']=$this->lang->line('level_list');
@@ -551,76 +566,76 @@ $this->db->query(" update savsoft_qbank set cid='$mcid' where cid='$cid' ");
 		$this->load->view('level_list',$data);
 		$this->load->view('footer',$data);
 
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 		public function insert_level()
 	{
-		
-		
+
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
 			}
-	
+
 				if($this->qbank_model->insert_level()){
                 $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
 				}else{
 				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
-						
+
 				}
 				redirect('qbank/level_list/');
-	
+
 	}
-	
+
 			public function update_level($lid)
 	{
-		
-		
+
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
 			}
-	
+
 				if($this->qbank_model->update_level($lid)){
                 echo "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>";
 				}else{
 				 echo "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>";
-						
+
 				}
-				 
-	
+
+
 	}
-	
-	
-	
-	
+
+
+
+
 			public function remove_level($lid){
-                       
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
-			} 
+			}
 $mlid=$this->input->post('mlid');
 $this->db->query(" update savsoft_qbank set lid='$mlid' where lid='$lid' ");
- 			
+
 			if($this->qbank_model->remove_level($lid)){
                         $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
 					}else{
 						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
-						
+
 					}
 					redirect('qbank/level_list');
-                     
-			
+
+
 		}
 	// level functions end
-	
-	
-	
+
+
+
 		public function pre_remove_level($lid){
 		$data['lid']=$lid;
 		// fetching group list
@@ -630,32 +645,32 @@ $this->db->query(" update savsoft_qbank set lid='$mlid' where lid='$lid' ");
 		$this->load->view('pre_remove_level',$data);
 		$this->load->view('footer',$data);
 
-		
-		
-		
+
+
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 	function import()
-		{	
+		{
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
-			} 	
+			}
 
    $this->load->helper('xlsimport/php-excel-reader/excel_reader2');
    $this->load->helper('xlsimport/spreadsheetreader.php');
 
 
-   
+
 if(isset($_FILES['xlsfile'])){
 
                 $config['upload_path']          = './xls/';
@@ -666,7 +681,7 @@ if(isset($_FILES['xlsfile'])){
                 {
                         $error = array('error' => $this->upload->display_errors());
  $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$error['error']." </div>");
-		redirect('qbank');				
+		redirect('qbank');
                       exit;
                 }
                 else
@@ -675,7 +690,7 @@ $data = array('upload_data' => $this->upload->data());
 $targets = 'xls/';
 $targets = $targets . basename($data['upload_data']['file_name']);
 $Filepath = $targets;
-			 
+
 $allxlsdata = array();
 	date_default_timezone_set('UTC');
 
@@ -720,10 +735,10 @@ $allxlsdata = array();
 					var_dump($Row);
 				}
 				$CurrentMem = memory_get_usage();
-		
+
 				//echo 'Memory: '.($CurrentMem - $BaseMem).' current, '.$CurrentMem.' base'.PHP_EOL;
 				//echo '---------------------------------'.PHP_EOL;
-		
+
 				if ($Key && ($Key % 500 == 0))
 				{
 					//echo '---------------------------------'.PHP_EOL;
@@ -731,7 +746,7 @@ $allxlsdata = array();
 					//echo '---------------------------------'.PHP_EOL;
 				}
 			}
-		
+
 		//	echo PHP_EOL.'---------------------------------'.PHP_EOL;
 			//echo 'Time: '.(microtime(true) - $Time);
 			//echo PHP_EOL;
@@ -740,7 +755,7 @@ $allxlsdata = array();
 			//echo '*** End of sheet '.$Name.' ***'.PHP_EOL;
 			//echo '---------------------------------'.PHP_EOL;
 		}
-		
+
 	}
 	catch (Exception $E)
 	{
@@ -748,29 +763,29 @@ $allxlsdata = array();
 	}
 
 
-$this->qbank_model->import_question($allxlsdata);   
-		
+$this->qbank_model->import_question($allxlsdata);
+
 				}
-			
+
 				}
-				
+
 			else{
 			echo "Error: " . $_FILES["file"]["error"];
-			}	
+			}
   $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_imported_successfully')." </div>");
   redirect('qbank');
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
 }

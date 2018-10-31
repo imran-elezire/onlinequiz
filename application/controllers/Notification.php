@@ -8,31 +8,47 @@ class Notification extends CI_Controller {
 	   parent::__construct();
 	   $this->load->database();
 	   $this->load->helper('url');
+		 $this->load->model("user_model");
 	   $this->load->model("notification_model");
 	     $this->lang->load('basic', $this->config->item('language'));
+
+			 $logged_in=$this->session->userdata('logged_in');
+			 if($logged_in['token']!="")
+	 		{
+	 			$user_id=$this->user_model->check_token($logged_in['token']);
+	 			if($user_id!=$logged_in['uid'])
+	 			{
+	 				$this->session->unset_userdata('logged_in');
+	 				redirect('login');
+	 			}
+	 		}
+	 		else {
+	 			$this->session->unset_userdata('logged_in');
+	 			redirect('login');
+	 		}
 
 	 }
 
 	public function index($limit='0')
 	{
-		
+
 		// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-			
+
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
-		$this->session->unset_userdata('logged_in');		
+		$this->session->unset_userdata('logged_in');
 		redirect('login');
 		}
-		
-	 
-			
-		
-		 	 
-			
-			
+
+
+
+
+
+
+
 	        $data['limit']=$limit;
 		$data['title']=$this->lang->line('notification');
 		// fetching quiz list
@@ -41,71 +57,71 @@ class Notification extends CI_Controller {
 		$this->load->view('notification_list',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
-	
+
+
+
 	public function register_token($device,$uid){
 	 if($device=='web'){
 	 $userdata=array(
-	 'web_token'=>$_POST['currentToken']	 
+	 'web_token'=>$_POST['currentToken']
 	 );
 	 }else{
 	  $userdata=array(
-	 'android_token'=>$_POST['currentToken']	 
+	 'android_token'=>$_POST['currentToken']
 	 );
 	 }
 	$this->db->where('uid',$uid);
 	$this->db->update('savsoft_users',$userdata);
-	
+
 	}
-	
-	
-	
+
+
+
 	public function add_new($tuid='0'){
-	
+
 	// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-			
+
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
-		$this->session->unset_userdata('logged_in');		
+		$this->session->unset_userdata('logged_in');
 		redirect('login');
 		}
-		
+
 		if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
 		}
-		
+
 	$data['title']=$this->lang->line('send_notification');
-	$data['tuid']=$tuid;	
+	$data['tuid']=$tuid;
 	        $this->load->view('header',$data);
 		$this->load->view('new_notification',$data);
 		$this->load->view('footer',$data);
 	}
-	
-	
+
+
 	public function send_notification(){
-	
-	
+
+
 	// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-			
+
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
-		$this->session->unset_userdata('logged_in');		
+		$this->session->unset_userdata('logged_in');
 		redirect('login');
 		}
-		
+
 		if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
 		}
-		
+
 	foreach($_POST['notification_to'] as $nk => $nval){
-	if($nval != ''){	
+	if($nval != ''){
 	 $fields = array(
             'to' => $nval,
             'icon' => 'logo',
@@ -122,42 +138,42 @@ class Notification extends CI_Controller {
         );
         // Open connection
         $ch = curl_init();
- 
+
         // Set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $url);
- 
+
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
- 
+
         // Disabling SSL Certificate support temporarly
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
- 
+
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
- 
+
         // Execute post
         $result = curl_exec($ch);
         if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
         }
- 
+
         // Close connection
         curl_close($ch);
-        
-        
-	
+
+
+
 	$this->notification_model->insert_notification($result,$nval);
 	}
 	}
 	  $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('notification_sent')." </div>");
-		 
+
 		redirect('notification/index');
-	
+
 	}
-	
-	
-	
-	
- 
-	
+
+
+
+
+
+
 }
