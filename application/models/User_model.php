@@ -292,9 +292,12 @@ return $revenue;
 		 $this->db->or_where('savsoft_users.contact_no',$search);
 
 	 }
+
+   $this->db->select('savsoft_users.*,savsoft_group.*,t2.first_name as manager_first,t2.last_name as manager_last');
 		$this->db->limit($this->config->item('number_of_rows'),$limit);
 		$this->db->order_by('savsoft_users.uid','desc');
 		 $this -> db -> join('savsoft_group', 'savsoft_users.gid=savsoft_group.gid');
+     $this -> db -> join('savsoft_users as t2', 't2.uid=savsoft_users.user_manger','left');
 		 $query=$this->db->get('savsoft_users');
 		return $query->result_array();
 
@@ -344,6 +347,7 @@ return $revenue;
     'department'=>$this->input->post('department'),
 		'gid'=>$this->input->post('gid'),
 		'subscription_expired'=>strtotime($this->input->post('subscription_expired')),
+    'user_manger'=>$this->input->post('user_manger'),
 		'su'=>$this->input->post('su')
 		);
 

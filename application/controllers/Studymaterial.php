@@ -119,13 +119,13 @@ class Studymaterial extends CI_Controller {
 		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('fileupload', 'fileupload', 'required');
+		//$this->form_validation->set_rules('fileupload', 'fileupload', 'required');
 		$this->form_validation->set_rules('category', 'category', 'required');
 
 				 if ($this->form_validation->run() == FALSE)
 							{
 									 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
-				redirect('quiz/add_new/');
+				redirect('studymaterial/add/');
 							}
 							else
 							{

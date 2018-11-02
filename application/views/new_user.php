@@ -67,6 +67,21 @@
 					?>
 					</select>
 			</div>
+
+      <div class="form-group">
+        <label   ><?php echo $this->lang->line('user_manger');?></label>
+        <select class="form-control" name="user_manger" id="user_manger"  >
+          <option value="0">Select Manager</option>
+        <?php
+        foreach($user_list as $key => $value){
+          ?>
+
+<option value="<?php echo $value['uid'];?>" ><?php echo $value['first_name'].' '.$value['last_name'];?></option>
+          <?php
+        }
+        ?>
+        </select>
+    </div>
 			<!-- <div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('subscription_expired');?></label>
 					<input type="text" name="subscription_expired"  id="subscription_expired" class="form-control" placeholder="<?php echo $this->lang->line('subscription_expired');?>"    autofocus>
