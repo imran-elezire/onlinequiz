@@ -23,10 +23,10 @@ class User extends CI_Controller {
 
 		if($logged_in['token']!="")
 		{
-			echo "1";
+
 			$user_id=$this->user_model->check_token($logged_in['token']);
 			if($user_id!=$logged_in['uid'])
-			{				
+			{
 				$this->session->unset_userdata('logged_in');
 				redirect('login');
 			}
@@ -40,7 +40,6 @@ class User extends CI_Controller {
 
 	public function index($limit='0')
 	{
-
 		$logged_in=$this->session->userdata('logged_in');
 
 			if($logged_in['su']!='1'){
@@ -69,6 +68,7 @@ class User extends CI_Controller {
 		 $data['title']=$this->lang->line('add_new').' '.$this->lang->line('user');
 		// fetching group list
 		$data['group_list']=$this->user_model->group_list();
+		$data['user_list']=$this->user_model->get_user_by_usertype('0');
 		 $this->load->view('header',$data);
 		$this->load->view('new_user',$data);
 		$this->load->view('footer',$data);

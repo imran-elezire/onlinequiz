@@ -1,8 +1,8 @@
  <style>
-.txtVertical 
+.txtVertical
 {
 	 position: fixed;
-	
+
     right: 0px;
     bottom: 0px;
 }
@@ -24,13 +24,18 @@
 
 <div class="container">
 
-   
- 
-<div id="update_notice"></div>  
- 
 
+<<<<<<< HEAD
  
 <div class="row" style="display: inline; float: none;">
+=======
+
+<div id="update_notice"></div>
+
+
+
+<div class="row">
+>>>>>>> 8ce6abe0a9e02892a2e631d2f481cb7c7c2046a1
 
 <div class="col-md-4">
                     <div class="panel panel-info">
@@ -99,13 +104,13 @@
                             </div>
                         </a>
  </div>
- 
- 
- 
- 
+
+
+
+
 
 </div>
- 
+
 <div class="row"></div>
 
 
@@ -118,36 +123,36 @@
 
 
 <div class="row">
-                          
+
  <div class="col-lg-6 " >
  <div class="panel panel" >
                         <div class="panel-heading"  style="background-color:#72B159;text-align:center;">
-                        
+
     <div class="font-size-34"> <strong style="color:#ffffff;"><?php echo $active_users;?></strong>
     <br>
     <small class="font-weight-light text-muted" style="font-size:18px;color:#eeeeee;"><?php echo $this->lang->line('active');?> <?php echo $this->lang->line('users');?></small>
 
 </div>
 
-                    
+
                         </div>
  </div>
 </div>
  <div class="col-lg-6">
  <div class="panel panel" >
                         <div class="panel-heading"  style="background-color:#DB5949;text-align:center;">
-                        
+
     <div class="font-size-34" > <strong style="color:#ffffff;"><?php echo $inactive_users;?></strong>
     <br>
     <small class="font-weight-light text-muted" style="font-size:18px;color:#eeeeee;"><?php echo $this->lang->line('inactive');?> <?php echo $this->lang->line('users');?></small>
 
 </div>
 
-                    
+
                         </div>
                         </div>
 </div>
-  
+
 
 </div>
 

@@ -1,9 +1,9 @@
  <div class="container">
 
-   
+
  <h3><?php echo $title;?></h3>
     <div class="row">
- 
+
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('user/index/');?>">
 	<div class="input-group">
@@ -11,8 +11,8 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
-	 
-	  
+
+
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
@@ -20,32 +20,33 @@
 
 
   <div class="row">
- 
+
 <div class="col-md-12">
-<br> 
-			<?php 
+<br>
+			<?php
 		if($this->session->flashdata('message')){
-			echo $this->session->flashdata('message');	
+			echo $this->session->flashdata('message');
 		}
-		?>	
-		
+		?>
+
 <table class="table table-bordered">
 <tr>
  <th>#</th>
  <th><?php echo $this->lang->line('email');?></th>
 <th><?php echo $this->lang->line('first_name');?> <?php echo $this->lang->line('last_name');?></th>
+<th>Manager</th>
 <th><?php echo $this->lang->line('account_status');?> </th>
 <th><?php echo $this->lang->line('send_notification');?> </th>
 <th><?php echo $this->lang->line('action');?> </th>
 </tr>
-<?php 
+<?php
 if(count($result)==0){
 	?>
 <tr>
  <td colspan="3"><?php echo $this->lang->line('no_record_found');?></td>
-</tr>	
-	
-	
+</tr>
+
+
 	<?php
 }
 foreach($result as $key => $val){
@@ -54,19 +55,20 @@ foreach($result as $key => $val){
  <td><?php echo $val['uid'];?></td>
 <td><?php echo $val['email'].' '.$val['wp_user'];?></td>
 <td><?php echo $val['first_name'];?> <?php echo $val['last_name'];?></td>
+<td><?php echo $val['manager_first'];?> <?php echo $val['manager_last'];?></td>
  <td><?php echo $val['user_status'];?></td>
  <td><a href="<?php echo site_url('notification/add_new/'.$val['uid']);?>"><?php echo $this->lang->line('send_notification');?></a></td>
 <td>
- 
+
 <a href="<?php echo site_url('user2/view_user/'.$val['uid']);?>"><i class="fa fa-eye" title="View Profile"></i></a>
- 
+
 <a href="<?php echo site_url('user/edit_user/'.$val['uid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
 <a href="javascript:remove_entry('user/remove_user/<?php echo $val['uid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
 
 </td>
 </tr>
 
-<?php 
+<?php
 }
 ?>
 </table>

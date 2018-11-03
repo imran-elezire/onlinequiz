@@ -13,34 +13,34 @@ class User2 extends CI_Controller {
 		// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-			
+
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
-		$this->session->unset_userdata('logged_in');		
+		$this->session->unset_userdata('logged_in');
 		redirect('login');
 		}
-		
+
 	 }
 
 	public function index($limit='0')
 	{
-	 
+
 	}
-	
-	 
+
+
 
 	public function view_user($uid)
 	{
-		
+
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			 $uid=$logged_in['uid'];
 			}
-			
+
 			$data['uid']=$uid;
 	        $data['title']=$this->lang->line('profile');
-	        
+
 	        $query1=$this->db->query(" select * from savsoft_result where uid='$uid' order by rid desc ");
 	        $res1=$query1->result_array();
 	        $query2=$this->db->query(" select * from savsoft_result where uid='$uid' and result_status='Pass' ");
@@ -53,25 +53,25 @@ class User2 extends CI_Controller {
 	        $data['attempted']=$query1->num_rows();
 	        $data['pass']=$query2->num_rows();
 	        $data['fail']=$query3->num_rows();
-	        
+
 	        $category=array();
 	        $category_recent=array();
 	        $incorrect_answers=array();
 	        // getting categories
-	        
+
 	        if(count($res1) != 0){
 	        foreach($res1 as $k => $val){
 	        $i=1;
-	        
+
 	                         $scores=explode(',',$val['score_individual']);
 	                         $range=explode(',',$val['category_range']);
 	                         $rqids=explode(',',$val['r_qids']);
-	                        
+
 	                foreach(explode(',',$val['categories']) as $ck =>$cv){
 	                $score_arr=0;
 	                $counts=0;
-	                 
-	        
+
+
 	                        for($j=$i; $j < ($i+$range[$ck]); $j++){
 	                        if($scores[$j-1] != 2){
 	                                $score_arr+=$scores[$j-1];
@@ -81,16 +81,16 @@ class User2 extends CI_Controller {
 	                                // incorrect answer. add question id
 	                                if(!isset($incorrect_answers[$rqids[$j-1]])){
 	                                $incorrect_answers[$rqids[$j-1]]=$rqids[$j-1];
-	                                } 
 	                                }
-	                                 
+	                                }
+
 	                        }
 	                        $i+=$range[$ck];
 	                        if(isset($category[$cv])){
 	                        if($score_arr != 0){
 	                        $category[$cv]=($category[$cv]+(($score_arr/$counts)*100))/2;
-	                        } 
-	                   
+	                        }
+
 	                        }else{
 	                        if($score_arr != 0){
 	                        $category[$cv]=($score_arr/$counts)*100;
@@ -103,14 +103,14 @@ class User2 extends CI_Controller {
 	                        $category_recent[$cv]=0;
 	                        }
 	                        }
-	                       
+
 	                }
-	                
-	                
-	                
-	        
+
+
+
+
 	        }
-	        
+
 	        $incorrect_answers_new=array(0);
 	         foreach($incorrect_answers as $kk => $vv){
 	         if($kk < 100){
@@ -140,5 +140,5 @@ class User2 extends CI_Controller {
 		$this->load->view('footer',$data);
 	}
 
-	 
+
 }
