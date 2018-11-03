@@ -11,8 +11,6 @@
 	
 	<!-- custom css -->
 	<link href="<?php echo base_url('css/style.css');?>" rel="stylesheet">
-
-  
 	
 	<script>
 	

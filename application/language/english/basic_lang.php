@@ -1,10 +1,6 @@
 <?php
-<<<<<<< HEAD
-$lang['online_quiz'] = "Quiz";
-=======
 $lang['savsoft_quiz'] = "Online Quiz";
 $lang['proj_name'] = "Online Quiz";
->>>>>>> 8ce6abe0a9e02892a2e631d2f481cb7c7c2046a1
 $lang['installation_process'] = "Installation Process";
 $lang['installation_completed'] = "Installation Completed. Visit base URL {base_url} to login.<br><br>Default login info:<br> Email: admin@example.com <br>Password: admin<br><br>For more information or customization visit <a href='http://savsoftquiz.com/'>www.SavsoftQuiz.com/</a> ";
 $lang['installation_failed'] = "Installation Failed";
@@ -16,7 +12,7 @@ $lang['base_url'] = "Base URL, ends with single forward slash";
 $lang['config'] = "Config File";
 $lang['custom_css'] = "Custom CSS";
 $lang['config_warning'] = "Update config file carefully";
-$lang['login'] = "Login Here";
+$lang['login'] = "Login";
 $lang['processing'] = "Processing...";
 $lang['install_now'] = "Install Now";
 $lang['email_address'] = "Email Address";
@@ -263,7 +259,7 @@ $lang['grid_view'] = "Grid View";
 $lang['rank'] = "Rank";
 $lang['time'] = "Time";
 $lang['comparison_other'] = "Comparision with other";
-$lang['login_tagline'] = "Login Here";
+$lang['login_tagline'] = "Online Quiz Management System";
 $lang['recent_quizzes'] = "Recently Created Quizzes";
 $lang['view_all'] = "View All";
 $lang['available'] = "Available on:";

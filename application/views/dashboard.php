@@ -25,17 +25,12 @@
 <div class="container">
 
 
-<<<<<<< HEAD
- 
-<div class="row" style="display: inline; float: none;">
-=======
 
 <div id="update_notice"></div>
 
 
 
 <div class="row">
->>>>>>> 8ce6abe0a9e02892a2e631d2f481cb7c7c2046a1
 
 <div class="col-md-4">
                     <div class="panel panel-info">
@@ -118,7 +113,7 @@
 
 
 
-<div class="row" style="display: inline; float: none;">
+<div class="row">
       <div class="col-lg-7">
 
 

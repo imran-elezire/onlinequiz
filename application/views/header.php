@@ -36,7 +36,7 @@
 	<!-- firebase messaging menifest.json -->
 	 <link rel="manifest" href="<?php echo base_url('js/manifest.json');?>">
  </head>
-  <body class="all_pages">
+  <body   >
 
 
 
