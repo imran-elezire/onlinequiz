@@ -1,8 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Rajdhani');
+
+.logintag{
+	font-size: 20px;
+	margin-top: 5px;
+	color: #212121;
+	font-weight: bold;
+
+}
+
+.logintxt {
+	color: rgb(255, 0, 140);
+}
+
+
+.loginbtn{
+	border-radius: 40px;
+	background-color: rgb(255, 0, 140);
+	border: 2px solid rgba(255, 0, 140);
+	transition: all 0.5s ease 0s;
+}
+.loginbtn:hover{
+	border-radius: 40px;
+	background-color: rgb(187, 6, 105);
+	border: 2px solid rgba(187, 6, 105);
+}
+
+.form-control:focus {
+	border-color:rgb(255, 0, 140);
+	box-shadow: inset 0 1px 1px rgba(255, 0, 140, 0.075), 0 0 8px rgba(255, 0, 140, 0.6);
+  }
+
  .login{
-background-image:url('../images/bg.jpg');
- background-size:     cover;                      
-    background-repeat:   no-repeat;
+/*background-image:url('../images/bg.jpg');*/
+	background-color: rgb(187, 189, 191);
+	background-image: linear-gradient(to right, #93a5cf,#e4efe9);
+	/*background-size:     cover;                      
+	background-repeat:   no-repeat;*/
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 16px;
     
+}
+
+.all_pages {	
+	background-color: rgb(187, 189, 191);
+	font-family: 'Rajdhani', sans-serif;
 }
 
 .container{

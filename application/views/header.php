@@ -36,7 +36,7 @@
 	<!-- firebase messaging menifest.json -->
 	 <link rel="manifest" href="<?php echo base_url('js/manifest.json');?>">
  </head>
-  <body   >
+  <body class="all_pages">
 
 
 
@@ -54,7 +54,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://savsoftquiz.com"><?php echo $this->lang->line('savsoft_quiz');?></a>
+            <a class="navbar-brand" href="#"><?php echo $this->lang->line('proj_name');?></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
