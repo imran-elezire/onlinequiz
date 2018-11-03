@@ -30,7 +30,7 @@
 
 
 
-<div class="row">
+<div class="row" style="display: inline; float: none;">
 
 <div class="col-md-4">
                     <div class="panel panel-info">
@@ -113,7 +113,7 @@
 
 
 
-<div class="row">
+<div class="row" style="display: inline; float: none;">
       <div class="col-lg-7">
 
 

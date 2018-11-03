@@ -1,13 +1,13 @@
 
-<div class="row" style="margin-top:20px;">
-<div class="container" >
+<div class="row" style="display: inline; float: none;">
+<div class="container">
 
 
 
 
 
-
-<div class="col-md-8">
+<!-- For changing the position of the login box -->
+<div class="col-md-4">
 
 </div>
 <div class="col-md-4">
@@ -15,12 +15,12 @@
 	<div class="login-panel panel panel-default">
 		<div class="panel-body">
 		<center>
-		<a href="<?php echo base_url();?>">Online Quiz</a><br>
-<?php echo $this->lang->line('login_tagline');?>
+		<a href="<?php echo base_url();?>"><img src="<?php echo base_url('images/logo.png');?>"></a><br>
+<h4 class="logintag"><?php echo $this->lang->line('login_tagline');?></h4>
 		</center>
 
 			<form class="form-signin" method="post" action="<?php echo site_url('login/verifylogin');?>">
-					<h4 class="form-signin-heading"><?php echo $this->lang->line('login');?></h4>
+			<h4 class="form-signin-heading"><?php echo $this->lang->line('');?></h4>
 		<?php
 		if($this->session->flashdata('message')){
 			?>
@@ -46,24 +46,24 @@
 
 			<div class="form-group">
 
-					<button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $this->lang->line('login');?></button>
+					<button class="btn btn-lg btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('login');?></button>
 			</div>
 <?php
 if($this->config->item('user_registration')){
 	?>
-	<a href="<?php echo site_url('login/pre_registration');?>"><?php echo $this->lang->line('register_new_account');?></a>
+	<a class="logintxt" href="<?php echo site_url('login/pre_registration');?>"><?php echo $this->lang->line('register_new_account');?></a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
 }
 ?>
-	<a href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
+	<a class="logintxt" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
 
 			</form>
 
 <?php
 if($this->config->item('open_quiz')){
 	?>			<p>
-			<a href="<?php echo site_url('quiz/open_quiz/0');?>"  ><?php echo $this->lang->line('open_quizzes');?></a>
+			<a class="logintxt" href="<?php echo site_url('quiz/open_quiz/0');?>"  ><?php echo $this->lang->line('open_quizzes');?></a>
 			</p>
 			<?php
 			}
