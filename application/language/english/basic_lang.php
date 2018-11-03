@@ -1,5 +1,5 @@
 <?php
-$lang['savsoft_quiz'] = "Savsoft Quiz v4.0";
+$lang['online_quiz'] = "Quiz";
 $lang['installation_process'] = "Installation Process";
 $lang['installation_completed'] = "Installation Completed. Visit base URL {base_url} to login.<br><br>Default login info:<br> Email: admin@example.com <br>Password: admin<br><br>For more information or customization visit <a href='http://savsoftquiz.com/'>www.SavsoftQuiz.com/</a> ";
 $lang['installation_failed'] = "Installation Failed";
@@ -11,7 +11,7 @@ $lang['base_url'] = "Base URL, ends with single forward slash";
 $lang['config'] = "Config File";
 $lang['custom_css'] = "Custom CSS";
 $lang['config_warning'] = "Update config file carefully";
-$lang['login'] = "Login";
+$lang['login'] = "Login Here";
 $lang['processing'] = "Processing...";
 $lang['install_now'] = "Install Now";
 $lang['email_address'] = "Email Address";
@@ -258,7 +258,7 @@ $lang['grid_view'] = "Grid View";
 $lang['rank'] = "Rank";
 $lang['time'] = "Time";
 $lang['comparison_other'] = "Comparision with other";
-$lang['login_tagline'] = "Online Quiz Management System";
+$lang['login_tagline'] = "Login Here";
 $lang['recent_quizzes'] = "Recently Created Quizzes";
 $lang['view_all'] = "View All";
 $lang['available'] = "Available on:";
