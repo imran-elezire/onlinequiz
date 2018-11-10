@@ -30,9 +30,19 @@
 					<label for="inputEmail"  ><?php echo $this->lang->line('description');?></label>
 					<textarea   name="description"  class="form-control tinymce_textarea" ></textarea>
 			</div>
-				<div class="form-group">
+      <div class="form-group">
+        <label for="inputEmail">Select Type</label>
+        <input type="radio" name="link_type" class="type_material" data-id="file" value="file" checked> File
+        <input type="radio" name="link_type" class="type_material" data-id="link" value="link"> Youtube/Other Link
+
+    </div>
+    <div class="form-group  material_type link_upload"  style="display:none;">
+         <label for="inputEmail">Link</label>
+         <input type="text" name="link" class="form-control">
+     </div>
+		 <div class="form-group  material_type file_upload">
 					<label for="inputEmail"  ><?php echo $this->lang->line('fileupload');?></label>
-					<input type="file" name="fileupload"  class="form-control"   required >
+					<input type="file" name="file_upload"  class="form-control" >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('category');?></label>
@@ -72,3 +82,14 @@
 
 
 </div>
+
+<script>
+$(document).ready(function(){
+  $(".type_material").click(function() {
+    
+    var cl= $(this).attr("data-id");
+    $(".material_type").css("display","none");
+    $("."+cl+"_upload").css("display","block");
+  });
+});
+</script>

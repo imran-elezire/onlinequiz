@@ -12,7 +12,9 @@
             <li class="list-group-item text-right"><span class="pull-left"><strong><?php echo $this->lang->line('joined');?></strong></span> <?php echo $result['registered_date'];?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong><?php echo $this->lang->line('group_name');?></strong></span> <?php echo $result['group_name'];?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong><?php echo $this->lang->line('account_type');?></strong></span> <?php   if($result['su']==1){ echo $this->lang->line('administrator');}else{ echo $this->lang->line('user'); }?></li>
-
+            <li class="list-group-item text-right"><span class="pull-left"><strong><?php echo $this->lang->line('employee_id');?></strong></span> <?php echo $result['employee_id'];?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong><?php echo $this->lang->line('designation');?></strong></span> <?php echo $result['designation'];?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong><?php echo $this->lang->line('department');?></strong></span> <?php echo $result['department'];?></li>
           </ul>
 
           <div class="panel panel-default">
@@ -131,7 +133,7 @@ data-toggle="modal" data-target="#myModal<?php echo $qv['qid'];?>"
 </div>
 
 
-              
+
 
               <div class="table-responsive">
 

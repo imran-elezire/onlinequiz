@@ -85,7 +85,7 @@ foreach($material_list as $key => $val){
  <td><?php echo $val['category_name']; ?></td>
 
 <td>
-<a href="<?php echo $val['file'];?>" class="btn btn-success" target="_blank"><?php echo $this->lang->line('view');?> </a>
+<a href="<?php echo ($val['link_type']=='file')?$val['file']:$val['link'];?>" class="btn btn-success" target="_blank"><?php echo $this->lang->line('view');?> </a>
 <?php
 if($logged_in['su']=='1'){
 	?>

@@ -32,6 +32,8 @@ Class Studymaterial_model extends CI_Model
       'description'=>$this->input->post('description'),
       'gids'=>implode(',',$this->input->post('gids')),
       'uid'=>$logged_in['uid'],
+      'link_type'=>$this->input->post('link_type'),
+      'link'=>$this->input->post('link'),
       );
 
 
@@ -47,7 +49,7 @@ Class Studymaterial_model extends CI_Model
         $upadedata['file_type']=$FileType;
       } else {
           echo "Sorry, there was an error uploading your file.";
-          $upadedata['status']=0;
+          //$upadedata['status']=0;
       }
       $this->db->where('material_id',$material_id);
   		if($this->db->update('savsoft_studymaterial',$upadedata))

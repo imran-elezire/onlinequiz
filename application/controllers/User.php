@@ -126,7 +126,6 @@ class User extends CI_Controller {
 
 	public function edit_user($uid)
 	{
-
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			 $uid=$logged_in['uid'];
@@ -368,6 +367,17 @@ class User extends CI_Controller {
 					redirect('user/group_list');
 
 
+		}
+
+
+		public function reportees()
+		{
+			$logged_in=$this->session->userdata('logged_in');
+				$data['title']='Reportee List';
+			$data['reportees']=$this->user_model->reportees_list($logged_in['uid']);
+			$this->load->view('header',$data);
+			$this->load->view('reprtees_list',$data);
+			$this->load->view('footer',$data);
 		}
 
 	function logout(){

@@ -341,3 +341,4 @@ $lang['studymaterial_title'] = "Material Title";
 $lang['studymaterial_desc'] = "Material Description";
 $lang['studymaterial_cat'] = "Category";
 $lang['studymaterial_file'] = "File";
+$lang['reportees'] = "Reportees";

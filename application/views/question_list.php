@@ -1,9 +1,9 @@
  <div class="container">
 
-   
+
  <h3><?php echo $title;?></h3>
     <div class="row">
- 
+
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('qbank/index/');?>">
 	<div class="input-group">
@@ -11,8 +11,8 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
-	 
-	  
+
+
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
@@ -20,60 +20,60 @@
 
 
   <div class="row">
- 
+
 <div class="col-md-12">
-<br> 
-			<?php 
+<br>
+			<?php
 		if($this->session->flashdata('message')){
-			echo $this->session->flashdata('message');	
+			echo $this->session->flashdata('message');
 		}
-		?>	
-						<div class="form-group">	 
+		?>
+						<div class="form-group">
 					<form method="post" action="<?php echo site_url('qbank/pre_question_list/'.$limit.'/'.$cid.'/'.$lid);?>">
 					<select   name="cid">
 					<option value="0"><?php echo $this->lang->line('all_category');?></option>
-					<?php 
+					<?php
 					foreach($category_list as $key => $val){
 						?>
-						
+
 						<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
-						<?php 
+						<?php
 					}
 					?>
 					</select>
 			 	<select  name="lid">
 				<option value="0"><?php echo $this->lang->line('all_level');?></option>
-					<?php 
+					<?php
 					foreach($level_list as $key => $val){
 						?>
-						
+
 						<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
-						<?php 
+						<?php
 					}
 					?>
 					</select>
 					 <button class="btn btn-default" type="submit"><?php echo $this->lang->line('filter');?></button>
 					 </form>
 			</div>
-	
+
 <table class="table table-bordered">
 <tr>
  <th>#</th>
  <th><?php echo $this->lang->line('question');?></th>
 <th><?php echo $this->lang->line('question_type');?></th>
 <th><?php echo $this->lang->line('category_name');?> / <?php echo $this->lang->line('level_name');?></th>
- 
+
 <th><?php echo $this->lang->line('percent_corrected');?></th>
 <th><?php echo $this->lang->line('action');?> </th>
 </tr>
-<?php 
+<?php
 if(count($result)==0){
 	?>
 <tr>
  <td colspan="3"><?php echo $this->lang->line('no_record_found');?></td>
-</tr>	
-	
-	
+</tr>
+
+
 	<?php
 }
 foreach($result as $key => $val){
@@ -81,11 +81,11 @@ foreach($result as $key => $val){
 <tr>
  <td>  <a href="javascript:show_question_stat('<?php echo $val['qid'];?>');">+</a>  <?php echo $val['qid'];?></td>
  <td><?php echo substr(strip_tags($val['question']),0,40);?>
- 
- 
+
+
  <span style="display:none;" id="stat-<?php echo $val['qid'];?>">
-  
- 
+
+
  <table class="table table-bordered">
 <tr><td><?php echo $this->lang->line('no_times_corrected');?></td><td><?php echo $val['no_time_corrected'];?></td></tr>
 <tr><td><?php echo $this->lang->line('no_times_incorrected');?></td><td><?php echo $val['no_time_incorrected'];?></td></tr>
@@ -94,17 +94,17 @@ foreach($result as $key => $val){
 </table>
 
 
- 
+
 
  </span>
- 
- 
- 
+
+
+
  </td>
 <td><?php echo $val['question_type'];?></td>
 <td><?php echo $val['category_name'];?> / <span style="font-size:12px;"><?php echo $val['level_name'];?></span></td>
- 
-<td><?php if($val['no_time_served']!='0'){ $perc=($val['no_time_corrected']/$val['no_time_served'])*100; 
+
+<td><?php if($val['no_time_served']!='0'){ $perc=($val['no_time_corrected']/$val['no_time_served'])*100;
 ?>
 
 <div style="background:#eeeeee;width:100%;height:10px;"><div style="background:#449d44;width:<?php echo intval($perc);?>%;height:10px;"></div>
@@ -114,7 +114,7 @@ foreach($result as $key => $val){
 }else{ echo $this->lang->line('not_used');} ?></td>
 
 <td>
-<?php 
+<?php
 $qn=1;
 if($val['question_type']==$this->lang->line('multiple_choice_single_answer')){
 	$qn=1;
@@ -140,7 +140,7 @@ if($val['question_type']==$this->lang->line('long_answer')){
 </td>
 </tr>
 
-<?php 
+<?php
 }
 ?>
 </table>
@@ -168,41 +168,41 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 <br><br><br><br>
 <div class="login-panel panel panel-default">
 	<div class="panel-heading">
-<h4><?php echo $this->lang->line('import_question');?></h4> 
+<h4><?php echo $this->lang->line('import_question');?></h4>
 </div>
-	<div class="panel-body"> 
+	<div class="panel-body">
 
 <?php echo form_open('qbank/import',array('enctype'=>'multipart/form-data')); ?>
-  
+
  <select name="cid"  required >
  <option value=""><?php echo $this->lang->line('select_category');?></option>
-<?php 
+<?php
 					foreach($category_list as $key => $val){
 						?>
-						
+
 						<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
-						<?php 
+						<?php
 					}
 					?></select>
  <select name="did"  required >
  <option value=""><?php echo $this->lang->line('select_level');?></option>
-<?php 
+<?php
 					foreach($level_list as $key => $val){
 						?>
-						
+
 						<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
-						<?php 
+						<?php
 					}
 					?>
-					</select> 
+					</select>
 
 <?php echo $this->lang->line('upload_excel');?>
 	<input type="hidden" name="size" value="3500000">
 	<input type="file" name="xlsfile" style="width:150px;float:left;margin-left:10px;">
 	<div style="clear:both;"></div>
 	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default">
-	
-<a href="<?php echo base_url();?>sample/sample.xls" target="new">Click here</a> <?php echo $this->lang->line('upload_excel_info');?> 
+
+<a href="<?php echo base_url();?>sample/sample.xls" target="new">Click here</a> <?php echo $this->lang->line('upload_excel_info');?>
 </form>
 
 </div>
@@ -217,35 +217,35 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 <div class="login-panel panel panel-default">
 <div class="panel-heading">
-<h4><?php echo $this->lang->line('import_question2');?></h4> 
+<h4><?php echo $this->lang->line('import_question2');?></h4>
 </div>
-		<div class="panel-body"> 
+		<div class="panel-body">
 
 <?php echo form_open('word_import',array('enctype'=>'multipart/form-data')); ?>
- 
+
 <div class="alert alert-danger"> <?php echo $this->lang->line('wordimportinfo');?></div>
 
  <select name="cid"  required >
  <option value=""><?php echo $this->lang->line('select_category');?></option>
-<?php 
+<?php
 					foreach($category_list as $key => $val){
 						?>
-						
+
 						<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
-						<?php 
+						<?php
 					}
 					?></select>
  <select name="lid" required >
  <option value=""><?php echo $this->lang->line('select_level');?></option>
-<?php 
+<?php
 					foreach($level_list as $key => $val){
 						?>
-						
+
 						<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
-						<?php 
+						<?php
 					}
 					?>
-					</select> 
+					</select>
 
 <?php echo $this->lang->line('upload_doc');?>
 	<input type="hidden" name="size" value="3500000">
@@ -260,24 +260,19 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 	<tr><td>Correct Option Splitter: </td><td><input type="text" name="correct_split" value="/Correct:/"></td></tr>
 	</table>
 	</div>
-	
+
 	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default">
-	
-<a href="<?php echo base_url();?>sample/sample.docx" target="new">Click here</a> <?php echo $this->lang->line('upload_doc_info');?> 
+
+<a href="<?php echo base_url();?>sample/sample.docx" target="new">Click here</a> <?php echo $this->lang->line('upload_doc_info');?>
 </form>
-
-</div>
-<div class="alert alert-warning"> Free version doesn't support Math equations while importing Ms Word file. You can upgrade to <a href="https://savsoftquiz.com/?ref=<?php echo base_url();?>">Enterprise  Version</a> with OMML plugin to support math equations.</div>
-
-
 
 </div>
 <script>
 
 function advanceconfig(){
-	
+
 	$('#advanceconfig').toggle();
-	
+
 }
 
 

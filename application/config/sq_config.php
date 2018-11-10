@@ -4,4 +4,5 @@
 		$sq_dbname='onlinetest';
 		$sq_dbusername='omg_root';
 		$sq_dbpassword='1Human_race';
+
 		?>

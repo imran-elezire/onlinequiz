@@ -187,7 +187,7 @@ foreach($result as $key => $val){
  <td  class="text-xs-right"><?php echo $val['group_name'];?></td>
 <td  class="text-xs-right"><?php echo $val['contact_no'];?></td>
 
-<td class="text-xs-right"><?php echo $val['manager_first']." ".$val['manager_last'];?></td>
+<td class="text-xs-right"><?php if($val['manager_first']==""){echo "NA";}else {echo $val['manager_first']." ".$val['manager_last'];}?></td>
 
 
               </tr>

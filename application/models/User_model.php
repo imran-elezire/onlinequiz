@@ -505,7 +505,10 @@ $new_password=rand('1111','9999');
 		$userdata=array(
 		  'first_name'=>$this->input->post('first_name'),
 		'last_name'=>$this->input->post('last_name'),
-		'contact_no'=>$this->input->post('contact_no')
+		'contact_no'=>$this->input->post('contact_no'),
+    'employee_id'=>$this->input->post('employee_id'),
+    'designation'=>$this->input->post('designation'),
+    'department'=>$this->input->post('department')
 		);
 		if($logged_in['su']=='1'){
 			$userdata['email']=$this->input->post('email');
@@ -642,6 +645,15 @@ function get_user_by_usertype($type)
   $this->db->where('su',$type);
   $query=$this->db->get('savsoft_users');
   	 return $query->result_array();
+}
+
+
+function reportees_list($manager_id)
+{
+  $this->db->where('user_manger',$manager_id);
+  $query=$this->db->get('savsoft_users');
+  return $query->result_array();
+
 }
 
 
