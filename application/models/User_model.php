@@ -512,7 +512,7 @@ $new_password=rand('1111','9999');
 		);
 		if($logged_in['su']=='1'){
 			$userdata['email']=$this->input->post('email');
-			$userdata['gid']=$this->input->post('gid');
+			//$userdata['gid']=$this->input->post('gid');
 			if($this->input->post('subscription_expired') !='0'){
 			$userdata['subscription_expired']=strtotime($this->input->post('subscription_expired'));
 			}else{

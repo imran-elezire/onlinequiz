@@ -12,9 +12,13 @@ class Quiz extends CI_Controller {
 	   $this->load->model("user_model");
 	   $this->lang->load('basic', $this->config->item('language'));
 		 $logged_in=$this->session->userdata('logged_in');
+
+
 		 if($logged_in['token']!="")
  		{
+
  			$user_id=$this->user_model->check_token($logged_in['token']);
+
  			if($user_id!=$logged_in['uid'])
  			{
  				$this->session->unset_userdata('logged_in');
@@ -37,7 +41,9 @@ class Quiz extends CI_Controller {
 
 		}
 		$logged_in=$this->session->userdata('logged_in');
+
 		if($logged_in['base_url'] != base_url()){
+
 		$this->session->unset_userdata('logged_in');
 		redirect('login');
 		}
@@ -709,8 +715,8 @@ function open_quiz($limit='0'){
 		}
 
 
-		echo "<pre>";
-		print_r($_POST);
+		// echo "<pre>";
+		// print_r($_POST);
 		  // insert user response and calculate scroe
 		echo $this->quiz_model->insert_answer();
 
@@ -753,6 +759,7 @@ if(isset($_FILES['webcam'])){
 
 
  function submit_quiz(){
+
 	 				// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			if(!$this->session->userdata('logged_in_raw')){
@@ -782,9 +789,13 @@ if(isset($_FILES['webcam'])){
 					}
 			$this->session->unset_userdata('rid');
 	if($this->session->userdata('logged_in')){
- redirect('quiz');
+
+
+ redirect('quiz/index');
 	}else{
-	 redirect('quiz/open_quiz/0');
+
+
+	 redirect('login');
 	}
  }
 

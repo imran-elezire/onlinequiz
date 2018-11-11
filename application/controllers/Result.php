@@ -296,6 +296,7 @@ $tm=time();
 
 	public function reportees_result_list($uid,$limit='0',$status='0')
 	{
+		
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
 

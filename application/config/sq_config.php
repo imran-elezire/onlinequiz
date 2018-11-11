@@ -5,4 +5,10 @@
 		$sq_dbusername='omg_root';
 		$sq_dbpassword='1Human_race';
 
+		// $sq_hostname='localhost';
+		// $sq_dbname='onlinequiz';
+		// $sq_dbusername='root';
+		// $sq_dbpassword='';
+
+
 		?>

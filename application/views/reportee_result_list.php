@@ -57,10 +57,10 @@ foreach($group_list as $gk => $group){
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('result/index/');?>">
 	<div class="input-group">
-    <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
+    <!-- <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
-      </span>
+      </span> -->
 
 
     </div><!-- /input-group -->
@@ -141,7 +141,7 @@ if($logged_in['su']=='1'){
 
 </div>
 
-
+<!-- 
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
@@ -150,7 +150,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('result/index/'.$next.'/'.$status);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('result/index/'.$next.'/'.$status);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a> -->
 
 
 

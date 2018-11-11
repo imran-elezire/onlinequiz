@@ -1,16 +1,16 @@
- 
+
 function remove_entry(redir_cont){
-	
+
 	if(confirm("Do you really want to remove entry?")){
 		window.location=base_url+"index.php/"+redir_cont;
 	}
-	
+
 }
 
 
 
 function updategroup(vall,gid){
-	 
+
 	var formData = {group_name:vall};
 	$.ajax({
 		 type: "POST",
@@ -18,17 +18,17 @@ function updategroup(vall,gid){
 			url: base_url + "index.php/user/update_group/"+gid,
 		success: function(data){
 		$("#message").html(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 function updategroupprice(vall,gid){
-	 
+
 	var formData = {price:vall};
 	$.ajax({
 		 type: "POST",
@@ -36,18 +36,18 @@ function updategroupprice(vall,gid){
 			url: base_url + "index.php/user/update_group/"+gid,
 		success: function(data){
 		$("#message").html(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 
 function updategroupvalid(vall,gid){
-	 
+
 	var formData = {valid_day:vall};
 	$.ajax({
 		 type: "POST",
@@ -55,19 +55,19 @@ function updategroupvalid(vall,gid){
 			url: base_url + "index.php/user/update_group/"+gid,
 		success: function(data){
 		$("#message").html(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 
 
 function updatecategory(vall,cid){
-	 
+
 	var formData = {category_name:vall};
 	$.ajax({
 		 type: "POST",
@@ -75,13 +75,13 @@ function updatecategory(vall,cid){
 			url: base_url + "index.php/qbank/update_category/"+cid,
 		success: function(data){
 		$("#message").html(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 
@@ -95,18 +95,18 @@ function getexpiry(){
 			url: base_url + "index.php/user/get_expiry/"+gid,
 		success: function(data){
 		$("#subscription_expired").val(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 
 function updatelevel(vall,lid){
-	 
+
 	var formData = {level_name:vall};
 	$.ajax({
 		 type: "POST",
@@ -114,13 +114,13 @@ function updatelevel(vall,lid){
 			url: base_url + "index.php/qbank/update_level/"+lid,
 		success: function(data){
 		$("#message").html(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 
@@ -144,20 +144,20 @@ function addquestion(quid,qid){
 			url: base_url + "index.php/quiz/add_qid/"+quid+'/'+qid,
 		success: function(data){
 		$(did).html(document.getElementById('added').value);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
 
 
 
 
 
- 
+
 var position_type="Up";
 var global_quid="0";
 var global_qid="0";
@@ -203,7 +203,7 @@ window.location=base_url+"index.php/quiz/down_question/"+global_quid+"/"+global_
 
 function no_q_available(lid){
 	var cid=document.getElementById('cid').value;
-	
+
 		var formData = {cid:cid};
 	$.ajax({
 		 type: "POST",
@@ -211,27 +211,27 @@ function no_q_available(lid){
 			url: base_url + "index.php/quiz/no_q_available/"+cid+'/'+lid,
 		success: function(data){
 		$('#no_q_available').html(data);
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
 }
 
 
 
 
-// quiz attempt functions 
+// quiz attempt functions
 
 var noq=0;
 var qn=0;
 var lqn=0;
 
 function fide_all_question(){
-	
+
 	for(var i=0; i < noq; i++){
-		
+
 		var did="#q"+i;
 	$(did).css('display','none');
 	}
@@ -247,24 +247,24 @@ function show_question(vqn){
 	if(vqn >= 1){
 	$('#backbtn').css('visibility','visible');
 	}
-	
+
 	if(vqn < noq){
 	$('#nextbtn').css('visibility','visible');
 	}
 	if((parseInt(vqn)+1) == noq){
-	  
+
 	$('#nextbtn').css('visibility','hidden');
 	}
 	if(vqn == 0){
 	$('#backbtn').css('visibility','hidden');
 	}
-	
+
 	// last qn
 	qn=vqn;
 lqn=vqn;
 setIndividual_time(lqn);
 save_answer(lqn);
-	
+
 }
 
 function show_next_question(){
@@ -285,13 +285,13 @@ function show_next_question(){
 	change_color(lqn);
 	setIndividual_time(lqn);
 	save_answer(lqn);
-	
+
 	// last qn
-	lqn=qn;	
-		
+	lqn=qn;
+
 }
 function show_back_question(){
-	
+
 	if((parseInt(qn)-1) >= 0 ){
 	fide_all_question();
 	qn=(parseInt(qn)-1);
@@ -308,112 +308,112 @@ function show_back_question(){
 	change_color(lqn);
 	setIndividual_time(lqn);
 	save_answer(lqn);
-	
+
 	// last qn
-	lqn=qn;	
-		
+	lqn=qn;
+
 }
 
 
 function change_color(qn){
 	var did='#qbtn'+qn;
 	var q_type='#q_type'+lqn;
-	
+
 	// if not answered then make red
 	// alert($(did).css('backgroundColor'));
 	if($(did).css('backgroundColor') != 'rgb(68, 157, 68)' && $(did).css('backgroundColor') != 'rgb(236, 151, 31)'){
 	$(did).css('backgroundColor','#c9302c');
 	$(did).css('color','#ffffff');
 	}
-	
+
 	// answered make green
 	if(lqn >= '0' && $(did).css('backgroundColor') != 'rgb(236, 151, 31)'){
 	var ldid='#qbtn'+lqn;
-		
+
 		if($(q_type).val()=='1' || $(q_type).val()=='2'){
 		var green=0;
 		for(var k=0; k<=10; k++){
 			var answer_value="answer_value"+lqn+'-'+k;
 			if(document.getElementById(answer_value)){
-				if(document.getElementById(answer_value).checked == true){	
+				if(document.getElementById(answer_value).checked == true){
 				green=1;
 				}
 			}
 		}
-		if(green==1){			
+		if(green==1){
 		$(ldid).css('backgroundColor','#449d44');
-		$(ldid).css('color','#ffffff');	
-		}		
-		}		
- 		
+		$(ldid).css('color','#ffffff');
+		}
+		}
+
 		if($(q_type).val()=='3' || $(q_type).val()=='4'){
 		var answer_value="#answer_value"+lqn;
-		if($(answer_value).val()!=''){			
+		if($(answer_value).val()!=''){
 		$(ldid).css('backgroundColor','#449d44');
-		$(ldid).css('color','#ffffff');	
+		$(ldid).css('color','#ffffff');
 		}
-		}		
- 		
+		}
+
 		if($(q_type).val()=='5'){
 			var green=0;
 			for(var k=0; k<=10; k++){
 				var answer_value="answer_value"+lqn+'-'+k;
 				if(document.getElementById(answer_value)){
-					if(document.getElementById(answer_value).value != '0'){	
+					if(document.getElementById(answer_value).value != '0'){
 					green=1;
 					}
 				}
 			}
-			if(green==1){			
+			if(green==1){
 			$(ldid).css('backgroundColor','#449d44');
-			$(ldid).css('color','#ffffff');	
-			}		
-		}		
-		
+			$(ldid).css('color','#ffffff');
+			}
+		}
+
 	}
-	
+
 }
 
 
 // clear radio btn response
 function clear_response(){
 var q_type='#q_type'+qn;
-		
+
 		if($(q_type).val()=='1' || $(q_type).val()=='2'){
-		 
+
 		for(var k=0; k<=10; k++){
 			var answer_value="answer_value"+lqn+'-'+k;
-			
+
 			if(document.getElementById(answer_value)){
-				
+
 				if(document.getElementById(answer_value).checked == true){
-					
+
 				document.getElementById(answer_value).checked=false;
 				}
 			}
 		}
-	 		
-		}	
-		
+
+		}
+
 		if($(q_type).val()=='3' || $(q_type).val()=='4'){
 		var answer_value="answer_value"+qn;
 		document.getElementById(answer_value).value='';
-		}	
-		
-		
-		
+		}
+
+
+
 		if($(q_type).val()=='5'){
-			 
+
 			for(var k=0; k<=10; k++){
 				var answer_value="answer_value"+qn+'-'+k;
 				if(document.getElementById(answer_value)){
-					if(document.getElementById(answer_value).value != '0'){	
+					if(document.getElementById(answer_value).value != '0'){
 					document.getElementById(answer_value).value='0';
 					}
 				}
 			}
-		 		
-		}			
+
+		}
 	var did='#qbtn'+qn;
 	$(did).css('backgroundColor','#c9302c');
 	$(did).css('color','#ffffff');
@@ -421,38 +421,38 @@ var q_type='#q_type'+qn;
 
 var review_later;
 function review_later(){
-	
- 
+
+
 	if(review_later[qn] && review_later[qn]){
-	
+
 		review_later[qn]=0;
 		var did='#qbtn'+qn;
 	$(did).css('backgroundColor','#c9302c');
-			$(did).css('color','#ffffff');	
+			$(did).css('color','#ffffff');
 	}else{
-		
+
 		review_later[qn]=1;
 	var did='#qbtn'+qn;
 	$(did).css('backgroundColor','#ec971f');
 	$(did).css('color','#ffffff');
 	}
-	
+
 }
 
 
 
 
 function save_answer(qn){
-	
+
 								// signal 1
 							$('#save_answer_signal1').css('backgroundColor','#00ff00');
 								setTimeout(function(){
-							$('#save_answer_signal1').css('backgroundColor','#666666');		
+							$('#save_answer_signal1').css('backgroundColor','#666666');
 								},5000);
-								
+
 								    var str = $( "form" ).serialize();
- 
- 
+
+
 						// var formData = {user_answer:str};
 						$.ajax({
 							 type: "POST",
@@ -462,60 +462,60 @@ function save_answer(qn){
 							// signal 1
 							$('#save_answer_signal2').css('backgroundColor','#00ff00');
 								setTimeout(function(){
-							$('#save_answer_signal2').css('backgroundColor','#666666');		
+							$('#save_answer_signal2').css('backgroundColor','#666666');
 								},5000);
-								
+
 								},
 							error: function(xhr,status,strErr){
 								//alert(status);
-								
+
 							// signal 1
 							$('#save_answer_signal2').css('backgroundColor','#ff0000');
 								setTimeout(function(){
-							$('#save_answer_signal2').css('backgroundColor','#666666');		
+							$('#save_answer_signal2').css('backgroundColor','#666666');
 								},5500);
 
-								}	
+								}
 							});
-	 		
-		 
-	
+
+
+
 }
 
- 
+
 function setIndividual_time(cqn){
 	if(cqn==undefined || cqn == null ){
 		var cqn='0';
 	}
 		  if(cqn=='0'){
-		ind_time[qn]=parseInt(ind_time[qn])+parseInt(ctime);	
-		 
+		ind_time[qn]=parseInt(ind_time[qn])+parseInt(ctime);
+
 		  }else{
-			  
-			ind_time[cqn]=parseInt(ind_time[cqn])+parseInt(ctime);	
-		  
+
+			ind_time[cqn]=parseInt(ind_time[cqn])+parseInt(ctime);
+
 		  }
-	
+
 	ctime=0;
-	  
+
 	 document.getElementById('individual_time').value=ind_time.toString();
-	 
+
 	 var iid=document.getElementById('individual_time').value;
-	 
-	 	 
+
+
 	var formData = {individual_time:iid};
 	$.ajax({
 		 type: "POST",
 		 data : formData,
 			url: base_url + "index.php/quiz/set_ind_time",
 		success: function(data){
-	 	
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-		
+
 }
 
 
@@ -527,16 +527,16 @@ function submit_quiz(){
 	$('#processing').html("Processing...<br>");
 	setTimeout(function(){
 	window.location=base_url+"index.php/quiz/submit_quiz/";
-	},3000);
+},4000);
 }
 
 
 
 function switch_category(c_k){
-	
+
 	var did=document.getElementById(c_k).value;
 	show_question(did);
-	
+
 }
 
 
@@ -545,15 +545,15 @@ function count_char(answer,span_id){
 	if(answer == ''){
 		chcount=0;
 	}
-	document.getElementById(span_id).innerHTML=chcount; 
-	
+	document.getElementById(span_id).innerHTML=chcount;
+
 }
 
 
 
 function sort_result(limit,val){
 	window.location=base_url+"index.php/result/index/"+limit+"/"+val;
-	
+
 }
 
 
@@ -571,8 +571,8 @@ function assign_score(rid,qno,score){
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
-		});	
+			}
+		});
 	 }
 }
 
@@ -580,17 +580,17 @@ function assign_score(rid,qno,score){
 
 function show_question_stat(id){
 	var did="#stat-"+id;
-	 
+
 	if($(did).css('display')=='none'){
 		$(did).css('display','block');
 	}else{
 		$(did).css('display','none');
 	}
-	 
-}
- 
 
-// end - quiz attempt functions 
+}
+
+
+// end - quiz attempt functions
 
 
 
@@ -622,7 +622,7 @@ document.getElementById('page_res').innerHTML="Sending data...";
 		},
 		error: function(xhr,status,strErr){
 			document.getElementById('page_res').innerHTML="Sending failed!";
-			}	
+			}
 		});
 
 }
@@ -646,11 +646,11 @@ get_liveclass_content(id);
 setTimeout(function(){
 get_liveclass_content(id);
 },5000);
-			}	
+			}
 		});
-		
+
 	document.getElementById("page").scrollTop = document.getElementById("page").scrollHeight;
-	
+
 }
 
 
@@ -671,11 +671,11 @@ document.getElementById('page').innerHTML=data;
 setTimeout(function(){
 get_liveclass_content(id);
 },5000);
-			}	
+			}
 		});
-		
+
 	document.getElementById("page").scrollTop = document.getElementById("page").scrollHeight;
-	
+
 }
 
 
@@ -688,7 +688,7 @@ class_id=id;
 		success: function(data){
 		//alert(data);
 		document.getElementById('comment_box').innerHTML=data;
-		
+
 setTimeout(function(){
 get_ques_content(id);
 },5000);
@@ -697,7 +697,7 @@ get_ques_content(id);
 setTimeout(function(){
 get_ques_content(id);
 },5000);
-			}	
+			}
 		});
 		document.getElementById("comment_box").scrollTop = document.getElementById("comment_box").scrollHeight;
 
@@ -710,14 +710,14 @@ class_id=id;
 		success: function(data){
 		//alert(data);
 		document.getElementById('comment_box').innerHTML=data;
-		
+
 
 		},
 		error: function(xhr,status,strErr){
 setTimeout(function(){
 get_ques_content(id);
 },5000);
-			}	
+			}
 		});
 		document.getElementById("comment_box").scrollTop = document.getElementById("comment_box").scrollHeight;
 
@@ -738,7 +738,7 @@ document.getElementById('comment_send').value="Sending data...";
 		},
 		error: function(xhr,status,strErr){
 			document.getElementById('comment_send').innerHTML="Sending failed!";
-			}	
+			}
 		});
 
 }
@@ -760,7 +760,7 @@ $("#comnt_optn").fadeIn();
 function hide_options(){
 $("#comnt_optn").fadeOut();
 }
- 
+
   function publish_comment(){
 
 	var formData = {id:comnt_id,pub:publish};
@@ -773,10 +773,10 @@ $("#comnt_optn").fadeOut();
 				 get_ques_content(class_id);
 		},
 		});
- 
- 
+
+
  }
- 
+
  function delete_comment(){
  //alert(comnt_id);
 	var formData = {id:comnt_id};
@@ -789,8 +789,8 @@ $("#comnt_optn").fadeOut();
 				 get_ques_content(class_id);
 		},
 		});
- 
- 
+
+
  }
 
 // end classroom
@@ -803,7 +803,7 @@ $("#comnt_optn").fadeOut();
 
  // version check
 function update_check(sq_version){
-	 
+
 	var formData = {sq_version:sq_version};
 	$.ajax({
 		 type: "POST",
@@ -811,24 +811,21 @@ function update_check(sq_version){
 			url: "http://update.savsoftquiz.com/",
 		success: function(data){
 			if(data.trim()==sq_version){
-			var msg="<div class='alert alert-success'>You are using updated version of <a href='http://savsoftquiz.com'>Savsoft Quiz "+sq_version+"</a></div>";	
+			var msg="<div class='alert alert-success'>You are using updated version of <a href='http://savsoftquiz.com'>Savsoft Quiz "+sq_version+"</a></div>";
 			}else{
-			var msg="<div class='alert alert-danger'>New version available: Savsoft Quiz v"+data.trim()+". You are using outdated version of Savsoft Quiz v"+sq_version+". Visit <a href='http://savsoftquiz.com'>www.savsoftquiz.com</a> to download</div>";	
-				
+			var msg="<div class='alert alert-danger'>New version available: Savsoft Quiz v"+data.trim()+". You are using outdated version of Savsoft Quiz v"+sq_version+". Visit <a href='http://savsoftquiz.com'>www.savsoftquiz.com</a> to download</div>";
+
 			}
 			if(!document.getElementById("update_notice")){
 				$('body').prepend(msg);
 			}else{
 		$("#update_notice").html(msg);
 			}
-			
+
 			},
 		error: function(xhr,status,strErr){
 			//alert(status);
-			}	
+			}
 		});
-	
+
 }
-
- 
-
