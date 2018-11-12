@@ -447,9 +447,13 @@ $verilink=site_url('login/verify/'.$veri_code);
 
 
  function reset_password($toemail){
+
 $this->db->where("email",$toemail);
 $queryr=$this->db->get('savsoft_users');
-if($queryr->num_rows() != "1"){
+
+if($queryr->num_rows() != 1){
+  echo "string";
+  exit();
 return false;
 }
 $new_password=rand('1111','9999');
@@ -484,7 +488,9 @@ $new_password=rand('1111','9999');
 			$this->email->message($message);
 			if(!$this->email->send()){
 			 //print_r($this->email->print_debugger());
-
+       echo "Mail server has internal error ! Try again<br>";
+       echo "<a href='".base_url()."'>Login</a>";
+       exit();
 			}else{
 			$user_detail=array(
 			'password'=>md5($new_password)

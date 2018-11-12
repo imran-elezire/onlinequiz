@@ -1,16 +1,16 @@
  <div class="container">
-<?php 
+<?php
 $logged_in=$this->session->userdata('logged_in');
-			 
-			
+
+
 			?>
-   
+
  <h3><?php echo $title;?></h3>
-    <?php 
+    <?php
 	if($logged_in['su']=='1'){
 		?>
 		<div class="row">
- 
+
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('quiz/index/0/'.$list_view);?>">
 	<div class="input-group">
@@ -18,61 +18,61 @@ $logged_in=$this->session->userdata('logged_in');
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
-	 
-	  
+
+
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
   <div class="col-lg-6">
   <p style="float:right;">
-  <?php 
+  <?php
   if($list_view=='grid'){
 	  ?>
 	  <a href="<?php echo site_url('quiz/index/'.$limit.'/table');?>"><?php echo $this->lang->line('table_view');?></a>
-	  <?php 
+	  <?php
   }else{
 	  ?>
 	   <a href="<?php echo site_url('quiz/index/'.$limit.'/grid');?>"><?php echo $this->lang->line('grid_view');?></a>
-	  
-	  <?php 
+
+	  <?php
   }
   ?>
   </p>
-  
+
   </div>
 </div><!-- /.row -->
 
-<?php 
+<?php
 	}
 ?>
 
   <div class="row">
- 
+
 <div class="col-md-12">
-<br> 
-			<?php 
+<br>
+			<?php
 		if($this->session->flashdata('message')){
-			echo $this->session->flashdata('message');	
+			echo $this->session->flashdata('message');
 		}
-		?>	
-		<?php 
+		?>
+		<?php
   if($list_view=='table'){
 	  ?>
 <table class="table table-bordered">
 <tr>
  <th>#</th>
- <th><?php echo $this->lang->line('quiz_name');?></th>
+ <th><?php echo $this->lang->line('quiz_name');?>aa</th>
 <th><?php echo $this->lang->line('noq');?></th>
 <th><?php echo $this->lang->line('action');?> </th>
 </tr>
-<?php 
+<?php
 if(count($result)==0){
 	?>
 <tr>
  <td colspan="3"><?php echo $this->lang->line('no_record_found');?></td>
-</tr>	
-	
-	
+</tr>
+
+
 	<?php
 }
 foreach($result as $key => $val){
@@ -84,27 +84,27 @@ foreach($result as $key => $val){
  <td>
 <a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('attempt');?> </a>
 
-<?php 
+<?php
 if($logged_in['su']=='1'){
 	?>
-			
+
 <a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
 <a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
-<?php 
+<?php
 }
 ?>
 </td>
 </tr>
 
-<?php 
+<?php
 }
 ?>
 </table>
 
-  <?php 
+  <?php
   }else{
 	  ?>
-	  <?php 
+	  <?php
 if(count($result)==0){
 	?>
 <?php echo $this->lang->line('no_record_found');?>
@@ -119,7 +119,7 @@ $colorcode=array(
 );
 foreach($result as $key => $val){
 ?>
-	  
+
 	                <!-- item -->
                 <div class="col-md-4 text-center">
                     <div class="panel panel-<?php echo $colorcode[$cc];?> panel-pricing">
@@ -132,20 +132,24 @@ foreach($result as $key => $val){
                         </div>
                         <ul class="list-group text-center">
                             <li class="list-group-item"><i class="fa fa-check"></i> <?php echo $this->lang->line('noq');?>:  <?php echo $val['noq'];?></li>
+                            <li class="list-group-item"><i class="fa fa-check"></i> <b>Start Date</b>: <?php echo date("d-m-Y h:i:s",$val['start_date']);?></li>
+                            <li class="list-group-item"><i class="fa fa-check"></i> <b>End Date</b>: <?php echo date("d-m-Y h:i:s",$val['end_date']);?></li>
+
                             <li class="list-group-item"><i class="fa fa-check"></i> <?php echo $this->lang->line('maximum_attempts');?>: <?php echo $val['maximum_attempts'];?></li>
+
                             </ul>
                         <div class="panel-footer">
-                         
-						 
-<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('attempt');?> </a>
 
-<?php 
+
+<a href="<?php echo ($val['end_date']<=time())?"#":site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-<?php echo ($val['end_date']<=time())?"danger":"success"; ?>"  ><?php echo ($val['end_date']<=time())?"Expired":$this->lang->line('attempt');?> </a>
+
+<?php
 if($logged_in['su']=='1'){
 	?>
-			
+
 <a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
 <a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
-<?php 
+<?php
 }
 ?>
 
@@ -153,16 +157,16 @@ if($logged_in['su']=='1'){
                         </div>
                     </div>
                 </div>
-                <!-- /item --> 
-	  
-	  
-	  <?php 
+                <!-- /item -->
+
+
+	  <?php
 	  if($cc >= 4){
 	  $cc=0;
 	  }else{
 	  $cc+=1;
 	  }
-	  
+
 }
 
   }

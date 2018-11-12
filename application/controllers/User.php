@@ -85,6 +85,15 @@ class User extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[savsoft_users.email]');
         $this->form_validation->set_rules('password', 'Password', 'required');
+				$this->form_validation->set_rules('password', 'Password', 'required');
+
+				$this->form_validation->set_rules('first_name', 'First Name', 'required');
+				$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+				$this->form_validation->set_rules('contact_no', 'Contact', 'required');
+				$this->form_validation->set_rules('employee_id', 'Employee Id', 'required');
+				$this->form_validation->set_rules('designation', 'Designation', 'required');
+				$this->form_validation->set_rules('department', 'Department', 'required');
+
           if ($this->form_validation->run() == FALSE)
                 {
                      $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
@@ -160,6 +169,13 @@ class User extends CI_Controller {
 			}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required');
+
+						$this->form_validation->set_rules('first_name', 'First Name', 'required');
+						$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+						$this->form_validation->set_rules('contact_no', 'Contact', 'required');
+						$this->form_validation->set_rules('employee_id', 'Employee Id', 'required');
+						$this->form_validation->set_rules('designation', 'Designation', 'required');
+						$this->form_validation->set_rules('department', 'Department', 'required');
            if ($this->form_validation->run() == FALSE)
                 {
                      $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");

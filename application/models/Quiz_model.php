@@ -69,7 +69,7 @@ Class Quiz_model extends CI_Model
 	 'view_answer'=>$this->input->post('view_answer'),
 	 'camera_req'=>$this->input->post('camera_req'),
 	 'quiz_template'=>$this->input->post('quiz_template'),
-	 'with_login'=>$this->input->post('with_login'),
+	 
 	 'gids'=>implode(',',$this->input->post('gids')),
 	 'question_selection'=>$this->input->post('question_selection')
 	 );

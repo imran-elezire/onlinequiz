@@ -100,8 +100,6 @@ function open_quiz($limit='0'){
 			exit($this->lang->line('permission_denied'));
 			}
 
-
-
 		$data['title']=$this->lang->line('add_new').' '.$this->lang->line('quiz');
 		// fetching group list
 		$data['group_list']=$this->user_model->group_list();
@@ -342,7 +340,6 @@ function open_quiz($limit='0'){
 				// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
@@ -368,6 +365,8 @@ function open_quiz($limit='0'){
                 else
                 {
 					$quid=$this->quiz_model->insert_quiz();
+					$this->session->set_flashdata('message', "<div class='alert alert-success'>Saved, Update Question !</div>");
+
 
 					redirect('quiz/edit_quiz/'.$quid);
                 }
@@ -402,6 +401,8 @@ function open_quiz($limit='0'){
                 else
                 {
 					$quid=$this->quiz_model->update_quiz($quid);
+					$this->session->set_flashdata('message', "<div class='alert alert-success'>Quiz Updated ! </div>");
+
 
 					redirect('quiz/edit_quiz/'.$quid);
                 }

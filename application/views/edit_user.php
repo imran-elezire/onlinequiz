@@ -37,27 +37,27 @@
 			 </div>
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('first_name');?></label>
-					<input type="text"  name="first_name"  class="form-control"  value="<?php echo $result['first_name'];?>"  placeholder="<?php echo $this->lang->line('first_name');?>"   autofocus>
+					<input type="text"  name="first_name"  class="form-control"  value="<?php echo $result['first_name'];?>"  placeholder="<?php echo $this->lang->line('first_name');?>" required  autofocus>
 			</div>
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('last_name');?></label>
-					<input type="text"   name="last_name"  class="form-control"  value="<?php echo $result['last_name'];?>"  placeholder="<?php echo $this->lang->line('last_name');?>"   autofocus>
+					<input type="text"   name="last_name"  class="form-control"  value="<?php echo $result['last_name'];?>"  placeholder="<?php echo $this->lang->line('last_name');?>" required   autofocus>
 			</div>
       <div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('employee_id');?></label>
-					<input type="text" name="employee_id"  class="form-control" value="<?php echo $result['employee_id'];?>" placeholder="<?php echo $this->lang->line('employee_id');?>"   autofocus>
+					<input type="text" name="employee_id"  class="form-control" value="<?php echo $result['employee_id'];?>" placeholder="<?php echo $this->lang->line('employee_id');?>" required  autofocus>
 			</div>
       <div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('designation');?></label>
-					<input type="text" name="designation"  class="form-control" value="<?php echo $result['designation'];?>" placeholder="<?php echo $this->lang->line('designation');?>"   autofocus>
+					<input type="text" name="designation"  class="form-control" value="<?php echo $result['designation'];?>" placeholder="<?php echo $this->lang->line('designation');?>" required  autofocus>
 			</div>
       <div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('department');?></label>
-					<input type="text" name="department"  class="form-control" value="<?php echo $result['department'];?>" placeholder="<?php echo $this->lang->line('department');?>"   autofocus>
+					<input type="text" name="department"  class="form-control" value="<?php echo $result['department'];?>" placeholder="<?php echo $this->lang->line('department');?>" required  autofocus>
 			</div>
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('contact_no');?></label>
-					<input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>"   autofocus>
+					<input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>" required  autofocus>
 			</div>
 
 

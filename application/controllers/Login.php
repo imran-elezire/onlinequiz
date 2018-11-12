@@ -200,6 +200,7 @@ class Login extends CI_Controller {
 	$this->load->helper('url');
 			if($this->input->post('email')){
 			$user_email=$this->input->post('email');
+		
 			 if($this->user_model->reset_password($user_email)){
 				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('password_updated')." </div>");
 

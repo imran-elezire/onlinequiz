@@ -82,7 +82,7 @@ foreach($group_list as $gk => $group){
 		<?php
 		if($logged_in['su']=='1'){
 			?>
-				<div class='alert alert-danger'><?php echo $this->lang->line('pending_message_admin');?></div>
+				<!-- <div class='alert alert-danger'><?php echo $this->lang->line('pending_message_admin');?></div> -->
 		<?php
 		}
 		?>
