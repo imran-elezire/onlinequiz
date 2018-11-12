@@ -49,6 +49,7 @@ if($logged_in['su']=='1'){
 			echo $this->session->flashdata('message');
 		}
 		?>
+    <br>
 		<?php
 		if($logged_in['su']=='1'){
 			?>

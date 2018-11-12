@@ -59,6 +59,36 @@
 					<label for="inputEmail" class=""><?php echo $this->lang->line('contact_no');?></label>
 					<input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>" required  autofocus>
 			</div>
+      <div class="form-group">
+        <label   ><?php echo $this->lang->line('select_group');?></label>
+        <select class="form-control" name="gid" id="gid"  required>
+
+        <?php
+
+        foreach($group_list as $key => $val){
+          ?>
+
+          <option value="<?php echo $val['gid']; ?>" <?php echo ($result['gid']==$val['gid'])?' selected':''; ?>><?php echo $val['group_name'];?> </option>
+          <?php
+        }
+        ?>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label   ><?php echo $this->lang->line('user_manger'); ?></label>
+      <select class="form-control" name="user_manger" id="user_manger"  required>
+        <option >Select Manager</option>
+      <?php
+      foreach($user_list as $key => $value){
+        ?>
+
+<option value="<?php echo $value['uid'];   ?>" <?php echo ($result['user_manger']==$value['uid'])?' selected':''; ?> ><?php echo $value['first_name'].' '.$value['last_name'];?></option>
+        <?php
+      }
+      ?>
+      </select>
+  </div>
 
 
 

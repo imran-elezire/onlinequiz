@@ -144,6 +144,7 @@ class User extends CI_Controller {
 		 $data['title']=$this->lang->line('edit').' '.$this->lang->line('user');
 		// fetching user
 		$data['result']=$this->user_model->get_user($uid);
+		$data['user_list']=$this->user_model->get_user_by_usertype('0');
 		$this->load->model("payment_model");
 		$data['payment_history']=$this->payment_model->get_payment_history($uid);
 		// fetching group list

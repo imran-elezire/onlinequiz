@@ -455,8 +455,7 @@ $this->db->where("email",$toemail);
 $queryr=$this->db->get('savsoft_users');
 
 if($queryr->num_rows() != 1){
-  echo "string";
-  exit();
+
 return false;
 }
 $new_password=rand('1111','9999');
@@ -517,7 +516,10 @@ $new_password=rand('1111','9999');
 		'contact_no'=>$this->input->post('contact_no'),
     'employee_id'=>$this->input->post('employee_id'),
     'designation'=>$this->input->post('designation'),
-    'department'=>$this->input->post('department')
+    'department'=>$this->input->post('department'),
+    'gid'=>$this->input->post('gid'),
+
+    'user_manger'=>$this->input->post('user_manger'),
 		);
 		if($logged_in['su']=='1'){
 			$userdata['email']=$this->input->post('email');
@@ -652,6 +654,7 @@ $query=$this->db->get('savsoft_users');
 function get_user_by_usertype($type)
 {
   $this->db->where('su',$type);
+  $this->db->where('user_status','Active');
   $query=$this->db->get('savsoft_users');
   	 return $query->result_array();
 }

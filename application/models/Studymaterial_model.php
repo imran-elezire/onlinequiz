@@ -35,30 +35,36 @@ Class Studymaterial_model extends CI_Model
       'link_type'=>$this->input->post('link_type'),
       'link'=>$this->input->post('link'),
       );
-
-
-       $this->db->insert('savsoft_studymaterial',$userdata);
-      $material_id=$this->db->insert_id();
-      $target_dir = APPPATH."../studymaterial/";
-      $target_file = $target_dir . basename($_FILES["fileupload"]["name"]);
-      $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-      $filename =$material_id.".".$FileType;
-      $upadedata = array();
-      if (move_uploaded_file($_FILES["fileupload"]["tmp_name"], $target_dir.$filename)) {
-        $upadedata['file']=base_url('studymaterial/'.$filename);
-        $upadedata['file_type']=$FileType;
-      } else {
-          echo "Sorry, there was an error uploading your file.";
-          //$upadedata['status']=0;
-      }
-      $this->db->where('material_id',$material_id);
-  		if($this->db->update('savsoft_studymaterial',$upadedata))
+      $this->db->insert('savsoft_studymaterial',$userdata);
+     $material_id=$this->db->insert_id();
+     $data["message"] = "Added Sucessfully";
+     $data["response"] = TRUE;
+      if($this->input->post('link_type')=='file')
       {
-        return true;
+       $target_dir = APPPATH."../studymaterial/";
+       $target_file = $target_dir . basename($_FILES["file_upload"]["name"]);
+       $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+       $filename =$material_id.".".$FileType;
+       $upadedata = array();
+       if (move_uploaded_file($_FILES["file_upload"]["tmp_name"], $target_dir.$filename)) {
+         $upadedata['file']=base_url('studymaterial/'.$filename);
+         $upadedata['file_type']=$FileType;
+
+       } else {
+         $data["message"] = "Not Added,file is not uploaded !";
+         $data["response"] = False;
+
+           $upadedata['status']=0;
+       }
+       $this->db->where('material_id',$material_id);
+       $this->db->update('savsoft_studymaterial',$upadedata);
+
+
       }
-      else {
-        return false;
-      }
+
+        return $data;
+
+
 
 
     }

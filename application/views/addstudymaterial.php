@@ -28,7 +28,7 @@
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('description');?></label>
-					<textarea   name="description"  class="form-control tinymce_textarea" ></textarea>
+					<textarea   name="description"  class="form-control tinymce_textarea" required></textarea>
 			</div>
       <div class="form-group">
         <label for="inputEmail">Select Type</label>
@@ -46,8 +46,8 @@
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('category');?></label>
-					<select name="category"  class="form-control">
-            <option value='0'>-- Select One --</option>
+					<select name="category"  class="form-control" required>
+            <option>-- Select One --</option>
             <?php foreach($category_list as $key=>$val) {?>
             <option value='<?php echo $val['cid'] ?>'><?php echo $val['category_name'] ?></option>
             <?php } ?>
@@ -86,7 +86,7 @@
 <script>
 $(document).ready(function(){
   $(".type_material").click(function() {
-    
+
     var cl= $(this).attr("data-id");
     $(".material_type").css("display","none");
     $("."+cl+"_upload").css("display","block");

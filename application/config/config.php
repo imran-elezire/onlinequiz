@@ -71,7 +71,7 @@ $config['protocol']="mail";
 */
 
 // smtp hostname eg. smtp.gmail.com
-$config['smtp_hostname'] = "ssl://smtp.gmail.com";
+$config['smtp_hostname'] = "smtp.gmail.com";
 // smtp username
 $config['smtp_username'] = "kashwinikum@gmail.com";
 // smtp password
@@ -111,7 +111,7 @@ $config['result_subject'] = "Result generated for quiz [quiz_name]";
 
 
 // email send from
-$config['fromemail']="noeply@gmailll.com";
+$config['fromemail']="kashwinikum@gmail.com";
 // from name
 $config['fromname']="Administrator - Quiz Portal";
 
