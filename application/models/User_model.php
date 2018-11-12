@@ -32,6 +32,9 @@ Class User_model extends CI_Model
      $this->db->update('savsoft_users',array("web_token"=>$token));
      $user['token']=$token;
 
+$this->db->where('savsoft_users.user_manger', $user['uid']);
+$querymanager = $this -> db -> get('savsoft_users');
+$user["no_reportee"] = $querymanager->num_rows();
         return array('status'=>'1','user'=>$user);
         }else{
         return array('status'=>'3','message'=>$this->lang->line('account_inactive'));
