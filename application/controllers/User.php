@@ -314,6 +314,16 @@ class User extends CI_Controller {
 		$this->load->view('footer',$data);
 
 
+	}
+
+	public function pre_remove_user($uid){
+		$data['uid']=$uid;
+		// fetching group list
+		$data['user_list']=$this->user_model->get_user_by_usertype('0');
+		$data['title']='Remove User';
+		$this->load->view('header',$data);
+		$this->load->view('pre_remove_user',$data);
+		$this->load->view('footer',$data);
 
 
 	}

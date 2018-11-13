@@ -462,6 +462,7 @@ $new_password=rand('1111','9999');
 
  $this->load->library('email');
 
+
  if($this->config->item('protocol')=="smtp"){
 			$config['protocol'] = 'smtp';
 			$config['smtp_host'] = $this->config->item('smtp_hostname');
@@ -470,7 +471,7 @@ $new_password=rand('1111','9999');
 			$config['smtp_port'] = $this->config->item('smtp_port');
 			$config['smtp_timeout'] = $this->config->item('smtp_timeout');
 			$config['mailtype'] = $this->config->item('smtp_mailtype');
-			$config['starttls']  = $this->config->item('starttls');
+			$config['charset']    = 'utf-8';
 			 $config['newline']  = $this->config->item('newline');
 
 			$this->email->initialize($config);
@@ -578,13 +579,15 @@ $new_password=rand('1111','9999');
 
  function remove_user($uid){
 
-	 $this->db->where('uid',$uid);
-	 if($this->db->delete('savsoft_users')){
-		 return true;
-	 }else{
-
-		 return false;
-	 }
+$this->db->where('user_manger',$uid);
+if($this->db->update('savsoft_users',array("user_manger"=>$this->input->post("muid")))){
+  $this->db->where('uid',$uid);
+  if($this->db->delete('savsoft_users')){
+    return true;
+  }else{
+    return false;
+  }
+}
 
 
  }

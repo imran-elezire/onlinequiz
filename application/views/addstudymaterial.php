@@ -28,7 +28,7 @@
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('description');?></label>
-					<textarea   name="description"  class="form-control tinymce_textarea" required></textarea>
+					<textarea   name="description"  class="tinymce_textarea" ></textarea>
 			</div>
       <div class="form-group">
         <label for="inputEmail">Select Type</label>
