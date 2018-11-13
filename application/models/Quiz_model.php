@@ -21,6 +21,7 @@ Class Quiz_model extends CI_Model
 		 $this->db->or_like('description',$search);
 
 	 }
+   $this->db->where("end_date >=",time());
 		 $this->db->limit($this->config->item('number_of_rows'),$limit);
 		$this->db->order_by('quid','desc');
 		$query=$this->db->get('savsoft_quiz');
