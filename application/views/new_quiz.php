@@ -1,20 +1,15 @@
  <div class="container" style="text-align:center;">
 
-<<<<<<< HEAD
+
    
  <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
-=======
 
- <h3><?php echo $title;?></h3>
-
-
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
 
   <div class="row align-self-center" style="display: inline; float: none;">
      <form method="post" action="<?php echo site_url('quiz/insert_quiz/');?>">
-<<<<<<< HEAD
+
 	
 <div class="col-md-8 col-md-offset-2">
 <br> 
@@ -24,17 +19,7 @@
 	
 	
 			<?php 
-=======
 
-<div class="col-md-8">
-<br>
- <div class="login-panel panel panel-default">
-		<div class="panel-body">
-
-
-
-			<?php
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
 		}
@@ -145,15 +130,10 @@
 					{email}, {first_name}, {last_name}, {quiz_name}, {percentage_obtained}, {score_obtained}, {result}, {generated_date}, {result_id}, {qr_code}
 			</div>
 
-<<<<<<< HEAD
  
 	<button class="btn btn-lg btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('next');?></button>
  
-=======
 
-	<button class="btn btn-success" type="submit"><?php echo $this->lang->line('next');?></button>
-
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
  <br><br><br>
  
 		</div>

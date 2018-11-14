@@ -4,15 +4,11 @@ $logged_in=$this->session->userdata('logged_in');
 
 
 			?>
-<<<<<<< HEAD
-   
+
  <h3 class="ft_wt"><?php echo $title;?></h3>
     <?php 
-=======
 
- <h3><?php echo $title;?></h3>
-    <?php
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
+
 	if($logged_in['su']=='1'){
 		?>
 		<div class="row">
@@ -30,7 +26,7 @@ $logged_in=$this->session->userdata('logged_in');
 	 </form>
   </div><!-- /.col-lg-6 -->
   <div class="col-lg-6">
-<<<<<<< HEAD
+
   <p class="ft_wt" style="float:right;color:rgb(255, 0, 140);">
   <?php 
   if($list_view=='grid'){
@@ -42,19 +38,7 @@ $logged_in=$this->session->userdata('logged_in');
 	   <a style="color:rgb(255, 0, 140);" href="<?php echo site_url('quiz/index/'.$limit.'/grid');?>"><?php echo $this->lang->line('grid_view');?></a>
 	  
 	  <?php 
-=======
-  <p style="float:right;">
-  <?php
-  if($list_view=='grid'){
-	  ?>
-	  <a href="<?php echo site_url('quiz/index/'.$limit.'/table');?>"><?php echo $this->lang->line('table_view');?></a>
-	  <?php
-  }else{
-	  ?>
-	   <a href="<?php echo site_url('quiz/index/'.$limit.'/grid');?>"><?php echo $this->lang->line('grid_view');?></a>
 
-	  <?php
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
   }
   ?>
   </p>
@@ -69,15 +53,13 @@ $logged_in=$this->session->userdata('logged_in');
   <div class="row">
 
 <div class="col-md-12">
-<<<<<<< HEAD
+
 <br> 
 <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body">
 			<?php 
-=======
-<br>
-			<?php
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
+
+
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
 		}

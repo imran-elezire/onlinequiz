@@ -1,34 +1,26 @@
  <div class="container" style="text-align:center;">
 
-<<<<<<< HEAD
+
    
  <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
-=======
-
- <h3><?php echo $title;?></h3>
 
 
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
+
 
   <div class="row align-self-center" style="display: inline; float: none;">
      <form method="post" action="<?php echo site_url('quiz/update_quiz/'.$quiz['quid']);?>">
 
 <div class="col-md-12">
-<<<<<<< HEAD
+
 <br> 
  <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body"> 
 	
 	
 	
-=======
-<br>
- <div class="login-panel panel panel-default">
-		<div class="panel-body">
 
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
 
 
 
@@ -155,13 +147,11 @@
 					{email}, {first_name}, {last_name}, {quiz_name}, {percentage_obtained}, {score_obtained}, {result}, {generated_date}, {result_id}, {qr_code}
 
 			<br><br>
-<<<<<<< HEAD
-			<a href="<?php echo site_url('result/preview_certificate/'.$quiz['quid']);?>" target="preview_cert" class="btn btn-primary loginbtn"><?php echo $this->lang->line('preview');?></a>
-			 
-=======
-			<a href="<?php echo site_url('result/preview_certificate/'.$quiz['quid']);?>" target="preview_cert" class="btn btn-warning"><?php echo $this->lang->line('preview');?></a>
 
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
+			<a href="<?php echo site_url('result/preview_certificate/'.$quiz['quid']);?>" target="preview_cert" class="btn btn-primary loginbtn"><?php echo $this->lang->line('preview');?></a>
+
+		
+
 			<span style="color:#ff0000"><?php echo $this->lang->line('preview_warning');?></span>
 			</div>
 
@@ -175,13 +165,10 @@ if($quiz['question_selection']=='0'){
 
 ?>
 <h4><?php echo $this->lang->line('questions_added_into_quiz');?></h4>
-<<<<<<< HEAD
+
 <a href="<?php echo site_url('quiz/add_question/'.$quiz['quid']);?>" class="btn btn-primary loginbtn"  ><?php echo $this->lang->line('add_question_into_quiz');?></a>
   
-=======
-<a href="<?php echo site_url('quiz/add_question/'.$quiz['quid']);?>" class="btn btn-danger"  ><?php echo $this->lang->line('add_question_into_quiz');?></a>
 
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
 <table class="table table-bordered" style="margin-top:10px;">
 <tr>
    <th>#</th>
@@ -344,12 +331,9 @@ if(count($qcl)==0){
 
 
 
-<<<<<<< HEAD
  
 	<button class="btn btn-primary loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
-=======
-	<button class="btn btn-success" type="submit"><?php echo $this->lang->line('submit');?></button>
->>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
+
  <br><br><br>
 		</div>
 </div>
