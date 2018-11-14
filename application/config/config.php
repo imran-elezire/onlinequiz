@@ -35,7 +35,7 @@ $config['default_gid']=1;
 
 
 // Allow open quiz( true or false )
-$config['open_quiz']=true;
+$config['open_quiz']=false;
 
 
 
@@ -45,11 +45,11 @@ $config['api_key']="savsoft";
 
 
 // enable or disable result email. use true or false
-$config['allow_result_email']=false;
+$config['allow_result_email']=true;
 
 
 // allow user to change their group. use true or false
-$config['allow_switch_group']=true;
+$config['allow_switch_group']=false;
 // default free group id - gid
 $config['default_group']=1;
 
