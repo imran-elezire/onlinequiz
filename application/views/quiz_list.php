@@ -5,7 +5,7 @@ $logged_in=$this->session->userdata('logged_in');
 			
 			?>
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
     <?php 
 	if($logged_in['su']=='1'){
 		?>
@@ -13,10 +13,10 @@ $logged_in=$this->session->userdata('logged_in');
  
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('quiz/index/0/'.$list_view);?>">
-	<div class="input-group">
+	<div class="input-group sha_div">
     <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
+        <button class="btn btn-default " type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
 	 
 	  
@@ -24,15 +24,15 @@ $logged_in=$this->session->userdata('logged_in');
 	 </form>
   </div><!-- /.col-lg-6 -->
   <div class="col-lg-6">
-  <p style="float:right;">
+  <p class="ft_wt" style="float:right;color:rgb(255, 0, 140);">
   <?php 
   if($list_view=='grid'){
 	  ?>
-	  <a href="<?php echo site_url('quiz/index/'.$limit.'/table');?>"><?php echo $this->lang->line('table_view');?></a>
+	  <a  style="color:rgb(255, 0, 140);" href="<?php echo site_url('quiz/index/'.$limit.'/table');?>"><?php echo $this->lang->line('table_view');?></a>
 	  <?php 
   }else{
 	  ?>
-	   <a href="<?php echo site_url('quiz/index/'.$limit.'/grid');?>"><?php echo $this->lang->line('grid_view');?></a>
+	   <a style="color:rgb(255, 0, 140);" href="<?php echo site_url('quiz/index/'.$limit.'/grid');?>"><?php echo $this->lang->line('grid_view');?></a>
 	  
 	  <?php 
   }
@@ -50,6 +50,8 @@ $logged_in=$this->session->userdata('logged_in');
  
 <div class="col-md-12">
 <br> 
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php 
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');	
@@ -112,17 +114,17 @@ if(count($result)==0){
 }
 $cc=0;
 $colorcode=array(
-'success',
-'warning',
 'info',
-'danger'
+'info',
+'info',
+'info'
 );
 foreach($result as $key => $val){
 ?>
 	  
 	                <!-- item -->
                 <div class="col-md-4 text-center">
-                    <div class="panel panel-<?php echo $colorcode[$cc];?> panel-pricing">
+                    <div class="panel panel-<?php echo $colorcode[$cc];?> panel-pricing sha_div">
                         <div class="panel-heading">
                             <i class="fa fa-desktop"></i>
                             <h3><?php echo substr(strip_tags($val['quiz_name']),0,50);?></h3>
@@ -171,17 +173,20 @@ if($logged_in['su']=='1'){
 </div>
 
 </div>
+</div>
+
+</div>
 <br><br>
 
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
-<a href="<?php echo site_url('quiz/index/'.$back.'/'.$list_view);?>"  class="btn btn-primary"><?php echo $this->lang->line('back');?></a>
+<a href="<?php echo site_url('quiz/index/'.$back.'/'.$list_view);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('back');?></a>
 &nbsp;&nbsp;
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('quiz/index/'.$next.'/'.$list_view);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('quiz/index/'.$next.'/'.$list_view);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('next');?></a>
 
 
 

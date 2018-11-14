@@ -1,13 +1,15 @@
  <div class="container">
 
 
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
   <div class="row">
 
 <div class="col-md-12">
 <br>
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
@@ -15,7 +17,8 @@
 		?>
 		<div id="message"></div>
 
-		 <a href="<?php echo site_url('user/add_new_group');?>" class="btn btn-success">Add New</a>
+		 <a href="<?php echo site_url('user/add_new_group');?>" class="btn btn-success loginbtn">Add New</a>
+		 <br><br>
 
 <table class="table table-bordered">
 <tr>
@@ -52,6 +55,9 @@ foreach($group_list as $key => $val){
 </table>
 
 
+</div>
+
+</div>
 </div>
 
 </div>

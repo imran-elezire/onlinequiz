@@ -1,12 +1,12 @@
  <div class="container">
 
 
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
     <div class="row">
 
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('qbank/index/');?>">
-	<div class="input-group">
+	<div class="input-group sha_div">
     <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
@@ -23,6 +23,8 @@
 
 <div class="col-md-12">
 <br>
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
@@ -30,7 +32,7 @@
 		?>
 						<div class="form-group">
 					<form method="post" action="<?php echo site_url('qbank/pre_question_list/'.$limit.'/'.$cid.'/'.$lid);?>">
-					<select   name="cid">
+					<select   name="cid" class="in_sel">
 					<option value="0"><?php echo $this->lang->line('all_category');?></option>
 					<?php
 					foreach($category_list as $key => $val){
@@ -41,7 +43,7 @@
 					}
 					?>
 					</select>
-			 	<select  name="lid">
+			 	<select  name="lid" class="in_sel">
 				<option value="0"><?php echo $this->lang->line('all_level');?></option>
 					<?php
 					foreach($level_list as $key => $val){
@@ -52,7 +54,7 @@
 					}
 					?>
 					</select>
-					 <button class="btn btn-default" type="submit"><?php echo $this->lang->line('filter');?></button>
+					 <button class="btn btn-default loginbtn" type="submit"><?php echo $this->lang->line('filter');?></button>
 					 </form>
 			</div>
 
@@ -147,17 +149,20 @@ if($val['question_type']==$this->lang->line('long_answer')){
 </div>
 
 </div>
+</div>
+
+</div>
 
 
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
-<a href="<?php echo site_url('qbank/index/'.$back.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary"><?php echo $this->lang->line('back');?></a>
+<a href="<?php echo site_url('qbank/index/'.$back.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('back');?></a>
 &nbsp;&nbsp;
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('qbank/index/'.$next.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('qbank/index/'.$next.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('next');?></a>
 
 
 
@@ -166,7 +171,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 <br><br><br><br>
-<div class="login-panel panel panel-default">
+<div class="login-panel panel panel-default sha_div">
 	<div class="panel-heading">
 <h4><?php echo $this->lang->line('import_question');?></h4>
 </div>
@@ -174,7 +179,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 <?php echo form_open('qbank/import',array('enctype'=>'multipart/form-data')); ?>
 
- <select name="cid"  required >
+ <select name="cid" class="in_sel"  required >
  <option value=""><?php echo $this->lang->line('select_category');?></option>
 <?php
 					foreach($category_list as $key => $val){
@@ -184,7 +189,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 						<?php
 					}
 					?></select>
- <select name="did"  required >
+ <select name="did" class="in_sel" required >
  <option value=""><?php echo $this->lang->line('select_level');?></option>
 <?php
 					foreach($level_list as $key => $val){
@@ -200,7 +205,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 	<input type="hidden" name="size" value="3500000">
 	<input type="file" name="xlsfile" style="width:150px;float:left;margin-left:10px;">
 	<div style="clear:both;"></div>
-	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default">
+	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default loginbtn">
 
 <a href="<?php echo base_url();?>sample/sample.xls" target="new">Click here</a> <?php echo $this->lang->line('upload_excel_info');?>
 </form>
@@ -215,7 +220,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 
-<div class="login-panel panel panel-default">
+<div class="login-panel panel panel-default sha_div">
 <div class="panel-heading">
 <h4><?php echo $this->lang->line('import_question2');?></h4>
 </div>
@@ -225,7 +230,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 <div class="alert alert-danger"> <?php echo $this->lang->line('wordimportinfo');?></div>
 
- <select name="cid"  required >
+ <select name="cid" class="in_sel" required >
  <option value=""><?php echo $this->lang->line('select_category');?></option>
 <?php
 					foreach($category_list as $key => $val){
@@ -235,7 +240,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 						<?php
 					}
 					?></select>
- <select name="lid" required >
+ <select name="lid" class="in_sel" required >
  <option value=""><?php echo $this->lang->line('select_level');?></option>
 <?php
 					foreach($level_list as $key => $val){
@@ -261,7 +266,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 	</table>
 	</div>
 
-	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default">
+	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default loginbtn">
 
 <a href="<?php echo base_url();?>sample/sample.docx" target="new">Click here</a> <?php echo $this->lang->line('upload_doc_info');?>
 </form>

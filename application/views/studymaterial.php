@@ -20,7 +20,7 @@ if($logged_in['su']=='1'){
 ?>
 
 
-<h3><?php echo $title;?></h3>
+<h3 class="ft_wt"><?php echo $title;?></h3>
 
   <div class="row">
 
@@ -44,6 +44,8 @@ if($logged_in['su']=='1'){
 
 <div class="col-md-12">
 <br>
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
@@ -52,7 +54,7 @@ if($logged_in['su']=='1'){
 		<?php
 		if($logged_in['su']=='1'){
 			?>
-      <button class="btn btn-info btn-sm" onclick="window.location='<?php echo site_url('studymaterial/add'); ?>';">Add New</button><br><br>
+      <button class="btn btn-info btn-sm loginbtn" onclick="window.location='<?php echo site_url('studymaterial/add'); ?>';">Add New</button><br><br>
 		<?php
 		}
 		?>
@@ -100,6 +102,9 @@ if($logged_in['su']=='1'){
 }
 ?>
 </table>
+</div>
+
+</div>
 </div>
 
 </div>

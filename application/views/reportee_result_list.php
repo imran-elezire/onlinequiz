@@ -13,7 +13,7 @@ if($logged_in['su']=='1'){
   <div class="col-lg-12">
     <form method="post" action="<?php echo site_url('result/generate_report/');?>">
 	<div class="input-group">
-    <h3><?php echo $this->lang->line('generate_report');?> </h3>
+    <h3 class="ft_wt"><?php echo $this->lang->line('generate_report');?> </h3>
 <select name="quid">
 <option value="0"><?php echo $this->lang->line('select_quiz');?></option>
 <?php
@@ -50,7 +50,7 @@ foreach($group_list as $gk => $group){
 ?>
 
 
-<h3><?php echo $title;?></h3>
+<h3 class="ft_wt"><?php echo $title;?></h3>
 
   <div class="row">
 
@@ -74,6 +74,8 @@ foreach($group_list as $gk => $group){
 
 <div class="col-md-12">
 <br>
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
@@ -137,6 +139,9 @@ if($logged_in['su']=='1'){
 }
 ?>
 </table>
+</div>
+
+</div>
 </div>
 
 </div>

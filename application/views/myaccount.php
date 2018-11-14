@@ -1,16 +1,16 @@
  <div class="container">
 
 
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
 
-  <div class="row">
+  <div class="row" style="display: inline; float: none;">
      <form method="post" action="<?php echo site_url('user/update_user/'.$uid);?>">
 
 <div class="col-md-8">
 <br>
- <div class="login-panel panel panel-default">
+ <div class="login-panel panel panel-default sha_div">
 		<div class="panel-body">
 
 
@@ -62,7 +62,7 @@
       </div>
 
 
-	<button class="btn btn-default" type="submit"><?php echo $this->lang->line('submit');?></button>
+	<button class="btn btn-default loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
 
 		</div>
 </div>

@@ -236,8 +236,8 @@ $cia_tim_cate=cia_tim_cate($correct_incorrect_unattempted,explode(",",$result['i
 
 
 ?>
-<div class="row noprint" >
-<div class="col-lg-12" style="background-image:url('<?php echo base_url('images/result_bg.jpg');?>');background-size:cover;font-size:18px;padding:20px;color:#ffffff;min-height:400px;">
+<div class="row noprint" style="display: inline; float: none;">
+<div class="col-lg-12 sha_div" style="background-image:url('<?php echo base_url('images/result_bg.jpg');?>');background-size:cover;font-size:18px;padding:20px;color:#ffffff;min-height:400px;border-radius:10px;">
 <div class="col-lg-12" >
 <center><h3><span style="color:#e39500;"> 
 <?php echo $this->lang->line('hello');?> <?php echo $result['first_name'];?> 
@@ -342,11 +342,11 @@ if($result['gen_certificate']=='1'){
  
 
 
-  <div class="row">
+  <div class="row" style="display: inline; float: none;">
      
 <div class="col-md-12">
 <br> 
- <div class="login-panel panel panel-default onlyprint">
+ <div class="login-panel panel panel-default onlyprint" style="overflow-x:auto;">
 		<div class="panel-body"> 
 	
 	
@@ -380,14 +380,16 @@ if($result['camera_req']=='1'){
 <br>
  
  <div class="col-md-12">
-		 <h3><?php echo $this->lang->line('categorywise');?></h3>
-					<table class="table table-bordered">
-					 <thead> <tr><th style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('category_name');?></th>
-					 <th  style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('score_obtained');?></th>
-					 <th  style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('time_spent');?></th>
-					  <th  style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('correct');?></th>
-					 <th  style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('incorrect');?></th>
-					 <th  style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('notattempted');?></th> 
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
+		 <h3 class="ft_wt"><?php echo $this->lang->line('categorywise');?></h3>
+					<table class="table ">
+					 <thead> <tr><th style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('category_name');?></th>
+					 <th  style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('score_obtained');?></th>
+					 <th  style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('time_spent');?></th>
+					  <th  style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('correct');?></th>
+					 <th  style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('incorrect');?></th>
+					 <th  style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('notattempted');?></th> 
 					</tr></thead>
 					<tbody>
 					  <?php 
@@ -417,27 +419,30 @@ if($result['camera_req']=='1'){
 					 </tbody>
 						 <thead> 
 						 <tr>
-						 <th style="background:#337ab7;color:#ffffff;"><?php echo $this->lang->line('total');?></th>
-						 <th  style="background:#337ab7;color:#ffffff;"><?php echo $result['score_obtained'];?>
+						 <th style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $this->lang->line('total');?></th>
+						 <th  style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $result['score_obtained'];?>
 						 </th>
-						 <th style="background:#337ab7;color:#ffffff;"><?php echo secintomin($result['total_time']);?> Min. <?php echo $this->lang->line('approx');?></th>
-						<th style="background:#337ab7;color:#ffffff;"><?php echo $correct;?></th>
-						<th style="background:#337ab7;color:#ffffff;"><?php echo $incorrect;?></th>
-						<th style="background:#337ab7;color:#ffffff;"><?php echo $notattempted;?></th> 
+						 <th style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo secintomin($result['total_time']);?> Min. <?php echo $this->lang->line('approx');?></th>
+						<th style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $correct;?></th>
+						<th style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $incorrect;?></th>
+						<th style="background:rgb(255, 0, 140);color:#ffffff;"><?php echo $notattempted;?></th> 
 						 </tr>
 						 </thead>
 					
 						</table>
 						
-		
+						</div>
+						</div>	
 	</div>
 	
-	<div class="col-lg-12 noprint">
-	<h3><?php echo $this->lang->line('comparison_other');?></h3>
+	<div class="col-lg-12 noprint" style="display: inline; float: none;">
+	<h3 class="ft_wt"><?php echo $this->lang->line('comparison_other');?></h3>
 	</div>
-	
+
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">	
 <div class="col-lg-12 noprint" style="margin-top:50px;"> 
-<button class="btn btn-default" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('rank').': '.$rank;?> </button> 
+<button class="btn btn-default loginbtn" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('rank').': '.$rank;?> </button> 
 <div class="td_line" style="float:left;width:700px;height:70px;">
 <div <?php if($rank=='1'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Rank"<?php }else{ ?>class="circle_result"<?php } ?>>1</div>
 <div <?php if($rank=='2'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Rank"<?php }else{ ?>class="circle_result"<?php } ?>>2</div>
@@ -469,8 +474,9 @@ if($result['camera_req']=='1'){
  
  
  
+ 
 <div class="col-lg-12 noprint" style="margin-top:50px;">
-<button class="btn btn-default" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('score_obtained').': '.$result['score_obtained'];?> </button> 
+<button class="btn btn-default loginbtn" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('score_obtained').': '.$result['score_obtained'];?> </button> 
 <div class="td_line" style="float:left;width:700px;height:70px;">
 <div <?php if($rank=='1'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Score"<?php }else{ ?>class="circle_result"<?php } ?>><?php echo $toppers[0]['score_obtained'];?></div>
 <div <?php if($rank=='2'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Score"<?php }else{ ?>class="circle_result"<?php } ?>><?php echo $toppers[1]['score_obtained'];?></div>
@@ -502,7 +508,7 @@ if($result['camera_req']=='1'){
  
  
  <div class="col-lg-12 noprint" style="margin-top:50px;margin-bottom:50px;">
-<button class="btn btn-default" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('time').': '.secintomin($result['total_time']).' Min.';?>   </button> 
+<button class="btn btn-default loginbtn" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('time').': '.secintomin($result['total_time']).' Min.';?>   </button> 
 <div class="td_line" style="float:left;width:700px;height:70px;">
 <div <?php if($rank=='1'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Time"<?php }else{ ?>class="circle_result"<?php } ?> style="font-size:12px;padding-top:10px;"><?php echo secintomin($toppers[0]['total_time']);?></div>
 <div <?php if($rank=='2'){?>class="circle_ur s_title" data-toggle="tooltip"   title="Your Time"<?php }else{ ?>class="circle_result"<?php } ?> style="font-size:12px;padding-top:10px;"><?php echo secintomin($toppers[1]['total_time']);?></div>
@@ -529,10 +535,17 @@ if($result['camera_req']=='1'){
   ?>
 </div>
  </div>
+ </div>
+ </div>
  
  
 	 <div id="page_break"></div>
- <div class="col-md-12">
+ <div class="col-md-12 " >
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
+
+		<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 <?php
  
  
@@ -598,7 +611,16 @@ if($result['view_answer']=='1' || $logged_in['su']=='1'){
 	
 ?>
 
-<div class="login-panel panel panel-default">
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="login-panel panel panel-default sha_div">
 		<div class="panel-body"> 
 		<a name="answers_i"></a>
 <h3><?php echo $this->lang->line('answer_sheet');?></h3>
@@ -757,7 +779,7 @@ if(in_array($option['oid'],$save_ans)){   echo  trim($option['q_option']).', '; 
 		<div class="op"> 
 		<?php echo $this->lang->line('answer');?> <br>
 		<?php echo $this->lang->line('word_counts');?>  <?php echo str_word_count($save_ans);?>
-		<textarea name="answer[<?php echo $qk;?>][]" id="answer_value<?php echo $qk;?>" style="width:100%;height:100%;" onKeyup="count_char(this.value,'char_count<?php echo $qk;?>');"><?php echo $save_ans;?></textarea>
+		<textarea name="answer[<?php echo $qk;?>][]" id="answer_value<?php echo $qk;?>" style="width:100%;height:300px;" onKeyup="count_char(this.value,'char_count<?php echo $qk;?>');"><?php echo $save_ans;?></textarea>
 		</div>
 		<?php 
 		if($logged_in['su']=='1'){
@@ -905,6 +927,8 @@ if(in_array($option['oid'],$save_ans)){   echo  trim($option['q_option']).', '; 
  
 </div>
       
+</div>
+</div>
 </div>
 
  

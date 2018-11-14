@@ -1,16 +1,16 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
-  <div class="row">
+  <div class="row align-self-center" style="display: inline; float: none;">
      <form method="post" action="<?php echo site_url('quiz/update_quiz/'.$quiz['quid']);?>">
 	
 <div class="col-md-12">
 <br> 
- <div class="login-panel panel panel-default">
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body"> 
 	
 	
@@ -139,7 +139,7 @@
 					{email}, {first_name}, {last_name}, {quiz_name}, {percentage_obtained}, {score_obtained}, {result}, {generated_date}, {result_id}, {qr_code}
 			
 			<br><br>
-			<a href="<?php echo site_url('result/preview_certificate/'.$quiz['quid']);?>" target="preview_cert" class="btn btn-warning"><?php echo $this->lang->line('preview');?></a>
+			<a href="<?php echo site_url('result/preview_certificate/'.$quiz['quid']);?>" target="preview_cert" class="btn btn-primary loginbtn"><?php echo $this->lang->line('preview');?></a>
 			 
 			<span style="color:#ff0000"><?php echo $this->lang->line('preview_warning');?></span>
 			</div>
@@ -154,7 +154,7 @@ if($quiz['question_selection']=='0'){
  
 ?>
 <h4><?php echo $this->lang->line('questions_added_into_quiz');?></h4>
-<a href="<?php echo site_url('quiz/add_question/'.$quiz['quid']);?>" class="btn btn-danger"  ><?php echo $this->lang->line('add_question_into_quiz');?></a>
+<a href="<?php echo site_url('quiz/add_question/'.$quiz['quid']);?>" class="btn btn-primary loginbtn"  ><?php echo $this->lang->line('add_question_into_quiz');?></a>
   
 <table class="table table-bordered" style="margin-top:10px;">
 <tr>
@@ -318,7 +318,7 @@ if(count($qcl)==0){
 			 
 
  
-	<button class="btn btn-success" type="submit"><?php echo $this->lang->line('submit');?></button>
+	<button class="btn btn-primary loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
  <br><br><br>
  <?php echo $this->lang->line('open_quiz_warning');?>
 		</div>

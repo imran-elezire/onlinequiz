@@ -1,13 +1,15 @@
  <div class="container">
 
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
   <div class="row">
  
 <div class="col-md-12">
 <br> 
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php 
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');	
@@ -54,12 +56,15 @@ foreach($level_list as $key => $val){
  
  <input type="text"   class="form-control"   name="level_name" value="" placeholder="<?php echo $this->lang->line('level_name');?>"  required ></td>
 <td>
-<button class="btn btn-default" type="submit"><?php echo $this->lang->line('add_new');?></button>
+<button class="btn btn-default loginbtn" type="submit"><?php echo $this->lang->line('add_new');?></button>
  
 </td>
 </tr>
 </table>
 </form>
+</div>
+
+</div>
 </div>
 
 </div>

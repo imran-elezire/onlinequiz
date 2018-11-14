@@ -74,7 +74,7 @@ window.location="<?php echo site_url('quiz/submit_quiz/');?>";
 
 
 
-<div class="container" >
+<div class="container">
 
 
 
@@ -88,15 +88,17 @@ window.location="<?php echo site_url('quiz/submit_quiz/');?>";
 	<script type="text/javascript">window.onload = CreateTimer("timer", <?php echo $seconds;?>);</script>
 </span>
 </div>
-<div style="float:left;width:150px; " >
- <h4><?php echo $title;?></h4>
+<div style="float:left;width:150px;" >
+ <h4 class="ft_wt"><?php echo $title;?></h4>
 </div>
 
 <div style="clear:both;"></div>
 
 <!-- Category button -->
 
- <div class="row"  >
+ <div class="row" style="display: inline; float: none;">
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 <?php
 $categories=explode(',',$quiz['categories']);
 $category_range=explode(',',$quiz['category_range']);
@@ -120,18 +122,23 @@ if(count($categories) > 1 ){
 	$jct=0;
 	foreach($categories as $cat_key => $category){
 ?>
-<a href="javascript:switch_category('cat_<?php echo $cat_key;?>');"   class="btn btn-info"  style="cursor:pointer;"><?php echo $category;?></a>
+<a href="javascript:switch_category('cat_<?php echo $cat_key;?>');"   class="btn btn-info loginbtn"  style="cursor:pointer;"><?php echo $category;?></a>
 <input type="hidden" id="cat_<?php echo $cat_key;?>" value="<?php echo getfirstqn($cat_key,$category_range);?>">
 <?php
 }
 }
 ?>
 </div>
+</div>
+</div>
 
 
 
- <div class="row"  style="margin-top:5px;">
+ <div class="row login-panel panel panel-default sha_div panel-body"  style="margin-top:5px;overflow-x:auto;">
+ <!-- <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body"> -->
  <div class="col-md-8">
+ 
 <form method="post" action="<?php echo site_url('quiz/submit_quiz/'.$quiz['rid']);?>" id="quiz_form" >
 <input type="hidden" name="rid" value="<?php echo $quiz['rid'];?>">
 <input type="hidden" name="noq" value="<?php echo $quiz['noq'];?>">
@@ -154,14 +161,14 @@ $abc=array(
 foreach($questions as $qk => $question){
 ?>
 
- <div id="q<?php echo $qk;?>" class="question_div">
+ <div id="q<?php echo $qk;?>" class="question_div sha_div" style="border-radius:10px;">
 
 		<div class="question_container" >
 		 <?php echo $this->lang->line('question');?> <?php echo $qk+1;?>)<br>
 		 <?php echo $question['question'];?>
 
 		 </div>
-		<div class="option_container" >
+		<div class="option_container " >
 		 <?php
 		 // multiple single choice
 		 if($question['question_type']==$this->lang->line('multiple_choice_single_answer')){
@@ -358,6 +365,8 @@ foreach($questions as $qk => $question){
 
 		</div>
  </div>
+ <!-- </div>
+ </div> -->
 
 
 
@@ -374,7 +383,7 @@ foreach($questions as $qk => $question){
 		for($j=0; $j < $quiz['noq']; $j++ ){
 			?>
 
-			<div class="qbtn" onClick="javascript:show_question('<?php echo $j;?>');" id="qbtn<?php echo $j;?>"  ><?php echo ($j+1);?></div>
+			<div class="qbtn" style="border-radius:40px;" onClick="javascript:show_question('<?php echo $j;?>');" id="qbtn<?php echo $j;?>"  ><?php echo ($j+1);?></div>
 
 			<?php
 		}
@@ -392,10 +401,10 @@ foreach($questions as $qk => $question){
 
 
 <table>
-<tr><td style="font-size:12px;"><div class="qbtn" style="background:#449d44;">&nbsp;</div> <?php echo $this->lang->line('Answered');?>  </td></tr>
-<tr><td style="font-size:12px;"><div class="qbtn" style="background:#c9302c;">&nbsp;</div> <?php echo $this->lang->line('UnAnswered');?>  </td></tr>
-<tr><td style="font-size:12px;"><div class="qbtn" style="background:#ec971f;">&nbsp;</div> <?php echo $this->lang->line('Review-Later');?>  </td></tr>
-<tr><td style="font-size:12px;"><div class="qbtn" style="background:#212121;">&nbsp;</div> <?php echo $this->lang->line('Not-visited');?>  </td></tr>
+<tr><td style="font-size:12px;"><div class="qbtn" style="background:#449d44;border-radius:40px;">&nbsp;</div> <?php echo $this->lang->line('Answered');?>  </td></tr>
+<tr><td style="font-size:12px;"><div class="qbtn" style="background:#c9302c;border-radius:40px;">&nbsp;</div> <?php echo $this->lang->line('UnAnswered');?>  </td></tr>
+<tr><td style="font-size:12px;"><div class="qbtn" style="background:#ec971f;border-radius:40px;">&nbsp;</div> <?php echo $this->lang->line('Review-Later');?>  </td></tr>
+<tr><td style="font-size:12px;"><div class="qbtn" style="background:#212121;border-radius:40px;">&nbsp;</div> <?php echo $this->lang->line('Not-visited');?>  </td></tr>
 </table>
 
 
@@ -417,16 +426,16 @@ foreach($questions as $qk => $question){
 
 
 
-<div class="footer_buttons">
-	<button class="btn btn-warning"   onClick="javascript:review_later();" style="margin-top:2px;" ><?php echo $this->lang->line('review_later');?></button>
+<div class="col-md-6 col-md-offset-3 login-panel panel panel-default panel-body sha_div" style="overflow-x:auto;">
+	<button class="btn btn-warning" style="border-radius:40px;"  onClick="javascript:review_later();" style="margin-top:2px;" ><?php echo $this->lang->line('review_later');?></button>
 
-	<button class="btn btn-info"  onClick="javascript:clear_response();"  style="margin-top:2px;"  ><?php echo $this->lang->line('clear');?></button>
+	<button class="btn btn-info" style="border-radius:40px;" onClick="javascript:clear_response();"  style="margin-top:2px;"  ><?php echo $this->lang->line('clear');?></button>
 
-	<button class="btn btn-success"  id="backbtn" style="visibility:hidden;" onClick="javascript:show_back_question();"  style="margin-top:2px;" ><?php echo $this->lang->line('back');?></button>
+	<button class="btn btn-success" style="border-radius:40px;" id="backbtn" style="visibility:hidden;" onClick="javascript:show_back_question();"  style="margin-top:2px;" ><?php echo $this->lang->line('back');?></button>
 
-	<button class="btn btn-success" id="nextbtn" onClick="javascript:show_next_question();" style="margin-top:2px;" ><?php echo $this->lang->line('save_next');?></button>
+	<button class="btn btn-success" style="border-radius:40px;" id="nextbtn" onClick="javascript:show_next_question();" style="margin-top:2px;" ><?php echo $this->lang->line('save_next');?></button>
 
-	<button class="btn btn-danger"  onClick="javascript:cancelmove();" style="margin-top:2px;" ><?php echo $this->lang->line('submit_quiz');?></button>
+	<button class="btn btn-danger" style="border-radius:40px;" onClick="javascript:cancelmove();" style="margin-top:2px;" ><?php echo $this->lang->line('submit_quiz');?></button>
 </div>
 
 <script>

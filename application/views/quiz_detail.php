@@ -1,7 +1,7 @@
  <div class="container">
 
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
@@ -10,7 +10,7 @@
 	
 <div class="col-md-12">
 <br> 
- <div class="login-panel panel panel-default">
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body"> 
 	
 	
@@ -77,12 +77,12 @@ if($quiz['camera_req']==1 && $this->config->item('webcam')==true){
 	 }
 	</script>
 	
-	<button class="btn btn-success" type="button" onClick="javascript:capturephoto();"><?php echo $this->lang->line('capture_start_quiz');?></button>
+	<button class="btn btn-success loginbtn" type="button" onClick="javascript:capturephoto();"><?php echo $this->lang->line('capture_start_quiz');?></button>
 
 <?php 
 }else{
 ?>	
-	<button class="btn btn-success" type="submit"><?php echo $this->lang->line('start_quiz');?></button>
+	<button class="btn btn-success loginbtn" type="submit"><?php echo $this->lang->line('start_quiz');?></button>
  
  <?php 
 }
@@ -90,7 +90,7 @@ if($quiz['camera_req']==1 && $this->config->item('webcam')==true){
 	if($quiz['with_login']==0){ 
 	?>
 	
-	<button class="btn btn-success" type="submit"><?php echo $this->lang->line('start_quiz');?></button>
+	<button class="btn btn-success loginbtn" type="submit"><?php echo $this->lang->line('start_quiz');?></button>
  &nbsp;&nbsp;&nbsp;&nbsp; <a href="<?php echo site_url('quiz/open_quiz/0');?>" ><?php echo $this->lang->line('back');?></a>
 
 	

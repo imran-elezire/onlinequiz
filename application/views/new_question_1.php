@@ -1,17 +1,17 @@
- <div class="container">
+ <div class="container con_cen">
 
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
-  <div class="row">
+  <div class="row align-self-center" > 
      <form method="post" action="<?php echo site_url('qbank/new_question_1/'.$nop);?>">
 	
-<div class="col-md-8">
+<div class="col-md-8 col-md-offset-2">
 <br> 
- <div class="login-panel panel panel-default">
-		<div class="panel-body"> 
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body" > 
 	
 	
 	
@@ -61,9 +61,9 @@
 			
 			
 
-			<div class="form-group">	 
+			<div class="form-group" >	 
 					<label for="inputEmail"  ><?php echo $this->lang->line('question');?></label> 
-					<textarea  name="question"  class="form-control"   ></textarea>
+					<textarea  name="question"  class="form-control"></textarea>
 			</div>
 			<div class="form-group">	 
 					<label for="inputEmail"  ><?php echo $this->lang->line('description');?></label> 
@@ -82,7 +82,7 @@
 		?>
 
  
-	<button class="btn btn-default" type="submit"><?php echo $this->lang->line('submit');?></button>
+	<button class="btn btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
  
 		</div>
 </div>

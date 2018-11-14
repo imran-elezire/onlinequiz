@@ -1,41 +1,36 @@
-<div class="row"  style="border-bottom:1px solid #dddddd;">
-<div class="container"  >
-<div class="col-md-1">
-</div>
-<div class="col-md-10">
-<a href="<?php echo base_url();?>"><img src="<?php echo base_url('images/logo.png');?>"></a>
-<?php echo $this->lang->line('login_tagline');?>
-</div>
-<div class="col-md-1">
-</div>
+<div class="row"  style="display: inline; float: none;">
+<div class="col-lg-8 col-lg-offset-2" style="margin-top:5px;">
 
-</div>
 
-</div>
-
- <div class="container">
-<a href="<?php echo site_url('login');?>">Login</a>
+ <div class="container login-panel panel panel-default panel-body sha_div" style="text-align: center;">
+ <a href="<?php echo base_url();?>"><img src="<?php echo base_url('images/logo.png');?>"></a><br>
+ <h4 class="logintag"><?php echo $this->lang->line('login_tagline');?></h4><br>
+    <a style="font-weight:bold;font-size:18px;color:rgb(255, 0 , 140);" href="<?php echo site_url('login');?>">Already Registered? Login</a>
 
 
  <h3><?php echo $title;?></h3>
 
-
-
-  <div class="row">
+  <div class="row" >
+  
+  
+  
+  
+  
 
     <?php
     $cc=0;
 $colorcode=array(
-'success',
-'warning',
 'info',
-'danger'
+'info',
+'info',
+'info'
 );
     foreach($group_list as $k => $val){
 
    ?>
 	                <!-- item -->
-                <div class="col-md-4 text-center">
+                    
+                <div class="col-md-6 text-center">
                     <div class="panel panel-<?php echo $colorcode[$cc];?> panel-pricing">
                         <div class="panel-heading">
                             <i class="fa fa-desktop"></i>
@@ -60,7 +55,7 @@ echo $this->config->item('base_currency_prefix').' '.$val['price'].' '.$this->co
                         <div class="panel-footer">
 
 
-<a href="<?php echo site_url('login/registration/'.$val['gid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('register');?> </a>
+<a href="<?php echo site_url('login/registration/'.$val['gid']);?>" class="btn btn-lg btn-primary btn-block loginbtn"  ><?php echo $this->lang->line('register');?> </a>
 
 
                         </div>
@@ -85,7 +80,14 @@ echo $this->config->item('base_currency_prefix').' '.$val['price'].' '.$this->co
 
 
 
+
+
+
 </div>
+</div>
+</div>
+
+
 <script>
 
 </script>

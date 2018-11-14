@@ -1,16 +1,16 @@
- <div class="container">
+ <div class="container con_cen">
 
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
-  <div class="row">
+  <div class="row align-self-center" style="display: inline; float: none;">
      <form method="post" action="<?php echo site_url('qbank/pre_new_question/');?>">
 	
-<div class="col-md-8">
+<div class="col-md-8 col-md-offset-2">
 <br> 
- <div class="login-panel panel panel-default">
+ <div class="login-panel panel panel-default sha_div">
 		<div class="panel-body"> 
 	
 	
@@ -42,7 +42,7 @@
 
 
  
-	<button class="btn btn-default" type="submit"><?php echo $this->lang->line('next');?></button>
+	<button class="btn btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('next');?></button>
  
 		</div>
 </div>

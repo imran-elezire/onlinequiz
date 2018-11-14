@@ -12,7 +12,7 @@
 </div>
 <div class="col-md-4">
 
-	<div class="login-panel panel panel-default">
+	<div class="login-panel panel panel-default sha_div" style="text-align: center;">
 		<div class="panel-body">
 		<center>
 		<a href="<?php echo base_url();?>"><img src="<?php echo base_url('images/logo.png');?>"></a><br>
@@ -33,13 +33,13 @@
 
 		<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('email_address');?></label>
 		<fieldset class="page-signin-form-group form-group form-group-lg">
-                  <div class="page-signin-icon text-muted"><i class="fa fa-user"></i></div>
+                  <!-- <div class="page-signin-icon text-muted"><i class="fa fa-user"></i></div> -->
                   <input class="page-signin-form-control form-control" name="email"  placeholder="<?php echo $this->lang->line('email_address');?>" type="text" required autofocus>
                 </fieldset>
 
                 <label for="inputPassword" class="sr-only"><?php echo $this->lang->line('password');?></label>
   		<fieldset class="page-signin-form-group form-group form-group-lg">
-                  <div class="page-signin-icon text-muted"><i class="fa fa-star"></i></div>
+                  <!-- <div class="page-signin-icon text-muted"><i class="fa fa-star"></i></div> -->
                   <input class="page-signin-form-control form-control" name="password"  id="inputPassword" placeholder="<?php echo $this->lang->line('password');?>" type="password" required  >
                 </fieldset>
 
@@ -51,19 +51,19 @@
 <?php
 if($this->config->item('user_registration')){
 	?>
-	<a class="logintxt" href="<?php echo site_url('login/pre_registration');?>"><?php echo $this->lang->line('register_new_account');?></a>
+	<a class="logintxt"  href="<?php echo site_url('login/pre_registration');?>"><?php echo $this->lang->line('register_new_account');?></a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
 }
 ?>
-	<a class="logintxt" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
+	<!-- <a class="logintxt" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a> -->
 
 			</form>
 
 <?php
 if($this->config->item('open_quiz')){
 	?>			<p>
-			<a class="logintxt" href="<?php echo site_url('quiz/open_quiz/0');?>"  ><?php echo $this->lang->line('open_quizzes');?></a>
+			<!-- <a class="logintxt" href="<?php echo site_url('quiz/open_quiz/0');?>"  ><?php echo $this->lang->line('open_quizzes');?></a> -->
 			</p>
 			<?php
 			}

@@ -1,7 +1,7 @@
  <div class="container">
 
    
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
@@ -11,9 +11,9 @@
 <br> 
   
  
- <div class="alert alert-danger"><?php echo $this->lang->line('pending_quiz_message');?></div>
+ <div class="alert alert-danger sha_div"><?php echo $this->lang->line('pending_quiz_message');?></div>
  <br><br>
- <?php echo str_replace('[link]',site_url($openquizurl),$this->lang->line('manual_redirect'));?>
+ <h4 class="ft_wt" style="color:rgb(255,0,140);"><?php echo str_replace('[link]',site_url($openquizurl),$this->lang->line('manual_redirect'));?></h4>
  
  
 </div>

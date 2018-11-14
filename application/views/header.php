@@ -65,7 +65,7 @@
 			  <li <?php if($this->uri->segment(1)=='dashboard'){ echo "class='active'"; } ?> ><a href="<?php echo site_url('dashboard');?>"><?php echo $this->lang->line('dashboard');?></a></li>
 
 
-			  <li class="dropdown" <?php if($this->uri->segment(1)=='user'){ echo "class='active'"; } ?> >
+			  <li class="dropdown licss" <?php if($this->uri->segment(1)=='user'){ echo "class='active'"; } ?> >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->lang->line('users');?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo site_url('user/new_user');?>"><?php echo $this->lang->line('add_new');?></a></li>
@@ -76,7 +76,7 @@
 
 
 
-			  <li class="dropdown" <?php if($this->uri->segment(1)=='qbank'){ echo "class='active'"; } ?> >
+			  <li class="dropdown licss" <?php if($this->uri->segment(1)=='qbank'){ echo "class='active'"; } ?> >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->lang->line('qbank');?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo site_url('qbank/pre_new_question');?>"><?php echo $this->lang->line('add_new');?></a></li>
@@ -95,7 +95,7 @@
 			<?php
 				}
 			?>
-     		  <li class="dropdown" <?php if($this->uri->segment(1)=='qbank'){ echo "class='active'"; } ?> >
+     		  <li class="dropdown licss" <?php if($this->uri->segment(1)=='qbank'){ echo "class='active'"; } ?> >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->lang->line('quiz');?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                  <?php
@@ -125,7 +125,7 @@
 			?>
 			 <!-- <li><a href="<?php echo site_url('payment_gateway');?>"><?php echo $this->lang->line('payment_history');?></a></li> -->
 
-			  <li class="dropdown" <?php if($this->uri->segment(1)=='user_group'){ echo "class='active'"; } ?> >
+			  <li class="dropdown licss" <?php if($this->uri->segment(1)=='user_group'){ echo "class='active'"; } ?> >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->lang->line('setting');?>  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo site_url('notification');?>"><?php echo $this->lang->line('notification');?></a></li>

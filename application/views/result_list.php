@@ -13,8 +13,8 @@ if($logged_in['su']=='1'){
   <div class="col-lg-12">
     <form method="post" action="<?php echo site_url('result/generate_report/');?>">
 	<div class="input-group">
-    <h3><?php echo $this->lang->line('generate_report');?> </h3>
-<select name="quid">
+    <h3 class="ft_wt"><?php echo $this->lang->line('generate_report');?> </h3>
+<select name="quid" class="in_sel sha_div">
 <option value="0"><?php echo $this->lang->line('select_quiz');?></option>
 <?php
 foreach($quiz_list as $qk => $quiz){
@@ -25,7 +25,7 @@ foreach($quiz_list as $qk => $quiz){
 ?>
 </select>
 
-<select name="gid">
+<select name="gid" class="in_sel sha_div">
 <option value="0"><?php echo $this->lang->line('select_group');?></option>
 <?php
 foreach($group_list as $gk => $group){
@@ -35,11 +35,12 @@ foreach($group_list as $gk => $group){
 }
 ?>
 </select>
-<input type="text" name="date1" value="" placeholder="<?php echo $this->lang->line('date_from');?>">
+<input type="text" class="in_sel sha_div" name="date1" value="" placeholder="<?php echo $this->lang->line('date_from');?>">
 
- <input type="text" name="date2" value="" placeholder="<?php echo $this->lang->line('date_to');?>">
+ <input type="text" class="in_sel sha_div" name="date2" value="" placeholder="<?php echo $this->lang->line('date_to');?>"><span>  </span>
+ 
 
- <button class="btn btn-info" type="submit"><?php echo $this->lang->line('generate_report');?></button>
+ <button class="btn btn-info loginbtn sha_div" type="submit"><?php echo $this->lang->line('generate_report');?></button>
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
@@ -50,13 +51,13 @@ foreach($group_list as $gk => $group){
 ?>
 
 
-<h3><?php echo $title;?></h3>
+<h3 class="ft_wt"><?php echo $title;?></h3>
 
   <div class="row">
 
   <div class="col-lg-6">
     <form method="post" action="<?php echo site_url('result/index/');?>">
-	<div class="input-group">
+	<div class="input-group sha_div">
     <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
@@ -74,6 +75,8 @@ foreach($group_list as $gk => $group){
 
 <div class="col-md-12">
 <br>
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
@@ -140,17 +143,20 @@ if($logged_in['su']=='1'){
 </div>
 
 </div>
+</div>
+
+</div>
 
 
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
-<a href="<?php echo site_url('result/index/'.$back.'/'.$status);?>"  class="btn btn-primary"><?php echo $this->lang->line('back');?></a>
+<a href="<?php echo site_url('result/index/'.$back.'/'.$status);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('back');?></a>
 &nbsp;&nbsp;
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('result/index/'.$next.'/'.$status);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('result/index/'.$next.'/'.$status);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('next');?></a>
 
 
 

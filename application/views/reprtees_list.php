@@ -2,7 +2,7 @@
  <div class="container">
 
 
- <h3><?php echo $title;?></h3>
+ <h3 class="ft_wt"><?php echo $title;?></h3>
     <div class="row">
 
   <div class="col-lg-6">
@@ -24,6 +24,8 @@
 
 <div class="col-md-12">
 <br>
+<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body">
 			<?php
 		if($this->session->flashdata('message')){
 			echo $this->session->flashdata('message');
