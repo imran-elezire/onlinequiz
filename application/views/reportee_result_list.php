@@ -94,7 +94,7 @@ foreach($group_list as $gk => $group){
 <th><?php echo $this->lang->line('first_name');?> <?php echo $this->lang->line('last_name');?></th>
  <th><?php echo $this->lang->line('quiz_name');?></th>
  <th><?php echo $this->lang->line('status');?>
- <select onChange="sort_result('<?php echo $limit;?>',this.value);">
+ <select onChange="sort_reportee_result('<?php echo $limit;?>',this.value,'<?php echo $reportee_id; ?>');">
  <option value="0"><?php echo $this->lang->line('all');?></option>
  <option value="<?php echo $this->lang->line('pass');?>" <?php if($status==$this->lang->line('pass')){ echo 'selected'; } ?> ><?php echo $this->lang->line('pass');?></option>
  <option value="<?php echo $this->lang->line('fail');?>" <?php if($status==$this->lang->line('fail')){ echo 'selected'; } ?> ><?php echo $this->lang->line('fail');?></option>
@@ -146,7 +146,7 @@ if($logged_in['su']=='1'){
 
 </div>
 
-<!-- 
+<!--
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
