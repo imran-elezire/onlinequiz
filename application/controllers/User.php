@@ -85,6 +85,15 @@ class User extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[savsoft_users.email]');
         $this->form_validation->set_rules('password', 'Password', 'required');
+				$this->form_validation->set_rules('password', 'Password', 'required');
+
+				$this->form_validation->set_rules('first_name', 'First Name', 'required');
+				$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+				$this->form_validation->set_rules('contact_no', 'Contact', 'required');
+				$this->form_validation->set_rules('employee_id', 'Employee Id', 'required');
+				$this->form_validation->set_rules('designation', 'Designation', 'required');
+				$this->form_validation->set_rules('department', 'Department', 'required');
+
           if ($this->form_validation->run() == FALSE)
                 {
                      $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
@@ -135,6 +144,7 @@ class User extends CI_Controller {
 		 $data['title']=$this->lang->line('edit').' '.$this->lang->line('user');
 		// fetching user
 		$data['result']=$this->user_model->get_user($uid);
+		$data['user_list']=$this->user_model->get_user_by_usertype('0');
 		$this->load->model("payment_model");
 		$data['payment_history']=$this->payment_model->get_payment_history($uid);
 		// fetching group list
@@ -160,6 +170,13 @@ class User extends CI_Controller {
 			}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required');
+
+						$this->form_validation->set_rules('first_name', 'First Name', 'required');
+						$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+						$this->form_validation->set_rules('contact_no', 'Contact', 'required');
+						$this->form_validation->set_rules('employee_id', 'Employee Id', 'required');
+						$this->form_validation->set_rules('designation', 'Designation', 'required');
+						$this->form_validation->set_rules('department', 'Department', 'required');
            if ($this->form_validation->run() == FALSE)
                 {
                      $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
@@ -297,6 +314,16 @@ class User extends CI_Controller {
 		$this->load->view('footer',$data);
 
 
+	}
+
+	public function pre_remove_user($uid){
+		$data['uid']=$uid;
+		// fetching group list
+		$data['user_list']=$this->user_model->get_user_by_usertype('0');
+		$data['title']='Remove User';
+		$this->load->view('header',$data);
+		$this->load->view('pre_remove_user',$data);
+		$this->load->view('footer',$data);
 
 
 	}

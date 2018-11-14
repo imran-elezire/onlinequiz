@@ -64,6 +64,29 @@ class Quiz extends CI_Controller {
 		$this->load->view('footer',$data);
 	}
 
+	public function expired_quiz($limit='0',$list_view='grid')
+	{
+		if(!$this->session->userdata('logged_in')){
+			redirect('login');
+
+		}
+		$logged_in=$this->session->userdata('logged_in');
+		if($logged_in['base_url'] != base_url()){
+		$this->session->unset_userdata('logged_in');
+		redirect('login');
+		}
+
+		$data['list_view']=$list_view;
+		$data['limit']=$limit;
+		$data['title']='Expired Quiz';
+		// fetching quiz list
+		$data['result']=$this->quiz_model->expired_quiz_list($limit);
+		$this->load->view('header',$data);
+		$this->load->view('expired_quiz_list',$data);
+		$this->load->view('footer',$data);
+
+	}
+
 
 
 function open_quiz($limit='0'){
@@ -99,8 +122,6 @@ function open_quiz($limit='0'){
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
 			}
-
-
 
 		$data['title']=$this->lang->line('add_new').' '.$this->lang->line('quiz');
 		// fetching group list
@@ -342,7 +363,6 @@ function open_quiz($limit='0'){
 				// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
-
 		}
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['base_url'] != base_url()){
@@ -368,11 +388,15 @@ function open_quiz($limit='0'){
                 else
                 {
 					$quid=$this->quiz_model->insert_quiz();
+					$this->session->set_flashdata('message', "<div class='alert alert-success'>Saved, Update Question !</div>");
+
 
 					redirect('quiz/edit_quiz/'.$quid);
                 }
 
 	}
+
+
 
 		public function update_quiz($quid)
 	{
@@ -402,6 +426,8 @@ function open_quiz($limit='0'){
                 else
                 {
 					$quid=$this->quiz_model->update_quiz($quid);
+					$this->session->set_flashdata('message', "<div class='alert alert-success'>Quiz Updated ! </div>");
+
 
 					redirect('quiz/edit_quiz/'.$quid);
                 }

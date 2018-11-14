@@ -90,9 +90,6 @@ class Qbank extends CI_Controller {
 
 	public function pre_new_question()
 	{
-
-
-
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));

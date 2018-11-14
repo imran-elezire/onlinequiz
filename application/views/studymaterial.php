@@ -51,6 +51,7 @@ if($logged_in['su']=='1'){
 			echo $this->session->flashdata('message');
 		}
 		?>
+    <br>
 		<?php
 		if($logged_in['su']=='1'){
 			?>
@@ -77,11 +78,12 @@ if(count($material_list)==0){
 
 	<?php
 }
-
+$i=0;
 foreach($material_list as $key => $val){
+  $i++;
 ?>
 <tr>
- <td><?php echo $val['material_id'];?></td>
+ <td><?php echo $i;?></td>
 <td><?php echo $val['title'];?> </td>
  <td><?php echo $val['description'];?></td>
  <td><?php echo $val['category_name']; ?></td>

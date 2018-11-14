@@ -35,7 +35,7 @@ $config['default_gid']=1;
 
 
 // Allow open quiz( true or false )
-$config['open_quiz']=true;
+$config['open_quiz']=false;
 
 
 
@@ -45,11 +45,11 @@ $config['api_key']="savsoft";
 
 
 // enable or disable result email. use true or false
-$config['allow_result_email']=false;
+$config['allow_result_email']=true;
 
 
 // allow user to change their group. use true or false
-$config['allow_switch_group']=true;
+$config['allow_switch_group']=false;
 // default free group id - gid
 $config['default_group']=1;
 
@@ -63,7 +63,7 @@ $config['wp-path']='../wp/wp-blog-header.php';
 
 
 // email sending protocol mail or smtp
-$config['protocol']="mail";
+$config['protocol']="smtp";
 
 /*
 | SMTP configuration to send email to user just after submitting quiz
@@ -71,15 +71,16 @@ $config['protocol']="mail";
 */
 
 // smtp hostname eg. smtp.gmail.com
-$config['smtp_hostname'] = "ssl://smtp.gmail.com";
+$config['smtp_hostname'] = "ssl://smtp.stackmail.com";
 // smtp username
-$config['smtp_username'] = "kashwinikum@gmail.com";
+$config['smtp_username'] = "support@elezire.com";
 // smtp password
-$config['smtp_password'] = "ehylbngjnpbqzxcc";
+$config['smtp_password'] = "Password@1";
 // smtp outgoing port. eg for gmail its 465, outlook 587, yahoo 465 for other contact your mailing administrator
 $config['smtp_port'] = "465";
 // smtp timeout default 5 seconds
-$config['smtp_timeout'] = "5";
+$config['smtp_timeout'] = "7";
+$config['charset']    = 'utf-8';
 // smtp tls
 $config['starttls'] = TRUE;
 // new line
@@ -111,7 +112,7 @@ $config['result_subject'] = "Result generated for quiz [quiz_name]";
 
 
 // email send from
-$config['fromemail']="noeply@gmailll.com";
+$config['fromemail']="support@elezire.com";
 // from name
 $config['fromname']="Administrator - Quiz Portal";
 

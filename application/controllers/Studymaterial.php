@@ -131,7 +131,14 @@ class Studymaterial extends CI_Controller {
 							{
 				$quid=$this->studymaterial_model->insert_studymaterial();
 
-				redirect('studymaterial');
+$btn=($quid['response']==true)?'success':'danger';
+
+	$this->session->set_flashdata('message', "<div class='alert alert-".$btn."'>".$quid['message']."</div>");
+redirect('studymaterial');
+
+
+
+
 							}
 
 }

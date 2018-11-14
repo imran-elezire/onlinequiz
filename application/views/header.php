@@ -89,9 +89,15 @@
 
 		    <?php
 				}else{
+
 			?>
 			 <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>"><?php echo $this->lang->line('myaccount');?></a></li>
-       <li><a href="<?php echo site_url('user/reportees/');?>"><?php echo $this->lang->line('reportees');?></a></li>
+        <?php
+
+         if($logged_in['no_reportee']>0) {
+          ?>
+          <li><a href="<?php echo site_url('user/reportees/');?>"><?php echo $this->lang->line('reportees');?></a></li>
+        <?php } ?>
 			<?php
 				}
 			?>
@@ -105,6 +111,7 @@
 				}
 ?>				 <li><a href="<?php echo site_url('quiz');?>"><?php echo $this->lang->line('quiz');?> <?php echo $this->lang->line('list');?></a></li>
 
+<li><a href="<?php echo site_url('quiz/expired_quiz');?>">Expired <?php echo $this->lang->line('quiz');?></a></li>
                 </ul>
               </li>
 

@@ -12,6 +12,8 @@ Class Quiz_model extends CI_Model
 			}
 
 
+
+
 	 if($this->input->post('search') && $logged_in['su']=='1'){
 		 $search=$this->input->post('search');
 		 $this->db->or_where('quid',$search);
@@ -19,6 +21,7 @@ Class Quiz_model extends CI_Model
 		 $this->db->or_like('description',$search);
 
 	 }
+   $this->db->where("end_date >=",time());
 		 $this->db->limit($this->config->item('number_of_rows'),$limit);
 		$this->db->order_by('quid','desc');
 		$query=$this->db->get('savsoft_quiz');
@@ -27,6 +30,29 @@ Class Quiz_model extends CI_Model
 
  }
 
+ function expired_quiz_list($limit){
+
+   $logged_in=$this->session->userdata('logged_in');
+     if($logged_in['su']=='0'){
+     $gid=$logged_in['gid'];
+     $where="FIND_IN_SET('".$gid."', gids)";
+      $this->db->where($where);
+     }
+     if($this->input->post('search') && $logged_in['su']=='1'){
+  		 $search=$this->input->post('search');
+  		 $this->db->or_where('quid',$search);
+  		 $this->db->or_like('quiz_name',$search);
+  		 $this->db->or_like('description',$search);
+
+  	 }
+       $this->db->where("end_date <=",time());
+  		 $this->db->limit($this->config->item('number_of_rows'),$limit);
+  		$this->db->order_by('quid','desc');
+  		$query=$this->db->get('savsoft_quiz');
+  		return $query->result_array();
+
+
+   }
 
    function recent_quiz($limit){
 
@@ -69,7 +95,7 @@ Class Quiz_model extends CI_Model
 	 'view_answer'=>$this->input->post('view_answer'),
 	 'camera_req'=>$this->input->post('camera_req'),
 	 'quiz_template'=>$this->input->post('quiz_template'),
-	 'with_login'=>$this->input->post('with_login'),
+
 	 'gids'=>implode(',',$this->input->post('gids')),
 	 'question_selection'=>$this->input->post('question_selection')
 	 );

@@ -32,31 +32,32 @@
 			 </div>
 				<div class="form-group">
 					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('first_name');?></label>
-					<input type="text"  name="first_name"  class="form-control" placeholder="<?php echo $this->lang->line('first_name');?>"   autofocus>
+					<input type="text"  name="first_name"  class="form-control" placeholder="<?php echo $this->lang->line('first_name');?>" required   autofocus>
 			</div>
 				<div class="form-group">
 					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('last_name');?></label>
-					<input type="text"   name="last_name"  class="form-control" placeholder="<?php echo $this->lang->line('last_name');?>"   autofocus>
+					<input type="text"   name="last_name"  class="form-control" placeholder="<?php echo $this->lang->line('last_name');?>" required  autofocus>
 			</div>
 				<div class="form-group">
 					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('contact_no');?></label>
-					<input type="text" name="contact_no"  class="form-control" placeholder="<?php echo $this->lang->line('contact_no');?>"   autofocus>
+					<input type="number" name="contact_no"  class="form-control" placeholder="<?php echo $this->lang->line('contact_no');?>" required  autofocus>
 			</div>
       <div class="form-group">
           <label for="inputEmail" class="sr-only"><?php echo $this->lang->line('employee_id');?></label>
-          <input type="text" name="employee_id"  class="form-control" placeholder="<?php echo $this->lang->line('employee_id');?>"   autofocus>
+          <input type="text" name="employee_id"  class="form-control" placeholder="<?php echo $this->lang->line('employee_id');?>" required  autofocus>
       </div>
       <div class="form-group">
           <label for="inputEmail" class="sr-only"><?php echo $this->lang->line('designation');?></label>
-          <input type="text" name="designation"  class="form-control" placeholder="<?php echo $this->lang->line('designation');?>"   autofocus>
+          <input type="text" name="designation"  class="form-control" placeholder="<?php echo $this->lang->line('designation');?>" required  autofocus>
       </div>
       <div class="form-group">
           <label for="inputEmail" class="sr-only"><?php echo $this->lang->line('designation');?></label>
-          <input type="text" name="department"  class="form-control" placeholder="<?php echo $this->lang->line('department');?>"   autofocus>
+          <input type="text" name="department"  class="form-control" placeholder="<?php echo $this->lang->line('department');?>" required  autofocus>
       </div>
 				<div class="form-group">
 					<label   ><?php echo $this->lang->line('select_group');?></label>
-					<select class="form-control" name="gid" id="gid" onChange="getexpiry();">
+					<select class="form-control" name="gid" id="gid"  required>
+            <option value>Select Group</option>
 					<?php
 					foreach($group_list as $key => $val){
 						?>
@@ -70,7 +71,7 @@
 
       <div class="form-group">
         <label   ><?php echo $this->lang->line('user_manger');?></label>
-        <select class="form-control" name="user_manger" id="user_manger"  >
+        <select class="form-control" name="user_manger" id="user_manger"  required>
           <option value="0">Select Manager</option>
         <?php
         foreach($user_list as $key => $value){

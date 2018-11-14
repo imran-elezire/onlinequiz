@@ -32,6 +32,9 @@ Class User_model extends CI_Model
      $this->db->update('savsoft_users',array("web_token"=>$token));
      $user['token']=$token;
 
+$this->db->where('savsoft_users.user_manger', $user['uid']);
+$querymanager = $this -> db -> get('savsoft_users');
+$user["no_reportee"] = $querymanager->num_rows();
         return array('status'=>'1','user'=>$user);
         }else{
         return array('status'=>'3','message'=>$this->lang->line('account_inactive'));
@@ -447,14 +450,18 @@ $verilink=site_url('login/verify/'.$veri_code);
 
 
  function reset_password($toemail){
+
 $this->db->where("email",$toemail);
 $queryr=$this->db->get('savsoft_users');
-if($queryr->num_rows() != "1"){
+
+if($queryr->num_rows() != 1){
+
 return false;
 }
 $new_password=rand('1111','9999');
 
  $this->load->library('email');
+
 
  if($this->config->item('protocol')=="smtp"){
 			$config['protocol'] = 'smtp';
@@ -464,7 +471,7 @@ $new_password=rand('1111','9999');
 			$config['smtp_port'] = $this->config->item('smtp_port');
 			$config['smtp_timeout'] = $this->config->item('smtp_timeout');
 			$config['mailtype'] = $this->config->item('smtp_mailtype');
-			$config['starttls']  = $this->config->item('starttls');
+			$config['charset']    = 'utf-8';
 			 $config['newline']  = $this->config->item('newline');
 
 			$this->email->initialize($config);
@@ -484,7 +491,9 @@ $new_password=rand('1111','9999');
 			$this->email->message($message);
 			if(!$this->email->send()){
 			 //print_r($this->email->print_debugger());
-
+       echo "Mail server has internal error ! Try again<br>";
+       echo "<a href='".base_url()."'>Login</a>";
+       exit();
 			}else{
 			$user_detail=array(
 			'password'=>md5($new_password)
@@ -508,7 +517,10 @@ $new_password=rand('1111','9999');
 		'contact_no'=>$this->input->post('contact_no'),
     'employee_id'=>$this->input->post('employee_id'),
     'designation'=>$this->input->post('designation'),
-    'department'=>$this->input->post('department')
+    'department'=>$this->input->post('department'),
+    'gid'=>$this->input->post('gid'),
+
+    'user_manger'=>$this->input->post('user_manger'),
 		);
 		if($logged_in['su']=='1'){
 			$userdata['email']=$this->input->post('email');
@@ -567,13 +579,15 @@ $new_password=rand('1111','9999');
 
  function remove_user($uid){
 
-	 $this->db->where('uid',$uid);
-	 if($this->db->delete('savsoft_users')){
-		 return true;
-	 }else{
-
-		 return false;
-	 }
+$this->db->where('user_manger',$uid);
+if($this->db->update('savsoft_users',array("user_manger"=>$this->input->post("muid")))){
+  $this->db->where('uid',$uid);
+  if($this->db->delete('savsoft_users')){
+    return true;
+  }else{
+    return false;
+  }
+}
 
 
  }
@@ -643,6 +657,7 @@ $query=$this->db->get('savsoft_users');
 function get_user_by_usertype($type)
 {
   $this->db->where('su',$type);
+  $this->db->where('user_status','Active');
   $query=$this->db->get('savsoft_users');
   	 return $query->result_array();
 }

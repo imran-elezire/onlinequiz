@@ -48,18 +48,27 @@
 
 					<button class="btn btn-lg btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('login');?></button>
 			</div>
-<?php
+<!-- <?php
 if($this->config->item('user_registration')){
 	?>
 	<a class="logintxt"  href="<?php echo site_url('login/pre_registration');?>"><?php echo $this->lang->line('register_new_account');?></a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 <?php
 }
+<<<<<<< HEAD
 ?>
 	<!-- <a class="logintxt" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a> -->
+=======
+?> -->
+<div class="text-center">
 
+>>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
+
+	<a class="logintxt" style="text-align:center;" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
+</div>
 			</form>
 
+<<<<<<< HEAD
 <?php
 if($this->config->item('open_quiz')){
 	?>			<p>
@@ -68,6 +77,9 @@ if($this->config->item('open_quiz')){
 			<?php
 			}
 			?>
+=======
+
+>>>>>>> 0059e763aee18e50f90e51fc199a864e52cfc1d9
 
 		</div>
 	</div>
