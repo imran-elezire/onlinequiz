@@ -15,34 +15,90 @@
 
 .loginbtn{
 	border-radius: 40px;
-	background-color: rgb(255, 0, 140);
-	border: 2px solid rgba(255, 0, 140);
+	/* background-color: rgb(255, 0, 140); */
+	background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));
+	/* border: 2px solid rgba(255, 0, 140); */
+	border: none;
 	transition: all 0.5s ease 0s;
 	color: #ffffff;
+	font-weight: bold;
+	
 }
-.loginbtn:hover{
+/* .loginbtn:hover{
 	border-radius: 40px;
 	background-color: rgb(187, 6, 105);
 	border: 2px solid rgba(187, 6, 105);
-}
-
+} */
+ 
  input:focus {
 	outline: none; 
 	border-color:rgb(255, 0, 140);
 	box-shadow: inset 0 1px 1px rgba(255, 0, 140, 0.075), 0 0 8px rgba(255, 0, 140, 0.6);
+	background-color: #ffffff;
 } 
 
 .form-control:focus {	
 	border-color:rgb(255, 0, 140);
 	box-shadow: inset 0 1px 1px rgba(255, 0, 140, 0.075), 0 0 8px rgba(255, 0, 140, 0.6);
   }
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+	background-color: #ffffff !important ;
+	color: #212121 !important;
+}
 
+/* .form-control {	
+	border: none;
+	border-bottom: 2px solid rgb(255,0,140);
+	border-radius: 0;
+	height: 46px;
+	width:100%;
+	padding: 10px 6px;
+	transition: all 0.5s ease 0s;
+  } 
+
+.form-control:focus {	
+	background-color: rgb(255, 255, 255);
+	border-bottom: 2px solid rgb(141, 1, 78);
+	transition: all 0.5s ease 0s;
+	box-shadow: none;
+  } 
+
+  .form-control:hover{
+	background-color: rgb(255, 255, 255);
+	border-bottom: 2px solid rgb(141, 1, 78);
+	transition: all 0.5s ease 0s;
+	box-shadow: none;
+
+  }
+
+  input[type=text],  input[type=password],  input[type=number], input[type=email] {
+    border: none;
+	border-bottom: 2px solid rgb(255,0,140);
+	border-radius: 0;
+	height: 46px;
+	width:100%;
+	padding: 10px 6px;
+	transition: all 0.5s ease 0s;
+}
+
+input[type=text]:focus, input[type=password]:focus,  input[type=number]:focus, input[type=email]:focus {
+	background-color: rgb(255, 255, 255);
+	border-bottom: 2px solid rgb(141, 1, 78);
+	transition: all 0.5s ease 0s;
+	box-shadow: none;
+}
+input[type=text]:hover,  input[type=password]:hover,  input[type=number]:hover, input[type=email]:hover {
+	background-color: rgb(255, 255, 255);
+	border-bottom: 2px solid rgb(141, 1, 78);
+	transition: all 0.5s ease 0s;
+	box-shadow: none;
+} */
 
 
  .login{
 /*background-image:url('../images/bg.jpg');*/
-	background-color: rgb(187, 189, 191);
-	background-image: linear-gradient(to right, #93a5cf,#e4efe9);
+	background-color: rgb(249, 249, 249);
+	/* background-image: linear-gradient(to right, #93a5cf,#e4efe9); */
 	/*background-size:     cover;                      
 	background-repeat:   no-repeat;*/
 	font-family: 'Rajdhani', sans-serif;
@@ -52,8 +108,8 @@
 
 .all_pages {
 	/* background-color: #ffffff;	 */
-	background-color: rgb(187, 189, 191);
-	background-image: linear-gradient(to right, #93a5cf,#e4efe9);
+	background-color: rgb(249, 249, 249);
+	/* background-image: linear-gradient(to right, #93a5cf,#e4efe9); */
 	font-family: 'Rajdhani', sans-serif;
 }
 
@@ -326,25 +382,89 @@ padding:5px;
 }
 .navbar-default .navbar-brand{
 
-color:#ffffff;
+color:#e7e7e7;
+font-weight: bolder;
+font-size: 30px;
 }
 
+.navbar-default .navbar-brand:hover{
+
+	color:#e7e7e7;
+	font-weight: bolder;
+	font-size: 30px;
+	}
+
 .navbar-default {
-    background-color: #3D4A5D;
-	border-color: #3D4A5D;
+    background-color: #242424;
+	border-color: #242424;
 	font-family: 'Rajdhani', sans-serif;
+	float: none;
+	border-radius: 0;
 }
 
 .navbar-default .navbar-nav > li > a {
     color: #ffffff;
     font-family: 'Rajdhani', sans-serif;
-    font-size:14px;
+	font-size:16px;
+	font-weight: 900;
+	float: none;
 }
 
+.dropdown-menu{
+	background-color: #242424;
+	color:#ffffff;
+}
+
+.dropdown-menu>li>a{
+	
+	color:#ffffff;
+}
+
+.dropdown-menu>li>a:hover{
+	background-color: rgb(255,0,140);
+	color:#ffffff;
+}
+
+/* .navbar-default .navbar-nav>.open>a:hover{
+	background-color: rgb(255,0,140);
+	color:#ffffff;
+} */
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+	background-color: rgb(255,0,140);
+	color:#ffffff;
+}
+
+
+
 .navbar-default .navbar-nav > li > a:hover {
-    color: rgb(212, 212, 212);
+    color: rgb(255,0,140);
     font-family: 'Rajdhani', sans-serif;
-    font-size:14px;
+    
+}
+
+.navbar-default .navbar-nav > .active > a{
+	background-color: transparent;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: right;
+		vertical-align: top;
+		
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+	}
+
+	.navbar-header{
+		width:20%;
+		color: #ffffff;
+	}
+	
+	
 }
 
 
@@ -430,7 +550,8 @@ color:#ffffff;
 	}
 
 	.sha_div{
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0 4px 8px 0 rgba(165, 165, 165, 0.2), 0 6px 20px 0 rgba(165, 165, 165, 0.19);
+		border: none;
 	}
 
 	.con_cen {
@@ -543,5 +664,149 @@ color:#ffffff;
 		background:rgb(255, 0, 140);
 		color:#ffffff;
 	}
+
+	.row-clr{
+		background-image: linear-gradient(to bottom, #ffffff,#ffffff,#ffffff,#e0e0e0); 
+	}
 	
+
+	/* Panel Custome */
+	.panel-info {
+		border-color: rgb(243, 169, 210);
+	  }
+
+	.panel-info > .panel-heading {
+		color: rgb(255,0,140);
+		background-color: rgb(240, 216, 229); 
+		border-color: rgb(243, 169, 210);
+	  }
+	  .panel-info > .panel-heading + .panel-collapse > .panel-body {
+		border-top-color: rgb(243, 169, 210);
+	  }
+	  .panel-info > .panel-heading .badge {
+		color: rgb(240, 216, 229);
+		background-color: rgb(255,0,140);
+	  }
+	  .panel-info > .panel-footer + .panel-collapse > .panel-body {
+		border-bottom-color: rgb(243, 169, 210);
+	  }
+
+	  .panel-footer{
+		  color:rgb(255,0,140);
+	  }
+
+	  .loginbtn-hollow{
+		border-radius: 40px;
+		/* background-color: rgb(255, 0, 140); */
+		/* background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68)); */
+		border: 1px solid rgba(255, 0, 140);
+		
+		transition: all 0.5s ease 0s;
+		color: rgb(255,0,140);
+		font-weight: bold;
+	  }
+
+	  .loginbtn-hollow:hover{
+		border-radius: 40px;
+		/* background-color: rgb(255, 0, 140); */
+		background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));
+		
+		
+		transition: all 0.5s ease 0s;
+		color: #ffffff;
+		font-weight: bold;
+	  }
+
+	  .inputfile {
+		width: 0.1px;
+		height: 0.1px;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+
+
+
+
+
+
+
+
+
+	  .test{
+		  color: rgb(128, 128, 128)
+	  }
+
+
+
+
+
+
+
+	  /* Customize the label (the container)
+.container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  /* .container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+  } */
+  
+  /* Create a custom radio button */
+  /* .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 50%;
+  } */
+  
+  /* On mouse-over, add a grey background color */
+  /* .container:hover input ~ .checkmark {
+	background-color: #ccc;
+  } */
+  
+  /* When the radio button is checked, add a blue background */
+  /* .container input:checked ~ .checkmark {
+	background-color: #2196F3;
+  } */
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  /* .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+  } */
+  
+  /* Show the indicator (dot/circle) when checked */
+  /* .container input:checked ~ .checkmark:after {
+	display: block;
+  } */
+  
+  /* Style the indicator (dot/circle) */
+  /* .container .checkmark:after {
+	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+  }  */
 

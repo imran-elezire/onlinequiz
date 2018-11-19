@@ -1,16 +1,16 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-   
- <h3><?php echo $title;?></h3>
+     <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">  
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
   <div class="row">
      <form method="post" action="<?php echo site_url('notification/send_notification');?>">
 	
-<div class="col-md-8">
+<div class="col-md-8 col-md-offset-2">
 <br> 
- <div class="login-panel panel panel-default">
+ <div class="login-panel panel panel-default sha_div">
 		<div class="panel-body"> 
 	
 	
@@ -73,7 +73,7 @@
 			?> 
 	 
  
-	<button class="btn btn-default" type="submit"><?php echo $this->lang->line('submit');?></button>
+	<button class="btn loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
  
 		</div>
 </div>
@@ -89,4 +89,5 @@
 
 
 
+</div>
 </div>

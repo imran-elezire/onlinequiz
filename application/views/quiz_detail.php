@@ -1,6 +1,6 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-   
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">    
  <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
@@ -126,4 +126,5 @@ if($quiz['camera_req']==1 && $this->config->item('webcam')==true){
 <a href="javascript:movequestion();"   class="btn btn-info"  style="cursor:pointer;">Move</a>
 
 </center>
+</div>
 </div>

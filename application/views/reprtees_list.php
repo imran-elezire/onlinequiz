@@ -1,7 +1,7 @@
 
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
  <h3 class="ft_wt"><?php echo $title;?></h3>
     <div class="row">
 
@@ -61,8 +61,8 @@ foreach($reportees as $key => $val){
  <td><?php echo $val['user_status'];?></td>
  <td>
 
-<a href="<?php echo site_url('user2/view_reportees/'.$val['uid']);?>"><i class="fa fa-eye" title="View Profile"></i></a>
-<a href="<?php echo site_url('result/reportees_result_list/'.$val['uid']);?>"><button class="btn btn-success btn-sm">Result</button></a>
+<a href="<?php echo site_url('user2/view_reportees/'.$val['uid']);?>"><i class="fa fa-eye" style="color:rgb(255,0,140);" title="View Profile"></i></a>
+<a href="<?php echo site_url('result/reportees_result_list/'.$val['uid']);?>"><button class="btn loginbtn-hollow" style="background-color:#ffffff;">Result</button></a>
 
 </td>
 </tr>
@@ -90,4 +90,5 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 
+</div>
 </div>

@@ -1,8 +1,9 @@
  <hr>
 <div class="container">
+<div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
 	<div class="row">
   		<div class="col-sm-10"><h1><?php echo $result['first_name'].' '.$result['last_name'];?></h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/<?php echo md5($result['email']);?>?s=100"></a></div>
+    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.profilepicturesdp.com/wp-content/uploads/2018/07/profile-picture-empty-7.jpg/<?php echo md5($result['email']);?>?s=100"></a></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -38,7 +39,7 @@
     	<div class="col-sm-9">
           <h3> <?php echo $this->lang->line('category_prof');?> </h3>
            <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="color:rgb(255,0,140);">
 
                   <tbody>
 
@@ -94,7 +95,7 @@
               <h3><?php echo $this->lang->line('questions_incorect');?></h3>
 
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="color:rgb(255,0,140);">
 
                   <tbody>
 
@@ -121,7 +122,7 @@ foreach($questions as $k => $qv){
 <td>
 <a href="#"
 data-toggle="modal" data-target="#myModal<?php echo $qv['qid'];?>"
-><i class="fa fa-eye" title="View Question"></i></a>
+><i class="fa fa-eye" title="View Question" style="color:rgb(255,0,140);"></i></a>
 </td>
 
 </tr>
@@ -247,6 +248,7 @@ if($qv['question_type']==$this->lang->line('long_answer')){
     </div>
 
   </div>
+</div>
 </div>
 
 <?php

@@ -1,23 +1,24 @@
- <div class="container">
+<div class="row" style="display: inline; float: none;">
+<div class="container">
 
 
 
 
 
 
-
+  
 
 <div class="col-md-4">
 </div>
 <div class="col-md-4">
 
-	<div class="login-panel panel panel-default">
+	<div class="login-panel panel panel-default sha_div" style="text-align: center;">
 		<div class="panel-body">
 		<img src="<?php echo base_url('images/logo.png');?>">
 
 
 			<form method="post" class="form-signin" action="<?php echo site_url('login/forgot');?>">
-					<h2 class="form-signin-heading"><?php echo $this->lang->line('login');?></h2>
+					<h2 class="form-signin-heading logintag"><?php echo $this->lang->line('login');?></h2>
 		<?php
 		if($this->session->flashdata('message')){
 			?>
@@ -34,7 +35,7 @@
 
 			<div class="form-group">
 
-					<button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $this->lang->line('send_new_password');?></button>
+					<button class="btn btn-lg btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('send_new_password');?></button>
 			</div>
 <!-- <?php 
 if($this->config->item('user_registration')){
@@ -44,7 +45,7 @@ if($this->config->item('user_registration')){
 <?php
 }
 ?> -->
-	<a href="<?php echo site_url('login');?>"><?php echo $this->lang->line('login');?></a>
+	<a class="logintxt" style="text-align:center;font-weight:bold;text-decoration: underline;" href="<?php echo site_url('login');?>"><?php echo $this->lang->line('login');?></a>
 
 			</form>
 		</div>
@@ -58,4 +59,5 @@ if($this->config->item('user_registration')){
 
 
 
+</div>
 </div>

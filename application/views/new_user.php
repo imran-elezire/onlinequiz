@@ -1,10 +1,11 @@
  <div class="container" style="text-align:center;">
 
 
- <h3 class="ft_wt"><?php echo $title;?></h3>
+ 
 
 
-
+<div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
+<h3 class="ft_wt"><?php echo $title;?></h3>
   <div class="row align-self-center" style="display: inline; float: none;">
      <form method="post" action="<?php echo site_url('user/insert_user/');?>">
 
@@ -114,6 +115,7 @@
 
 
 </div>
+	</div>
 <script>
 getexpiry();
 </script>

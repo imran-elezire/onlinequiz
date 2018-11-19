@@ -1,6 +1,6 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
  <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
@@ -17,7 +17,7 @@
 		?>
 		<div id="message"></div>
 
-		 <a href="<?php echo site_url('user/add_new_group');?>" class="btn btn-success loginbtn">Add New</a>
+		 <a href="<?php echo site_url('user/add_new_group');?>" class="btn loginbtn-hollow">Add New</a>
 		 <br><br>
 
 <table class="table table-bordered">
@@ -42,8 +42,8 @@ foreach($group_list as $key => $val){
 <tr>
  <td> <?php echo $val['group_name'];?></td>
 <td>
-<a href="<?php echo site_url('user/edit_group/'.$val['gid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
-<a href="<?php echo site_url('user/pre_remove_group/'.$val['gid']);?>"><img src="<?php echo base_url('images/cross.png');?>"></a>
+<a href="<?php echo site_url('user/edit_group/'.$val['gid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-pencil" aria-hidden="true"></i></a>
+<a href="<?php echo site_url('user/pre_remove_group/'.$val['gid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>
 
 </td>
 </tr>
@@ -64,4 +64,5 @@ foreach($group_list as $key => $val){
 
 
 
+</div>
 </div>

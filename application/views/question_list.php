@@ -1,15 +1,15 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-
+<div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
  <h3 class="ft_wt"><?php echo $title;?></h3>
     <div class="row">
 
-  <div class="col-lg-6">
+  <div class="col-lg-6 col-lg-offset-3">
     <form method="post" action="<?php echo site_url('qbank/index/');?>">
 	<div class="input-group sha_div">
     <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
+        <button class="btn btn-default" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
 
 
@@ -54,7 +54,7 @@
 					}
 					?>
 					</select>
-					 <button class="btn btn-default loginbtn" type="submit"><?php echo $this->lang->line('filter');?></button>
+					 <button class="btn btn-default" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;" type="submit"><?php echo $this->lang->line('filter');?></button>
 					 </form>
 			</div>
 
@@ -136,8 +136,8 @@ if($val['question_type']==$this->lang->line('long_answer')){
 
 
 ?>
-<a href="<?php echo site_url('qbank/edit_question_'.$qn.'/'.$val['qid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
-<a href="javascript:remove_entry('qbank/remove_question/<?php echo $val['qid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
+<a href="<?php echo site_url('qbank/edit_question_'.$qn.'/'.$val['qid']);?>"> <i style="color:rgb(255,0,140)" class="fa fa-pencil" aria-hidden="true"></i></a>
+<a href="javascript:remove_entry('qbank/remove_question/<?php echo $val['qid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>
 
 </td>
 </tr>
@@ -157,12 +157,12 @@ if($val['question_type']==$this->lang->line('long_answer')){
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
-<a href="<?php echo site_url('qbank/index/'.$back.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('back');?></a>
+<a href="<?php echo site_url('qbank/index/'.$back.'/'.$cid.'/'.$lid);?>"  class="btn loginbtn-hollow"><?php echo $this->lang->line('back');?></a>
 &nbsp;&nbsp;
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('qbank/index/'.$next.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary loginbtn sha_div"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('qbank/index/'.$next.'/'.$cid.'/'.$lid);?>"  class="btn loginbtn-hollow"><?php echo $this->lang->line('next');?></a>
 
 
 
@@ -203,11 +203,11 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 <?php echo $this->lang->line('upload_excel');?>
 	<input type="hidden" name="size" value="3500000">
-	<input type="file" name="xlsfile" style="width:150px;float:left;margin-left:10px;">
+	<input type="file" name="xlsfile" style="width:300px;float:left;margin-left:10px;">
 	<div style="clear:both;"></div>
 	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default loginbtn">
 
-<a href="<?php echo base_url();?>sample/sample.xls" target="new">Click here</a> <?php echo $this->lang->line('upload_excel_info');?>
+<a style="color:rgb(255,0,140);" href="<?php echo base_url();?>sample/sample.xls" target="new">Click here</a> <?php echo $this->lang->line('upload_excel_info');?>
 </form>
 
 </div>
@@ -256,7 +256,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 	<input type="hidden" name="size" value="3500000">
 	<input type="file" name="word_file" style="width:150px;float:left;margin-left:10px;">
 	<div style="clear:both;"></div>
-	<p style="padding:10px;"><a href="javascript:advanceconfig();">Advance</a></p>
+	<p style="padding:10px;"><a style="color:rgb(255,0,140);" href="javascript:advanceconfig();">Advance</a></p>
 	<div id="advanceconfig" style="padding:10px;display:none">
 	<table>
 	<tr><td>Question Splitter:</td><td> <input type="text" name="question_split" value="/Q:[0-9]+\)/"></td></tr>
@@ -268,10 +268,11 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default loginbtn">
 
-<a href="<?php echo base_url();?>sample/sample.docx" target="new">Click here</a> <?php echo $this->lang->line('upload_doc_info');?>
+<a style="color:rgb(255,0,140);" href="<?php echo base_url();?>sample/sample.docx" target="new">Click here</a> <?php echo $this->lang->line('upload_doc_info');?>
 </form>
 
 </div>
+				</div>
 <script>
 
 function advanceconfig(){

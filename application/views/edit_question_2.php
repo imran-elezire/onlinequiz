@@ -1,7 +1,7 @@
- <div class="container">
+ <div class="container" style="text-align:center;"> 
 
-   
- <h3><?php echo $title;?></h3>
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">   
+ <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
 
@@ -10,7 +10,7 @@
 	
 <div class="col-md-8">
 <br> 
- <div class="login-panel panel panel-default">
+ <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body"> 
 	
 	
@@ -83,7 +83,7 @@
 		?>
 
  
-	<button class="btn btn-default" type="submit"><?php echo $this->lang->line('submit');?></button>
+	<button class="btn loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
  
 		</div>
 </div>
@@ -94,6 +94,8 @@
 </div>
       </form>
 	  	  <div class="col-md-3">
+			<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body"> 
 		
 		
 			<div class="form-group">	 
@@ -105,6 +107,8 @@
 			</table>
 
 			</div>
+			</div>
+			</div>
 
 
 	  </div>
@@ -114,4 +118,5 @@
 
 
 
+</div>
 </div>

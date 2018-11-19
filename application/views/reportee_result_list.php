@@ -1,4 +1,5 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
 <?php
 $logged_in=$this->session->userdata('logged_in');
 ?>
@@ -124,7 +125,7 @@ foreach($result as $key => $val){
  <td><?php echo $val['result_status'];?></td>
  <td><?php echo $val['percentage_obtained'];?>%</td>
 <td>
-<a href="<?php echo site_url('result/view_result_reportee/'.$val['rid']);?>" class="btn btn-success" ><?php echo $this->lang->line('view');?> </a>
+<a href="<?php echo site_url('result/view_result_reportee/'.$val['rid']);?>" class="btn loginbtn-hollow" ><?php echo $this->lang->line('view');?> </a>
 <?php
 if($logged_in['su']=='1'){
 	?>
@@ -161,4 +162,5 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 
+</div>
 </div>

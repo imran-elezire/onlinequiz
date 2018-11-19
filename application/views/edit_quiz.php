@@ -1,7 +1,7 @@
  <div class="container" style="text-align:center;">
 
 
-   
+    <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">   
  <h3 class="ft_wt"><?php echo $title;?></h3>
    
  
@@ -358,4 +358,5 @@ if(count($qcl)==0){
 <a href="javascript:movequestion();"   class="btn btn-info"  style="cursor:pointer;"><?php echo $this->lang->line('move');?></a>
 
 </center>
+</div>
 </div>

@@ -1,11 +1,11 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
    
  
   
 
 
-
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
 <div class="row" style="display: inline; float: none;">
 
 
@@ -23,7 +23,7 @@
  			</div>
  			<div class="form-group">
 			
-					<button class="btn btn-primary loginbtn sha_div" type="submit"><?php echo $this->lang->line('submit');?></button>
+					<button class="btn loginbtn-hollow" style="background-color:#ffffff;" type="submit"><?php echo $this->lang->line('submit');?></button>
 			</div>
  <input type="checkbox" name="force_write"> <span style="font-size:11px; color: rgb(255, 0, 140);" class="ft_wt"> Tick if server required 777 permission to write file </span>
 
@@ -33,6 +33,7 @@
 
 
 
+</div>
 </div>
 
 <br><br>

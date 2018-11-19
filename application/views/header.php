@@ -45,8 +45,8 @@
 				if(($this->uri->segment(1).'/'.$this->uri->segment(2))!='quiz/attempt'){
 				$logged_in=$this->session->userdata('logged_in');
 	?>
-	    <nav class="navbar navbar-default">
-        <div class="container-fluid">
+	    <nav class="navbar navbar-default" >
+        <div class="container-fluid" >
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
@@ -54,15 +54,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><?php echo $this->lang->line('proj_name');?></a>
+            <a class="navbar-brand" style="margin-left:10%;" href="#">Qu<span style="color:rgb(255,0,140);">i</span>z</a>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
+          <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav">
               <?php
 				if($logged_in['su']==1){
 			?>
-
-			  <li <?php if($this->uri->segment(1)=='dashboard'){ echo "class='active'"; } ?> ><a href="<?php echo site_url('dashboard');?>"><?php echo $this->lang->line('dashboard');?></a></li>
+          <!-- <a class="navbar-brand" href="#"><?php echo $this->lang->line('proj_name');?></a> -->
+			  <li <?php if($this->uri->segment(1)=='dashboard'){ echo "class='active'"; } ?> ><a style="color:#ffffff;background-color:rgb(255,0,140);" href="<?php echo site_url('dashboard');?>"><?php echo $this->lang->line('dashboard');?></a></li>
 
 
 			  <li class="dropdown licss" <?php if($this->uri->segment(1)=='user'){ echo "class='active'"; } ?> >
@@ -76,7 +76,7 @@
 
 
 
-			  <li class="dropdown licss" <?php if($this->uri->segment(1)=='qbank'){ echo "class='active'"; } ?> >
+			  <li class="dropdown licss"  <?php if($this->uri->segment(1)=='qbank'){ echo "class='active'"; } ?> >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->lang->line('qbank');?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo site_url('qbank/pre_new_question');?>"><?php echo $this->lang->line('add_new');?></a></li>
@@ -116,8 +116,8 @@
               </li>
 
 
-	           <li><a href="<?php echo site_url('result');?>"><?php echo $this->lang->line('result');?></a></li>
-             <li><a href="<?php echo site_url('studymaterial');?>"><?php echo $this->lang->line('studymaterial');?></a></li>
+	           <li ><a href="<?php echo site_url('result');?>"><?php echo $this->lang->line('result');?></a></li>
+             <li ><a href="<?php echo site_url('studymaterial');?>"><?php echo $this->lang->line('studymaterial');?></a></li>
 
 			 <!-- <li><a href="<?php echo site_url('liveclass');?>"><?php echo $this->lang->line('live_classroom');?></a></li> -->
 			<?php
@@ -132,7 +132,7 @@
 			?>
 			 <!-- <li><a href="<?php echo site_url('payment_gateway');?>"><?php echo $this->lang->line('payment_history');?></a></li> -->
 
-			  <li class="dropdown licss" <?php if($this->uri->segment(1)=='user_group'){ echo "class='active'"; } ?> >
+			  <li class="dropdown licss"  <?php if($this->uri->segment(1)=='user_group'){ echo "class='active'"; } ?> >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->lang->line('setting');?>  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo site_url('notification');?>"><?php echo $this->lang->line('notification');?></a></li>

@@ -1,29 +1,29 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 <?php
 $logged_in=$this->session->userdata('logged_in');
 
 
 			?>
-
- <h3><?php echo $title;?></h3>
+<div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
+ <h3 class="ft_wt"><?php echo $title;?></h3>
     <?php
 	if($logged_in['su']=='1'){
 		?>
 		<div class="row">
 
-  <div class="col-lg-6">
+  <div class="col-lg-6 col-lg-offset-3">
     <form method="post" action="<?php echo site_url('quiz/index/0/'.$list_view);?>">
 	<div class="input-group">
     <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
+        <button class="btn btn-default" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
 
 
     </div><!-- /input-group -->
 	 </form>
   </div><!-- /.col-lg-6 -->
-  <div class="col-lg-6">
+  <!-- <div class="col-lg-6">
   <p style="float:right;">
   <?php
   if($list_view=='grid'){
@@ -39,7 +39,7 @@ $logged_in=$this->session->userdata('logged_in');
   ?>
   </p>
 
-  </div>
+  </div> -->
 </div><!-- /.row -->
 
 <?php
@@ -82,14 +82,14 @@ foreach($result as $key => $val){
  <td><?php echo substr(strip_tags($val['quiz_name']),0,50);?></td>
 <td><?php echo $val['noq'];?></td>
  <td>
-<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('attempt');?> </a>
+<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn loginbtn-hollow" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;"><?php echo $this->lang->line('attempt');?> </a>
 
 <?php
 if($logged_in['su']=='1'){
 	?>
 
-<a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
-<a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
+<a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+<a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times fa-2x" aria-hidden="true"></i></a>
 <?php
 }
 ?>
@@ -112,17 +112,17 @@ if(count($result)==0){
 }
 $cc=0;
 $colorcode=array(
-'success',
-'warning',
 'info',
-'danger'
+'info',
+'info',
+'info'
 );
 foreach($result as $key => $val){
 ?>
 
 	                <!-- item -->
                 <div class="col-md-4 text-center">
-                    <div class="panel panel-<?php echo $colorcode[$cc];?> panel-pricing">
+                    <div class="panel panel-<?php echo $colorcode[$cc];?> panel-pricing sha_div">
                         <div class="panel-heading">
                             <i class="fa fa-desktop"></i>
                             <h3><?php echo substr(strip_tags($val['quiz_name']),0,50);?></h3>
@@ -147,8 +147,8 @@ foreach($result as $key => $val){
 if($logged_in['su']=='1'){
 	?>
 
-<a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><img src="<?php echo base_url('images/edit.png');?>"></a>
-<a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><img src="<?php echo base_url('images/cross.png');?>"></a>
+<a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+<a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times fa-2x" aria-hidden="true"></i></a>
 <?php
 }
 ?>
@@ -180,15 +180,16 @@ if($logged_in['su']=='1'){
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
-<a href="<?php echo site_url('quiz/index/'.$back.'/'.$list_view);?>"  class="btn btn-primary"><?php echo $this->lang->line('back');?></a>
+<a href="<?php echo site_url('quiz/index/'.$back.'/'.$list_view);?>"  class="btn loginbtn-hollow"><?php echo $this->lang->line('back');?></a>
 &nbsp;&nbsp;
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('quiz/index/'.$next.'/'.$list_view);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('quiz/index/'.$next.'/'.$list_view);?>"  class="btn loginbtn-hollow"><?php echo $this->lang->line('next');?></a>
 
 
 
 
-
+<div class="col-lg-12"><br><br></div>
+</div>
 </div>

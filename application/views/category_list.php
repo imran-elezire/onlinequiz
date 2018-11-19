@@ -1,6 +1,6 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-   
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">   
  <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
@@ -35,13 +35,13 @@ if(count($category_list)==0){
 	<?php
 }
 
-foreach($category_list as $key => $val){
+foreach($category_list as $key => $val){ 
 ?>
 <tr>
  <td><input type="text"   class="form-control"  value="<?php echo $val['category_name'];?>" onBlur="updatecategory(this.value,'<?php echo $val['cid'];?>');" ></td>
 <td>
  
-<a href="<?php echo site_url('qbank/pre_remove_category/'.$val['cid']);?>"><img src="<?php echo base_url('images/cross.png');?>"></a>
+<a href="<?php echo site_url('qbank/pre_remove_category/'.$val['cid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-times fa-2x" aria-hidden="true"></i></a>
 
 </td>
 </tr>
@@ -54,7 +54,7 @@ foreach($category_list as $key => $val){
  
  <input type="text"   class="form-control"   name="category_name" value="" placeholder="<?php echo $this->lang->line('category_name');?>"  required ></td>
 <td>
-<button class="btn btn-default loginbtn" type="submit"><?php echo $this->lang->line('add_new');?></button>
+<button class="btn loginbtn-hollow" style="background-color:#ffffff;" type="submit"><?php echo $this->lang->line('add_new');?></button>
  
 </td>
 </tr>
@@ -69,4 +69,5 @@ foreach($category_list as $key => $val){
 
 
 
+</div>
 </div>

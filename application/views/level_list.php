@@ -1,6 +1,6 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 
-   
+  <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">    
  <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
@@ -42,7 +42,7 @@ foreach($level_list as $key => $val){
 <td>
  
 
-<a href="<?php echo site_url('qbank/pre_remove_level/'.$val['lid']);?>"><img src="<?php echo base_url('images/cross.png');?>"></a>
+<a href="<?php echo site_url('qbank/pre_remove_level/'.$val['lid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-times fa-2x" aria-hidden="true"></i></a>
 
 
 </td>
@@ -56,7 +56,7 @@ foreach($level_list as $key => $val){
  
  <input type="text"   class="form-control"   name="level_name" value="" placeholder="<?php echo $this->lang->line('level_name');?>"  required ></td>
 <td>
-<button class="btn btn-default loginbtn" type="submit"><?php echo $this->lang->line('add_new');?></button>
+<button class="btn loginbtn-hollow" style="background-color:#ffffff;" type="submit"><?php echo $this->lang->line('add_new');?></button>
  
 </td>
 </tr>
@@ -71,4 +71,5 @@ foreach($level_list as $key => $val){
 
 
 
+</div>
 </div>

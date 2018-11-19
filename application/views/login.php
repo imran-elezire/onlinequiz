@@ -52,7 +52,7 @@
 <div class="text-center">
 
 
-	<a class="logintxt" style="text-align:center;" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
+	<a class="logintxt" style="text-align:center;font-weight:bold;text-decoration: underline;" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
 </div>
 			</form>
 

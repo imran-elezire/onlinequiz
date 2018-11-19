@@ -1,7 +1,7 @@
  <div class="container con_cen">
 
 
-   
+ <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">  
  <h3 class="ft_wt"><?php echo $title;?></h3>
    
 
@@ -64,3 +64,4 @@
 
 
 </div>
+	</div>

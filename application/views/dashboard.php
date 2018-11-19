@@ -29,15 +29,15 @@
 <div id="update_notice"></div>
 
 
+<div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
+<div class="row" style="display: inline; float: none;margin-top:10px;">
 
-<div class="row" style="display: inline; float: none;">
-
-<div class="col-md-4">
-                    <div class="panel panel-info">
+<div class="col-md-4" style="margin-top:20px;">
+                    <div class="panel panel-info sha_div">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-users fa-5x"></i>
+                                <i class="fa fa-user-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $num_users;?></div>
@@ -56,12 +56,12 @@
 </div>
 
 
-<div class="col-md-4">
-                    <div class="panel panel-danger">
+<div class="col-md-4" style="margin-top:20px;">
+                    <div class="panel panel-info sha_div">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-book fa-5x"></i>
+                                    <i class="fa fa-comments-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $num_quiz;?></div>
@@ -79,12 +79,12 @@
                     </div>
 </div>
 
-<div class="col-md-4">
-                    <div class="panel panel-warning">
+<div class="col-md-4" style="margin-top:20px;">
+                    <div class="panel panel-info sha_div">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-file-text fa-5x"></i>
+                                    <i class="fa fa-file-text-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $num_qbank;?></div>
@@ -114,14 +114,14 @@
 
 
 <div class="row" style="display: inline; float: none;">
-      <div class="col-lg-7">
+      <div class="col-lg-8 col-lg-offset-2">
 
 
 <div class="row">
 
  <div class="col-lg-6 " >
  <div class="panel panel" >
-                        <div class="panel-heading"  style="background-color:#72B159;text-align:center;">
+                        <div class="panel-heading"  style="background-color:rgb(3, 151, 35);text-align:center;">
 
     <div class="font-size-34"> <strong style="color:#ffffff;"><?php echo $active_users;?></strong>
     <br>
@@ -135,7 +135,7 @@
 </div>
  <div class="col-lg-6">
  <div class="panel panel" >
-                        <div class="panel-heading"  style="background-color:#DB5949;text-align:center;">
+                        <div class="panel-heading"  style="background-color:rgb(216, 33, 49);text-align:center;">
 
     <div class="font-size-34" > <strong style="color:#ffffff;"><?php echo $inactive_users;?></strong>
     <br>
@@ -156,7 +156,7 @@
 
         <div class="panel">
           <div class="panel-heading">
-            <div class="panel-title"><?php echo $this->lang->line('recently_registered');?></div>
+            <div class="panel-title" style="font-weight:bold;font-size:20px;"><?php echo $this->lang->line('recently_registered');?></div>
           </div>
           <div class="table-responsive">
             <table class="table table-striped valign-middle">
@@ -168,7 +168,7 @@
                 <th class="text-xs-right">Manager</th>
                 <th></th>
               </tr></thead>
-              <tbody>
+              <tbody style="color:rgb(128, 128, 128);font-weight:500;">
               <?php
 if(count($result)==0){
 	?>
@@ -182,7 +182,7 @@ if(count($result)==0){
 foreach($result as $key => $val){
 ?><tr>
 <td>
-<a href="<?php echo site_url('user/edit_user/'.$val['uid']);?>"><?php echo $val['email'];?> <?php echo $val['wp_user'];?></a></td>
+<a style="color:rgb(255,0,140)" href="<?php echo site_url('user/edit_user/'.$val['uid']);?>"><?php echo $val['email'];?> <?php echo $val['wp_user'];?></a></td>
 <td  class="text-xs-right"><?php echo $val['first_name'];?> <?php echo $val['last_name'];?></td>
  <td  class="text-xs-right"><?php echo $val['group_name'];?></td>
 <td  class="text-xs-right"><?php echo $val['contact_no'];?></td>
@@ -223,6 +223,7 @@ foreach($result as $key => $val){
 
 
 </div>
+            </div>
 
 <div class="row text-center">
 

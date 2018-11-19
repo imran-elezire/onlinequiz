@@ -236,47 +236,48 @@ $cia_tim_cate=cia_tim_cate($correct_incorrect_unattempted,explode(",",$result['i
 
 
 ?>
+<div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
 <div class="row noprint" style="display: inline; float: none;">
-<div class="col-lg-12 sha_div" style="background-image:url('<?php echo base_url('images/result_bg.jpg');?>');background-size:cover;font-size:18px;padding:20px;color:#ffffff;min-height:400px;border-radius:10px;">
-<div class="col-lg-12" >
-<center><h3><span style="color:#e39500;"> 
+<div class="col-lg-12 sha_div" style="background-image:url('<?php echo base_url('images/result_bg.jpg');?>');background-size:cover;font-size:18px;padding:20px;color:#ffffff;min-height:400px;border-radius:10px;margin-top:40px;">
+<div class="col-lg-12">
+<center><h3><span style="color:rgb(255,0,140);"> 
 <?php echo $this->lang->line('hello');?> <?php echo $result['first_name'];?> 
 <?php echo $result['last_name'];?>!</span>  <?php echo str_replace('{attempt_no}',ordinal($attempt),$this->lang->line('title_result'));?> </h3></center>
 </div>
 <div class="col-lg-12" >
 <center>
-<h2><span style="color:#e39500;"><?php echo $result['quiz_name'];?>   </span></h2>
+<h2><span style="color:rgb(255,0,140);"><?php echo $result['quiz_name'];?>   </span></h2>
 </center>
 </div>
 <div class="col-lg-12" style="margin-top:20px;">
 	<div class="col-lg-2" style="text-align:center;">
 		<p><?php echo $this->lang->line('score_obtained');?></p>
-		<p style="color:#e39500;" ><?php echo $result['score_obtained'];?></p>
+		<p style="color:rgb(255,0,140);" ><?php echo $result['score_obtained'];?></p>
 	</div>
 	<div class="col-lg-2"  style="text-align:center;">
 		<p><?php echo $this->lang->line('time_spent');?></p>
-		<p style="color:#e39500;" ><?php echo secintomin($result['total_time']);?> Min.</p>
+		<p style="color:rgb(255,0,140);" ><?php echo secintomin($result['total_time']);?> Min.</p>
 
 	</div>
 	<div class="col-lg-2"  style="text-align:center;">
 		<p><?php echo $this->lang->line('attempt_time');?></p>
-		<p style="color:#e39500;font-size:14px;" ><?php echo date('Y-m-d H:i:s',$result['start_time']);?></p>
+		<p style="color:rgb(255,0,140);font-size:14px;" ><?php echo date('Y-m-d H:i:s',$result['start_time']);?></p>
 
 	</div>
 	<div class="col-lg-2"  style="text-align:center;">
 		<p><?php echo $this->lang->line('percentage_obtained');?></p>
-		<p style="color:#e39500;" ><?php echo $result['percentage_obtained'];?>%</p>
+		<p style="color:rgb(255,0,140);" ><?php echo $result['percentage_obtained'];?>%</p>
 
 	</div>
  <div class="col-lg-2"  style="text-align:center;">
 		<p><?php echo $this->lang->line('percentile_obtained');?></p>
-		<p style="color:#e39500;" ><?php echo substr(((($percentile[1]+1)/$percentile[0])*100),0,5);   ?>%</p>
+		<p style="color:rgb(255,0,140);" ><?php echo substr(((($percentile[1]+1)/$percentile[0])*100),0,5);   ?>%</p>
 
 	</div>
  
 <div class="col-lg-2"  style="text-align:center;">
 		<p><?php echo $this->lang->line('status');?></p>
-		<p style="color:#e39500;" ><?php echo $result['result_status'];?></p>
+		<p style="color:rgb(255,0,140);" ><?php echo $result['result_status'];?></p>
 
 	</div>
  
@@ -344,7 +345,7 @@ if($result['gen_certificate']=='1'){
 
   <div class="row" style="display: inline; float: none;">
      
-<div class="col-md-12">
+<div class="col-md-12 noprint">
 <br> 
  <div class="login-panel panel panel-default onlyprint" style="overflow-x:auto;">
 		<div class="panel-body"> 
@@ -379,8 +380,8 @@ if($result['camera_req']=='1'){
 </div>
 <br>
  
- <div class="col-md-12">
- <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+ <div class="col-md-12" >
+ <div class="login-panel panel panel-default " style="overflow-x:auto;">
 		<div class="panel-body">
 		 <h3 class="ft_wt"><?php echo $this->lang->line('categorywise');?></h3>
 					<table class="table ">
@@ -435,7 +436,7 @@ if($result['camera_req']=='1'){
 						</div>	
 	</div>
 	
-	<div class="col-lg-12 noprint" style="display: inline; float: none;">
+	<!-- <div class="col-lg-12 noprint" style="display: inline; float: none;">
 	<h3 class="ft_wt"><?php echo $this->lang->line('comparison_other');?></h3>
 	</div>
 
@@ -468,14 +469,14 @@ if($result['camera_req']=='1'){
   }
   ?>
 </div>
- </div>
+ </div> -->
  
  
  
  
  
  
-<div class="col-lg-12 noprint" style="margin-top:50px;">
+<!-- <div class="col-lg-12 noprint" style="margin-top:50px;">
 <button class="btn btn-default loginbtn" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('score_obtained').': '.$result['score_obtained'];?> </button> 
 <div class="td_line" style="float:left;width:700px;height:70px;">
 <div <?php if($rank=='1'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Score"<?php }else{ ?>class="circle_result"<?php } ?>><?php echo $toppers[0]['score_obtained'];?></div>
@@ -502,12 +503,12 @@ if($result['camera_req']=='1'){
   }
   ?>
 </div>
- </div>
+ </div> -->
  
  
  
  
- <div class="col-lg-12 noprint" style="margin-top:50px;margin-bottom:50px;">
+ <!-- <div class="col-lg-12 noprint" style="margin-top:50px;margin-bottom:50px;">
 <button class="btn btn-default loginbtn" style="margin-right:20px;width:141px;	float:left;"> <?php echo $this->lang->line('time').': '.secintomin($result['total_time']).' Min.';?>   </button> 
 <div class="td_line" style="float:left;width:700px;height:70px;">
 <div <?php if($rank=='1'){?>class="circle_ur s_title" data-toggle="tooltip"  title="Your Time"<?php }else{ ?>class="circle_result"<?php } ?> style="font-size:12px;padding-top:10px;"><?php echo secintomin($toppers[0]['total_time']);?></div>
@@ -536,15 +537,15 @@ if($result['camera_req']=='1'){
 </div>
  </div>
  </div>
- </div>
+ </div> -->
  
  
 	 <div id="page_break"></div>
  <div class="col-md-12 " >
- <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
-		<div class="panel-body">
+ <!-- <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="panel-body"> -->
 
-		<div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
+		<div class="login-panel panel panel-default" style="overflow-x:auto;">
 		<div class="panel-body">
 <?php
  
@@ -620,7 +621,7 @@ if($result['view_answer']=='1' || $logged_in['su']=='1'){
 
 
 
-<div class="login-panel panel panel-default sha_div">
+<div class="login-panel panel panel-default">
 		<div class="panel-body"> 
 		<a name="answers_i"></a>
 <h3><?php echo $this->lang->line('answer_sheet');?></h3>
@@ -928,13 +929,14 @@ if(in_array($option['oid'],$save_ans)){   echo  trim($option['q_option']).', '; 
 </div>
       
 </div>
-</div>
-</div>
+<!-- </div>
+</div> -->
 
  
 
 
 
+</div>
 </div>
 
 <input type="hidden" id="evaluate_warning" value="<?php echo $this->lang->line('evaluate_warning');?>">

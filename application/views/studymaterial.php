@@ -1,4 +1,4 @@
- <div class="container">
+ <div class="container" style="text-align:center;">
 <?php
 $logged_in=$this->session->userdata('logged_in');
 ?>
@@ -19,7 +19,7 @@ if($logged_in['su']=='1'){
 }
 ?>
 
-
+<div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
 <h3 class="ft_wt"><?php echo $title;?></h3>
 
   <div class="row">
@@ -55,7 +55,7 @@ if($logged_in['su']=='1'){
 		<?php
 		if($logged_in['su']=='1'){
 			?>
-      <button class="btn btn-info btn-sm loginbtn" onclick="window.location='<?php echo site_url('studymaterial/add'); ?>';">Add New</button><br><br>
+      <button class="btn loginbtn-hollow" style="background-color:#ffffff;" onclick="window.location='<?php echo site_url('studymaterial/add'); ?>';">Add New</button><br><br>
 		<?php
 		}
 		?>
@@ -89,11 +89,11 @@ foreach($material_list as $key => $val){
  <td><?php echo $val['category_name']; ?></td>
 
 <td>
-<a href="<?php echo ($val['link_type']=='file')?$val['file']:$val['link'];?>" class="btn btn-success" target="_blank"><?php echo $this->lang->line('view');?> </a>
+<a href="<?php echo ($val['link_type']=='file')?$val['file']:$val['link'];?>" class="btn loginbtn-hollow" target="_blank"><?php echo $this->lang->line('view');?> </a>
 <?php
 if($logged_in['su']=='1'){
 	?>
-	<a href="javascript:remove_material('<?php echo $val['material_id'];?>','<?php echo md5($val['material_id']);?>');" ><img src="<?php echo base_url('images/cross.png');?>"></a>
+	<a href="javascript:remove_material('<?php echo $val['material_id'];?>','<?php echo md5($val['material_id']);?>');" ><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>
 <?php
 }
 ?>
@@ -126,6 +126,7 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 
+</div>
 </div>
 
 <script>
