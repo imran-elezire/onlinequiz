@@ -296,7 +296,7 @@ $tm=time();
 
 	public function reportees_result_list($uid,$limit='0',$status='0')
 	{
-		
+
 		if(!$this->session->userdata('logged_in')){
 			redirect('login');
 
@@ -317,6 +317,7 @@ $tm=time();
 		$data['result']=$this->result_model->result_list($limit,$status,$manager_id,$reportee_id);
 		// fetching quiz list
 		$data['quiz_list']=$this->result_model->quiz_list();
+		$data['reportee_id'] =$reportee_id;
 		// group list
 		 $this->load->model("user_model");
 		$data['group_list']=$this->user_model->group_list();

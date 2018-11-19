@@ -556,6 +556,11 @@ function sort_result(limit,val){
 
 }
 
+function sort_reportee_result(limit,val,reportee_id){
+	window.location=base_url+"index.php/result/reportees_result_list/"+reportee_id+"/"+limit+"/"+val;
+
+}
+
 
 function assign_score(rid,qno,score){
 	 var evaluate_warning=	document.getElementById('evaluate_warning').value;
