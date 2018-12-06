@@ -30,11 +30,14 @@
 	<!-- fontawesome css -->
 	<link href="<?php echo base_url('font-awesome/css/font-awesome.css');?>" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('js/datetimepicker/build/jquery.datetimepicker.min.css');?>" / >
+
 	<!-- chartjs -->
 	<script src="<?php echo base_url('js/Chart.bundle.min.js');?>"></script>
 
 	<!-- firebase messaging menifest.json -->
 	 <link rel="manifest" href="<?php echo base_url('js/manifest.json');?>">
+   <script src="<?php echo base_url('js/datetimepicker/build/jquery.datetimepicker.full.min.js');?>"></script>
  </head>
   <body class="all_pages">
 
@@ -91,7 +94,7 @@
 				}else{
 
 			?>
-			 <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>"><?php echo $this->lang->line('myaccount');?></a></li>
+			 <!-- <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>"><?php echo $this->lang->line('myaccount');?></a></li> -->
         <?php
 
          if($logged_in['no_reportee']>0) {
@@ -151,7 +154,15 @@
 			<?php
 				}
 				?>
-             <li><a href="<?php echo site_url('user/logout');?>"><?php echo $this->lang->line('logout');?></a></li>
+
+        <li class="dropdown licss" <?php if($this->uri->segment(1)=='user'){ echo "class='active'"; } ?>>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('logged_in')['first_name'];?>  <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>"><?php echo $this->lang->line('myaccount');?></a></li>
+            <li><a href="<?php echo site_url('user/logout');?>"><?php echo $this->lang->line('logout');?></a></li>
+          </ul>
+        </li>
+
               <!--
 			  <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

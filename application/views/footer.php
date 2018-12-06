@@ -291,6 +291,32 @@ messaging.onTokenRefresh(function() {
 
 <!--  firebase notification model ends -->
 
+<script>
+$(document).ready(function(){
+
+	$('#startdatetimequiz').datetimepicker({
+  format:'Y-m-d H:i:s',
+  onShow:function( ct ){
+   this.setOptions({
+    maxDate:$('#enddatetimequiz').val()?$('#enddatetimequiz').val():false
+   })
+  },
+	showSecond: true,
+	timeFormat: 'hh:mm:ss'
+ });
+ $('#enddatetimequiz').datetimepicker({
+  format:'Y-m-d H:i:s',
+  onShow:function( ct ){
+   this.setOptions({
+    minDate:$('#startdatetimequiz').val()?$('#startdatetimequiz').val():false
+   })
+  },
+	showSecond: true,
+	timeFormat: 'hh:mm:ss'
+ });
+});
+</script>
+
 
 </body>
 </html>

@@ -1,10 +1,10 @@
  <div class="container" style="text-align:center;">
 
 
-    <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">   
+    <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
  <h3 class="ft_wt"><?php echo $title;?></h3>
-   
- 
+
+
 
 
 
@@ -14,12 +14,9 @@
 
 <div class="col-md-12">
 
-<br> 
+<br>
  <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
-		<div class="panel-body"> 
-	
-	
-	
+		<div class="panel-body">
 
 
 
@@ -32,10 +29,7 @@
 
 		<?php if($quiz['with_login']==0){ ?>
 
-		 			<div class="form-group">
-					<label for="inputEmail" ><?php echo $this->lang->line('open_quiz_url');?></label>
-					<input type="text"  onClick="this.select()" value="<?php echo site_url('quiz/quiz_detail/'.$quiz['quid'].'/'.urlencode($quiz['quiz_name'])); ?>" class="form-control"  >
-			</div>
+
 
 		<?php
 		}
@@ -50,31 +44,31 @@
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('start_date');?></label>
-					<input type="text" name="start_date"  value="<?php echo date('Y-m-d H:i:s',$quiz['start_date']);?>" class="form-control" placeholder="<?php echo $this->lang->line('start_date');?>"   required >
+					<input type="text" name="start_date" id="startdatetimequiz"  value="<?php echo date('Y-m-d H:i:s',$quiz['start_date']);?>" class="form-control" placeholder="<?php echo $this->lang->line('start_date');?>"   required >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('end_date');?></label>
-					<input type="text" name="end_date"  value="<?php echo date('Y-m-d H:i:s',$quiz['end_date']);?>" class="form-control" placeholder="<?php echo $this->lang->line('end_date');?>"   required >
+					<input type="text" name="end_date" id="enddatetimequiz"  value="<?php echo date('Y-m-d H:i:s',$quiz['end_date']);?>" class="form-control" placeholder="<?php echo $this->lang->line('end_date');?>"   required >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('duration');?></label>
-					<input type="text" name="duration"  value="<?php echo $quiz['duration'];?>" class="form-control" placeholder="<?php echo $this->lang->line('duration');?>"  required  >
+					<input type="number" name="duration"  value="<?php echo $quiz['duration'];?>" class="form-control" placeholder="<?php echo $this->lang->line('duration');?>"  required  >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('maximum_attempts');?></label>
-					<input type="text" name="maximum_attempts"  value="<?php echo $quiz['maximum_attempts'];?>" class="form-control" placeholder="<?php echo $this->lang->line('maximum_attempts');?>"   required >
+					<input type="number" name="maximum_attempts"  value="<?php echo $quiz['maximum_attempts'];?>" class="form-control" placeholder="<?php echo $this->lang->line('maximum_attempts');?>"   required >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('pass_percentage');?></label>
-					<input type="text" name="pass_percentage" value="<?php echo $quiz['pass_percentage'];?>" class="form-control" placeholder="<?php echo $this->lang->line('pass_percentage');?>"   required >
+					<input type="number" name="pass_percentage" value="<?php echo $quiz['pass_percentage'];?>" class="form-control" placeholder="<?php echo $this->lang->line('pass_percentage');?>"   required >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('correct_score');?></label>
-					<input type="text" name="correct_score"  value="<?php echo $quiz['correct_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('correct_score');?>"   required >
+					<input type="number" name="correct_score"  value="<?php echo $quiz['correct_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('correct_score');?>"    >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('incorrect_score');?></label>
-					<input type="text" name="incorrect_score"  value="<?php echo $quiz['incorrect_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('incorrect_score');?>"  required  >
+					<input type="number" name="incorrect_score"  value="<?php echo $quiz['incorrect_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('incorrect_score');?>"    >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('ip_address');?></label>
@@ -85,11 +79,7 @@
 					<input type="radio" name="view_answer"    value="1" <?php if($quiz['view_answer']==1){ echo 'checked'; } ?>  > <?php echo $this->lang->line('yes');?>&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="view_answer"    value="0"   <?php if($quiz['view_answer']==0){ echo 'checked'; } ?>  > <?php echo $this->lang->line('no');?>
 			</div>
-			<div class="form-group">
-					<label for="inputEmail" ><?php echo $this->lang->line('open_quiz');?></label> <br>
-					<input type="radio" name="with_login"    value="0"  <?php if($quiz['with_login']==0){ echo 'checked'; } ?>   > <?php echo $this->lang->line('yes');?>&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="with_login"    value="1" <?php if($quiz['with_login']==1){ echo 'checked'; } ?>  > <?php echo $this->lang->line('no');?>
-			</div>
+
 
 						<?php
 			if($this->config->item('webcam')==true){
@@ -112,18 +102,23 @@
 
 				<div class="form-group">
 					<label   ><?php echo $this->lang->line('select_group');?></label> <br>
+          <select name="gids[]" multiple required>
 					 <?php
 					foreach($group_list as $key => $val){
 						?>
+              <option value="<?php echo $val['gid'];?>" <?php if(in_array($val['gid'],explode(',',$quiz['gids']))){ echo 'selected'; } ?>><?php echo $val['group_name'];?></option>
 
-						 <input type="checkbox" name="gids[]" value="<?php echo $val['gid'];?>" <?php if(in_array($val['gid'],explode(',',$quiz['gids']))){ echo 'checked'; } ?> > <?php echo $val['group_name'];?> &nbsp;&nbsp;&nbsp;
+						 <!-- <input type="checkbox" name="gids[]" value="<?php echo $val['gid'];?>" <?php if(in_array($val['gid'],explode(',',$quiz['gids']))){ echo 'checked'; } ?> > <?php echo $val['group_name'];?> &nbsp;&nbsp;&nbsp; -->
 						<?php
 					}
+
 					?>
+
+        </select>
 
 			</div>
 			<div class="form-group">
-					<label   ><?php echo $this->lang->line('quiz_template');?></label> <br>
+					<label><?php echo $this->lang->line('quiz_template');?></label> <br>
 					<select name="quiz_template">
 					<option value="Default" <?php if($quiz['quiz_template']=="Default"){ echo 'selected';} ?> >Default</option>
 					<option value="Advance"  <?php if($quiz['quiz_template']=="Advance"){ echo 'selected';} ?> >Advance</option>
@@ -150,7 +145,7 @@
 
 			<a href="<?php echo site_url('result/preview_certificate/'.$quiz['quid']);?>" target="preview_cert" class="btn btn-primary loginbtn"><?php echo $this->lang->line('preview');?></a>
 
-		
+
 
 			<span style="color:#ff0000"><?php echo $this->lang->line('preview_warning');?></span>
 			</div>
@@ -167,7 +162,7 @@ if($quiz['question_selection']=='0'){
 <h4><?php echo $this->lang->line('questions_added_into_quiz');?></h4>
 
 <a href="<?php echo site_url('quiz/add_question/'.$quiz['quid']);?>" class="btn btn-primary loginbtn"  ><?php echo $this->lang->line('add_question_into_quiz');?></a>
-  
+
 
 <table class="table table-bordered" style="margin-top:10px;">
 <tr>
@@ -331,7 +326,7 @@ if(count($qcl)==0){
 
 
 
- 
+
 	<button class="btn btn-primary loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
 
  <br><br><br>

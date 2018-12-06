@@ -1,3 +1,4 @@
+
  <div class="container" style="text-align:center;">
 <?php
 $logged_in=$this->session->userdata('logged_in');
@@ -6,7 +7,7 @@ $logged_in=$this->session->userdata('logged_in');
 			?>
 <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
  <h3 class="ft_wt"><?php echo $title;?></h3>
-    <?php 
+    <?php
 
 
 	if($logged_in['su']=='1'){
@@ -28,16 +29,16 @@ $logged_in=$this->session->userdata('logged_in');
   <!-- <div class="col-lg-6" style="float:right;">
 
   <p class="ft_wt" style="float:right;color:rgb(255, 0, 140);">
-  <?php 
+  <?php
   if($list_view=='grid'){
 	  ?>
 	  <a  style="color:rgb(255, 0, 140);" href="<?php echo site_url('quiz/index/'.$limit.'/table');?>"><?php echo $this->lang->line('table_view');?></a>
-	  <?php 
+	  <?php
   }else{
 	  ?>
 	   <a style="color:rgb(255, 0, 140);" href="<?php echo site_url('quiz/index/'.$limit.'/grid');?>"><?php echo $this->lang->line('grid_view');?></a>
-	  
-	  <?php 
+
+	  <?php
 
   }
   ?>
@@ -54,10 +55,10 @@ $logged_in=$this->session->userdata('logged_in');
 
 <div class="col-md-12">
 
-<br> 
+<br>
 <!-- <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body"> -->
-			<?php 
+			<?php
 
 
 		if($this->session->flashdata('message')){
@@ -203,10 +204,10 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 <div class="col-lg-12" style="height:13%">
-    
+
 </div>
 <div class="col-lg-12">
-    
+
 </div>
 </div>
 </div>

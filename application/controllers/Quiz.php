@@ -380,6 +380,12 @@ function open_quiz($limit='0'){
 			}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('quiz_name', 'quiz_name', 'required');
+		$this->form_validation->set_rules('start_date', 'Start Date', 'required');
+		$this->form_validation->set_rules('end_date', 'End Date', 'required');
+		$this->form_validation->set_rules('duration', 'Duration', 'required');
+		$this->form_validation->set_rules('maximum_attempts', 'Maximum Attempts', 'required');
+		$this->form_validation->set_rules('pass_percentage', 'Pass percentage', 'required');
+
            if ($this->form_validation->run() == FALSE)
                 {
                      $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
