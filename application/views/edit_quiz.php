@@ -64,11 +64,11 @@
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('correct_score');?></label>
-					<input type="number" name="correct_score"  value="<?php echo $quiz['correct_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('correct_score');?>"    >
+					<input type="text" name="correct_score"  value="<?php echo $quiz['correct_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('correct_score');?>"    >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('incorrect_score');?></label>
-					<input type="number" name="incorrect_score"  value="<?php echo $quiz['incorrect_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('incorrect_score');?>"    >
+					<input type="text" name="incorrect_score"  value="<?php echo $quiz['incorrect_score'];?>" class="form-control" placeholder="<?php echo $this->lang->line('incorrect_score');?>"    >
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('ip_address');?></label>

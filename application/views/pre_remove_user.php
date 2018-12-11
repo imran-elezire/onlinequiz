@@ -15,10 +15,10 @@
 		?>
 		<div id="message"></div>
 
-		 <form method="post" action="<?php echo site_url('user/remove_user/'.$uid);?>">
+		 <form method="post" action="<?php echo site_url('user/remove_user/'.$uid.'/0');?>">
 
 <div class="form-group">
- Select Manager in which yo want to move reportees. 
+ Select Manager in which yo want to move reportees.
 </div>
 <div class="form-group">
 

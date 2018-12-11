@@ -29,7 +29,7 @@
 
 
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('email_address');?></label>
 					<input type="email" id="inputEmail" name="email" value="<?php echo $result['email'];?>" class="form-control" placeholder="<?php echo $this->lang->line('email_address');?>" required autofocus>
 			</div>
@@ -56,7 +56,7 @@
       <div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('department');?></label>
 					<input type="text" name="department"  class="form-control" value="<?php echo $result['department'];?>" placeholder="<?php echo $this->lang->line('department');?>" required  autofocus>
-			</div>
+			</div> -->
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('contact_no');?></label>
 					<input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>" required  autofocus>
@@ -64,27 +64,23 @@
       <div class="form-group">
         <label   ><?php echo $this->lang->line('select_group');?></label>
         <select class="form-control" name="gid" id="gid"  required>
-
         <?php
-
-        foreach($group_list as $key => $val){
+        foreach($group_list as $key => $val) {
           ?>
-
-          <option value="<?php echo $val['gid']; ?>" <?php echo ($result['gid']==$val['gid'])?' selected':''; ?>><?php echo $val['group_name'];?> </option>
+          <option value="<?php echo $val['gid']; ?>" <?php echo ($result['gid']==$val['gid'])?'selected':''; ?>><?php echo $val['group_name'];?> </option>
           <?php
-        }
+          }
         ?>
         </select>
     </div>
 
     <div class="form-group">
-      <label   ><?php echo $this->lang->line('user_manger'); ?></label>
+      <label><?php echo $this->lang->line('user_manger'); ?></label>
       <select class="form-control" name="user_manger" id="user_manger"  required>
         <option >Select Manager</option>
       <?php
-      foreach($user_list as $key => $value){
+      foreach($user_list as $key => $value) {
         ?>
-
 <option value="<?php echo $value['uid'];   ?>" <?php echo ($result['user_manger']==$value['uid'])?' selected':''; ?> ><?php echo $value['first_name'].' '.$value['last_name'];?></option>
         <?php
       }

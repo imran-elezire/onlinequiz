@@ -112,7 +112,7 @@
 			?>     <li><a href="<?php echo site_url('quiz/add_new');?>"><?php echo $this->lang->line('add_new');?></a></li>
               <?php
 				}
-?>				 <li><a href="<?php echo site_url('quiz');?>"><?php echo $this->lang->line('quiz');?> <?php echo $this->lang->line('list');?></a></li>
+?>				 <li><a href="<?php echo site_url('quiz');?>">Ongoing <?php echo $this->lang->line('quiz');?> <?php echo $this->lang->line('list');?></a></li>
 
 <li><a href="<?php echo site_url('quiz/expired_quiz');?>">Expired <?php echo $this->lang->line('quiz');?></a></li>
                 </ul>
@@ -141,6 +141,7 @@
                   <li><a href="<?php echo site_url('notification');?>"><?php echo $this->lang->line('notification');?></a></li>
                   <li><a href="<?php echo site_url('user/group_list');?>"><?php echo $this->lang->line('group_list');?></a></li>
                   <li><a href="<?php echo site_url('qbank/category_list');?>"><?php echo $this->lang->line('category_list');?></a></li>
+                  <li><a href="<?php echo site_url('user/department_list');?>"><?php echo $this->lang->line('department_list');?></a></li>
                   <li><a href="<?php echo site_url('qbank/level_list');?>"><?php echo $this->lang->line('level_list');?></a></li>
 
 					<li><a href="<?php echo site_url('dashboard/config');?>"><?php echo $this->lang->line('config');?></a></li>
@@ -158,7 +159,12 @@
         <li class="dropdown licss" <?php if($this->uri->segment(1)=='user'){ echo "class='active'"; } ?>>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('logged_in')['first_name'];?>  <span class="caret"></span></a>
           <ul class="dropdown-menu">
-              <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>"><?php echo $this->lang->line('myaccount');?></a></li>
+            <?php
+            if($logged_in['su']!=1){
+             ?>
+             <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>">Change Details</a></li>
+           <?php } ?>
+              <li><a href="<?php echo site_url('user/change_password');?>">Change Password</a></li>
             <li><a href="<?php echo site_url('user/logout');?>"><?php echo $this->lang->line('logout');?></a></li>
           </ul>
         </li>

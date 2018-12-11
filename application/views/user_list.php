@@ -34,7 +34,7 @@
 <table class="table table-bordered">
 <tr>
  <th>#</th>
- <th><?php echo $this->lang->line('email');?></th>
+ <th><?php echo $this->lang->line('contact_no');?></th>
 <th><?php echo $this->lang->line('first_name');?> <?php echo $this->lang->line('last_name');?></th>
 <th>Manager</th>
 <th><?php echo $this->lang->line('account_status');?> </th>
@@ -55,7 +55,7 @@ foreach($result as $key => $val){
 ?>
 <tr>
  <td><?php echo $val['uid'];?></td>
-<td><?php echo $val['email'].' '.$val['wp_user'];?></td>
+<td><?php echo $val['contact_no'].' '.$val['wp_user'];?></td>
 <td><?php echo $val['first_name'];?> <?php echo $val['last_name'];?></td>
 <td><?php if($val['manager_first']==""){echo "NA";}else {echo $val['manager_first'];?> <?php echo $val['manager_last'];}?></td>
  <td><?php echo $val['user_status'];?></td>
@@ -65,7 +65,11 @@ foreach($result as $key => $val){
 <a href="<?php echo site_url('user2/view_user/'.$val['uid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-eye" title="View Profile"></i></a>
 
 <a href="<?php echo site_url('user/edit_user/'.$val['uid']);?>"> <i style="color:rgb(255,0,140)" class="fa fa-pencil" aria-hidden="true"></i></a>
-<a href="javascript:remove_entry('user/pre_remove_user/<?php echo $val['uid'];?>');"> <i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>
+<?php
+$active="href=javascript:remove_entry('user/pre_remove_user/".$val['uid']."')";
+//$inactive="href=".base_url('user/remove_user/'.$val['uid'].'/0')"
+?>
+<a <?php echo ($val['user_status']=='Inactive')?"href=".base_url('index.php/user/remove_user/'.$val['uid'].'/1'):$active; ?> class="btn btn-xs <?php echo ($val['user_status']=='Inactive')?"btn-success":"btn-danger" ?>"><?php echo ($val['user_status']=='Inactive')?"Enable":"Disable" ?></a>
 
 </td>
 </tr>

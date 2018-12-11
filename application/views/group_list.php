@@ -43,7 +43,7 @@ foreach($group_list as $key => $val){
  <td> <?php echo $val['group_name'];?></td>
 <td>
 <a href="<?php echo site_url('user/edit_group/'.$val['gid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-pencil" aria-hidden="true"></i></a>
-<a href="<?php echo site_url('user/pre_remove_group/'.$val['gid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>
+<a href="<?php echo ($val['status']==0)?site_url('user/remove_group/'.$val['gid'].'/1'):site_url('user/pre_remove_group/'.$val['gid']);?>" class="btn btn-xs <?php echo ($val['status']==0)?"btn-success":"btn-danger" ?>"><?php echo ($val['status']==0)?"Enable":"Disable" ?></a>
 
 </td>
 </tr>

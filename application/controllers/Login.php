@@ -93,7 +93,7 @@ class Login extends CI_Controller {
 	public function verifylogin($p1='',$p2=''){
 
 		if($p1 == ''){
-		$username=$this->input->post('email');
+		$username=$this->input->post('mobile');
 		$password=$this->input->post('password');
 		}else{
 		$username=urldecode($p1);
@@ -121,6 +121,11 @@ class Login extends CI_Controller {
 			$user['base_url']=base_url();
 			// creating login cookie
 			$this->session->set_userdata('logged_in', $user);
+			//redirect to change password
+			if($user['password_auto']==1)
+			{
+				redirect('user/change_password');
+			}
 			// redirect to dashboard
 			if($user['su']=='1'){
 			 redirect('dashboard');
@@ -198,8 +203,8 @@ class Login extends CI_Controller {
 
 	function forgot(){
 	$this->load->helper('url');
-			if($this->input->post('email')){
-			$user_email=$this->input->post('email');
+			if($this->input->post('mobile')){
+			$user_email=$this->input->post('mobile');
 
 			 if($this->user_model->reset_password($user_email)){
 				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('password_updated')." </div>");

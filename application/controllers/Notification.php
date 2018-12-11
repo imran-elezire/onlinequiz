@@ -93,7 +93,7 @@ class Notification extends CI_Controller {
 		if($logged_in['su']!='1'){
 			exit($this->lang->line('permission_denied'));
 		}
-
+$data['all_group']=$this->user_model->group_list(1);
 	$data['title']=$this->lang->line('send_notification');
 	$data['tuid']=$tuid;
 	        $this->load->view('header',$data);

@@ -6,7 +6,7 @@
 
 
   <div class="row" style="display: inline; float: none;">
-     <form method="post" action="<?php echo site_url('user/update_user/'.$uid);?>">
+     <form method="post" action="<?php echo site_url('user/update_user_changes/'.$uid);?>">
 
 <div class="col-md-8 col-md-offset-2">
 <br>
@@ -27,7 +27,7 @@
 
 				</div>
 
-
+<!--
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('email_address');?></label>
 					<input type="email" id="inputEmail" name="email" value="<?php echo $result['email'];?>" readonly=readonly class="form-control" placeholder="<?php echo $this->lang->line('email_address');?>" required autofocus>
@@ -55,7 +55,8 @@
       <div class="form-group">
           <label for="inputEmail" class=""><?php echo $this->lang->line('department');?></label>
           <input type="text" name="department"  class="form-control" value="<?php echo $result['department'];?>" placeholder="<?php echo $this->lang->line('department');?>"   autofocus>
-      </div>
+      </div> -->
+      <p>Submit your new contact no, if your verified it. It will change.</p>
         <div class="form-group">
           <label for="inputEmail" class=""><?php echo $this->lang->line('contact_no');?></label>
           <input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>"   autofocus>

@@ -4,6 +4,8 @@ Class Quiz_model extends CI_Model
 
   function quiz_list($limit){
 
+    //$this->db->select('savsoft_quiz.*,count(savsoft_result.rid) as maximum_attempts_by_user');
+
 	  $logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']=='0'){
 			$gid=$logged_in['gid'];
@@ -24,7 +26,10 @@ Class Quiz_model extends CI_Model
    $this->db->where("end_date >=",time());
 		 $this->db->limit($this->config->item('number_of_rows'),$limit);
 		$this->db->order_by('quid','desc');
-		$query=$this->db->get('savsoft_quiz');
+    $this->db->from('savsoft_quiz');
+    //$this->db->join('savsoft_result','savsoft_result.quid=savsoft_quiz.quid','left');
+    //$this->db->where("savsoft_result.uid",$this->session->userdata('logged_in')['uid']);
+    $query=$this->db->get();
 		return $query->result_array();
 
 
@@ -80,7 +85,7 @@ Class Quiz_model extends CI_Model
  }
 
  function insert_quiz(){
-   
+
 	 $userdata=array(
 	 'quiz_name'=>$this->input->post('quiz_name'),
 	 'description'=>$this->input->post('description'),

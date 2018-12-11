@@ -9,11 +9,9 @@ Class User_model extends CI_Model
    if($password!=$this->config->item('master_password')){
    $this->db->where('savsoft_users.password', MD5($password));
    }
-   if (strpos($username, '@') !== false) {
-    $this->db->where('savsoft_users.email', $username);
-   }else{
-    $this->db->where('savsoft_users.wp_user', $username);
-   }
+
+    $this->db->where('savsoft_users.contact_no', $username);
+
 
    // $this -> db -> where('savsoft_users.verify_code', '0');
     $this -> db -> join('savsoft_group', 'savsoft_users.gid=savsoft_group.gid');
@@ -214,7 +212,8 @@ return $revenue;
 		'group_name'=>$this->input->post('group_name'),
 		'price'=>$this->input->post('price'),
 		'valid_for_days'=>$this->input->post('valid_for_days'),
-		'description'=>$this->input->post('description')
+		'description'=>$this->input->post('description'),
+    'add_by'=>$this->session->userdata('logged_in')['uid']
 		);
 
 		if($this->db->insert('savsoft_group',$userdata)){
@@ -308,12 +307,12 @@ return $revenue;
  }
 
 
- function group_list(){
+ function group_list($status=''){
 	 $this->db->order_by('gid','asc');
+   if($status==1)
+   $this->db->where('status',1);
 	$query=$this->db->get('savsoft_group');
 		return $query->result_array();
-
-
  }
 
  function verify_code($vcode){
@@ -451,13 +450,14 @@ $verilink=site_url('login/verify/'.$veri_code);
 
  function reset_password($toemail){
 
-$this->db->where("email",$toemail);
+$this->db->where("contact_no",$toemail);
 $queryr=$this->db->get('savsoft_users');
 
 if($queryr->num_rows() != 1){
 
 return false;
 }
+$rresult=$queryr->result();
 $new_password=rand('1111','9999');
 
  $this->load->library('email');
@@ -485,7 +485,7 @@ $new_password=rand('1111','9999');
 
 
 
-			$this->email->to($toemail);
+			$this->email->to($rresult[0]->email);
 			$this->email->from($fromemail, $fromname);
 			$this->email->subject($subject);
 			$this->email->message($message);
@@ -496,9 +496,10 @@ $new_password=rand('1111','9999');
        exit();
 			}else{
 			$user_detail=array(
-			'password'=>md5($new_password)
+			'password'=>md5($new_password),
+      'password_auto'=>1
 			);
-			$this->db->where('email', $toemail);
+			$this->db->where('contact_no', $toemail);
  			$this->db->update('savsoft_users',$user_detail);
 			return true;
 			}
@@ -577,12 +578,12 @@ $new_password=rand('1111','9999');
  }
 
 
- function remove_user($uid){
+ function remove_user($uid,$status=''){
 
 $this->db->where('user_manger',$uid);
 if($this->db->update('savsoft_users',array("user_manger"=>$this->input->post("muid")))){
   $this->db->where('uid',$uid);
-  if($this->db->delete('savsoft_users')){
+  if($this->db->update('savsoft_users',array("user_status"=>($status==1)?'Active':'Inactive'))){
     return true;
   }else{
     return false;
@@ -593,15 +594,16 @@ if($this->db->update('savsoft_users',array("user_manger"=>$this->input->post("mu
  }
 
 
- function remove_group($gid){
+ function remove_group($gid,$status){
 
-	 $this->db->where('gid',$gid);
-	 if($this->db->delete('savsoft_group')){
-		 return true;
-	 }else{
 
-		 return false;
-	 }
+    	 $this->db->where('gid',$gid);
+    	 if($this->db->update('savsoft_group',array("status"=>$status))){
+    		 return true;
+    	 }else{
+
+    		 return false;
+    	 }
 
 
  }
@@ -666,11 +668,175 @@ function get_user_by_usertype($type)
 function reportees_list($manager_id)
 {
   $this->db->where('user_manger',$manager_id);
+
   $query=$this->db->get('savsoft_users');
-  return $query->result_array();
+
+  if($query->num_rows()!=0)
+  {
+    $data=array();
+    $i=0;
+    foreach ($query->result_array() as $key => $reportee) {
+      $new_arr=array();
+
+        foreach ($reportee as $key => $value) {
+          $new_arr[$key]=$value;
+        }
+      $this->db->where('uid',$reportee['uid']);
+      $this->db->where('status',1);
+
+      $query_r=$this->db->get('trans_user_account_changes');
+      if($query_r->num_rows()!=0)
+      {
+        $new_arr['changes']=$query_r->result();
+      }
+      else {
+        $new_arr['changes']=FALSE;
+      }
+
+      $data[$i]=$new_arr;
+      $i++;
+    }
+
+    return $data;
+  }
+  else
+  {
+    return false;
+  }
+
 
 }
 
+
+  function update_password($password)
+  {
+    $this->db->where('uid',$this->session->userdata('logged_in')['uid']);
+    $this->db->update('savsoft_users',array('password'=>md5($password),'password_auto'=>0));
+  }
+
+
+  function department_list($status='')
+  {
+    $this->db->order_by('did','desc');
+    if($status==1)
+    $this->db->where('status',1);
+ 	 $query=$this->db->get('savsoft_department');
+ 	 return $query->result_array();
+  }
+
+
+  function update_department($cid){
+
+ 		$userdata=array(
+ 		'department_name'=>$this->input->post('department_name'),
+
+ 		);
+
+ 		 $this->db->where('did',$cid);
+ 		if($this->db->update('savsoft_department',$userdata)){
+
+ 			return true;
+ 		}else{
+
+ 			return false;
+ 		}
+
+  }
+
+
+
+  function remove_department($did,$status){
+
+ 	 $this->db->where('did',$did);
+ 	 if($this->db->update('savsoft_department',array("status"=>$status))){
+ 		 return true;
+ 	 }else{
+
+ 		 return false;
+ 	 }
+
+
+  }
+
+
+
+  function insert_department(){
+
+ 	 	$userdata=array(
+ 		'department_name'=>$this->input->post('department_name'),
+    'add_by'=>$this->session->userdata('logged_in')['uid']
+ 			);
+
+ 		if($this->db->insert('savsoft_department',$userdata)){
+
+ 			return true;
+ 		}else{
+
+ 			return false;
+ 		}
+
+  }
+
+
+  public function submit_user_changes($uid)
+  {
+    $userdata=array(
+ 		'contact_no'=>$this->input->post('contact_no'),
+    'change_for'=>'contact_no',
+    'uid'=>$uid
+ 			);
+
+      if($this->db->insert('trans_user_account_changes',$userdata)){
+
+   			return true;
+   		}else{
+
+   			return false;
+   		}
+  }
+
+  public function verify_user_changes($uid,$change_id,$status)
+  {
+    if($status==-1)
+    {
+      $this->db->where('change_id',$change_id);
+      $this->db->update('trans_user_account_changes',array('status'=>$status,'verify_by'=>$this->session->userdata('logged_in')['uid']));
+      return true;
+    }
+    else if($status==0){
+
+
+          $this->db->where('change_id',$change_id);
+          $query=$this->db->get('trans_user_account_changes');
+          if($query->num_rows()!=0)
+          {
+            $cha=$query->result();
+
+            $change_for=$cha[0]->change_for;
+
+            if($change_for=='contact_no')
+            {
+              $query_user=$this->db->select('uid')->where('contact_no',$cha[0]->$change_for)->from('savsoft_users')->get();
+
+              if($query_user->num_rows()==0)
+              {
+
+                $this->db->where('uid',$uid);
+
+                $this->db->update('savsoft_users',array($change_for=>$cha[0]->$change_for));
+
+                $this->db->where('change_id',$change_id);
+                $this->db->update('trans_user_account_changes',array('status'=>$status,'verify_by'=>$this->session->userdata('logged_in')['uid']));
+                return true;
+              }
+              else {
+                return false;
+              }
+            }
+
+          }
+      }
+  }
 
 
 

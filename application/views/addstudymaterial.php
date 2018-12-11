@@ -1,7 +1,7 @@
 
  <div class="container" style="text-align:center;">
 
-<div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;"> 
+<div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
  <h3 class="ft_wt"><?php echo $title;?></h3>
 
 
@@ -51,10 +51,6 @@
          <input type="file" name="file_upload"  class="form-control" >
      </div>
 
-		 <div class="form-group  material_type file_upload">
-					<label for="inputEmail"  ><?php echo $this->lang->line('fileupload');?></label>
-					<input type="file" name="file_upload"  class="form-control" >
-			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('category');?></label>
 					<select name="category"  class="form-control" required>

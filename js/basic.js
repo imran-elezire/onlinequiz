@@ -85,6 +85,25 @@ function updatecategory(vall,cid){
 }
 
 
+function updatedepartment(vall,did){
+
+	var formData = {department_name:vall};
+	$.ajax({
+		 type: "POST",
+		 data : formData,
+			url: base_url + "index.php/user/update_department/"+did,
+		success: function(data){
+		$("#message").html(data);
+
+			},
+		error: function(xhr,status,strErr){
+			//alert(status);
+			}
+		});
+
+}
+
+
 
 function getexpiry(){
 	 var gid=document.getElementById('gid').value;

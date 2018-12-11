@@ -450,9 +450,6 @@ class Qbank extends CI_Controller {
 		$this->load->view('category_list',$data);
 		$this->load->view('footer',$data);
 
-
-
-
 	}
 
 

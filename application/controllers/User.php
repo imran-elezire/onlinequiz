@@ -67,7 +67,8 @@ class User extends CI_Controller {
 
 		 $data['title']=$this->lang->line('add_new').' '.$this->lang->line('user');
 		// fetching group list
-		$data['group_list']=$this->user_model->group_list();
+		$data['group_list']=$this->user_model->group_list(1);
+		$data['department_list']=$this->user_model->department_list(1);
 		$data['user_list']=$this->user_model->get_user_by_usertype('0');
 		 $this->load->view('header',$data);
 		$this->load->view('new_user',$data);
@@ -83,13 +84,14 @@ class User extends CI_Controller {
 				exit($this->lang->line('permission_denied'));
 			}
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[savsoft_users.email]');
+		//$this->form_validation->set_rules('email', 'Email', 'required|is_unique[savsoft_users.email]');
+		$this->form_validation->set_rules('contact_no', 'Contact', 'required|is_unique[savsoft_users.contact_no]');
         $this->form_validation->set_rules('password', 'Password', 'required');
-				$this->form_validation->set_rules('password', 'Password', 'required');
+				$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required');
 
 				$this->form_validation->set_rules('first_name', 'First Name', 'required');
 				$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-				$this->form_validation->set_rules('contact_no', 'Contact', 'required');
+
 				$this->form_validation->set_rules('employee_id', 'Employee Id', 'required');
 				$this->form_validation->set_rules('designation', 'Designation', 'required');
 				$this->form_validation->set_rules('department', 'Department', 'required');
@@ -112,18 +114,23 @@ class User extends CI_Controller {
 
 	}
 
-		public function remove_user($uid){
+		public function remove_user($uid,$status=''){
 
 			$logged_in=$this->session->userdata('logged_in');
 			if($logged_in['su']!='1'){
 				exit($this->lang->line('permission_denied'));
 			}
-			if($uid=='1'){
-					exit($this->lang->line('permission_denied'));
-			}
 
-			if($this->user_model->remove_user($uid)){
-                        $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+
+			if($this->user_model->remove_user($uid,$status)){
+
+				if($status==0)
+										$this->session->set_flashdata('message', "<div class='alert alert-success'>Disable Successfully</div>");
+				else {
+					$this->session->set_flashdata('message', "<div class='alert alert-success'>Enable Successfully</div>");
+				}
+
+
 					}else{
 						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
 
@@ -376,7 +383,7 @@ class User extends CI_Controller {
 
 
 
-			public function remove_group($gid){
+			public function remove_group($gid,$status){
                         $mgid=$this->input->post('mgid');
                         $this->db->query(" update savsoft_users set gid='$mgid' where gid='$gid' ");
 
@@ -385,8 +392,12 @@ class User extends CI_Controller {
 				exit($this->lang->line('permission_denied'));
 			}
 
-			if($this->user_model->remove_group($gid)){
-                        $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			if($this->user_model->remove_group($gid,$status)){
+							if($status==0)
+													$this->session->set_flashdata('message', "<div class='alert alert-success'>Disable Successfully</div>");
+							else {
+								$this->session->set_flashdata('message', "<div class='alert alert-success'>Enable Successfully</div>");
+							}
 					}else{
 						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
 
@@ -414,6 +425,191 @@ class User extends CI_Controller {
 				$this->session->unset_userdata('logged_in_raw');
 			}
  redirect('login');
+
+	}
+
+	public function change_password()
+	{
+		$logged_in=$this->session->userdata('logged_in');
+		$data['title']='Change Password';
+
+		$this->load->view('header',$data);
+		$this->load->view('change_password',$data);
+		$this->load->view('footer',$data);
+	}
+
+	public function password_change()
+	{
+		$new_password=$this->input->post('new_password');
+		$confirm_password=$this->input->post('confirm_password');
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('new_password', 'New Password', 'required');
+		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required');
+		if ($this->form_validation->run() == FALSE)
+				 {
+							$this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
+	 redirect('user/change_password/');
+				 }
+				 else
+				 {
+					 if($new_password!=$confirm_password)
+					 {
+						 $this->session->set_flashdata('message', "<div class='alert alert-danger'>Password do not match </div>");
+	redirect('user/change_password/');
+					 }
+					 else
+					 $quid=$this->user_model->update_password($new_password);
+
+					 if($this->session->userdata('logged_in')['su']=='1'){
+		 			 redirect('dashboard');
+
+		 			}else{
+		 				$burl=$this->config->item('base_url').'index.php/quiz';
+		 			 header("location:$burl");
+		 			}
+
+				 }
+
+	}
+
+
+	// department functions start
+	public function department_list(){
+
+		// fetching group list
+		$data['department_list']=$this->user_model->department_list();
+		$data['title']=$this->lang->line('department_list');
+		$this->load->view('header',$data);
+		$this->load->view('department_list',$data);
+		$this->load->view('footer',$data);
+
+	}
+
+
+		public function insert_department()
+	{
+
+
+			$logged_in=$this->session->userdata('logged_in');
+			if($logged_in['su']!='1'){
+				exit($this->lang->line('permission_denied'));
+			}
+
+				if($this->user_model->insert_department()){
+								$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+				}else{
+				 $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+
+				}
+				redirect('user/department_list/');
+
+	}
+
+			public function update_department($did)
+	{
+
+
+			$logged_in=$this->session->userdata('logged_in');
+			if($logged_in['su']!='1'){
+				exit($this->lang->line('permission_denied'));
+			}
+
+				if($this->user_model->update_department($did)){
+								echo "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>";
+				}else{
+				 echo "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>";
+
+				}
+
+
+	}
+
+
+
+
+			public function remove_department($did,$status){
+
+			$logged_in=$this->session->userdata('logged_in');
+			if($logged_in['su']!='1'){
+				exit($this->lang->line('permission_denied'));
+			}
+
+			$mcid=$this->input->post('mcid');
+
+
+
+			if($this->user_model->remove_department($did,$status)){
+						if($status==0)
+												$this->session->set_flashdata('message', "<div class='alert alert-success'>Disable Successfully</div>");
+						else {
+							$this->session->set_flashdata('message', "<div class='alert alert-success'>Enable Successfully</div>");
+						}
+					}else{
+								$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
+
+					}
+					redirect('user/department_list');
+
+
+		}
+
+
+
+		public function update_user_changes($uid)
+	{
+
+
+			$logged_in=$this->session->userdata('logged_in');
+
+			if($logged_in['su']!='1'){
+			 $uid=$logged_in['uid'];
+			}
+		$this->load->library('form_validation');
+
+						$this->form_validation->set_rules('contact_no', 'Contact', 'required|is_unique[savsoft_users.contact_no]');
+
+           if ($this->form_validation->run() == FALSE)
+                {
+                     $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
+					redirect('user/edit_user/'.$uid);
+                }
+                else
+                {
+					if($this->user_model->submit_user_changes($uid)){
+                        $this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>");
+					}else{
+						    $this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+
+					}
+					redirect('user/edit_user/'.$uid);
+                }
+
+	}
+
+	public function verify_user_changes($uid,$change_id,$status,$key)
+	{
+		if(md5($uid.$change_id.'Ash')!=$key)
+		{
+			$this->session->unset_userdata('logged_in');
+			redirect('login');
+		}
+
+		if($this->session->userdata('logged_in')['uid']=='')
+		{
+
+			$this->session->unset_userdata('logged_in');
+			redirect('login');
+		}
+
+		if($this->user_model->verify_user_changes($uid,$change_id,$status))
+		{
+			$this->session->set_flashdata('message', "<div class='alert alert-success'>Verified Successfully </div>");
+		}else{
+					$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+
+		}
+		redirect('user/reportees');
 
 	}
 }

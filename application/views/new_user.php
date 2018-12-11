@@ -1,7 +1,7 @@
  <div class="container" style="text-align:center;">
 
 
- 
+
 
 
 <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
@@ -22,15 +22,22 @@
 		}
 		?>
 
-
+    <div class="form-group">
+      <label for="inputEmail" class="sr-only"><?php echo $this->lang->line('contact_no');?></label>
+      <input type="number" name="contact_no"  class="form-control" placeholder="<?php echo $this->lang->line('contact_no');?>" min="0000000000" max="9999999999" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" required  autofocus>
+  </div>
 				<div class="form-group">
 					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('email_address');?></label>
-					<input type="email" id="inputEmail" name="email" class="form-control" placeholder="<?php echo $this->lang->line('email_address');?>" required autofocus>
+					<input type="email" id="inputEmail" name="email" class="form-control" placeholder="<?php echo $this->lang->line('email_address');?>" autofocus>
 			</div>
 			<div class="form-group">
 					<label for="inputPassword" class="sr-only"><?php echo $this->lang->line('password');?></label>
 					<input type="password" id="inputPassword" name="password"  class="form-control" placeholder="<?php echo $this->lang->line('password');?>" required >
 			 </div>
+       <div class="form-group">
+ 					<label for="inputPassword" class="sr-only"><?php echo $this->lang->line('password');?></label>
+ 					<input type="password" id="inputcPassword" name="confirm_password"  class="form-control" placeholder="<?php echo $this->lang->line('confirm_password');?>" required >
+ 			 </div>
 				<div class="form-group">
 					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('first_name');?></label>
 					<input type="text"  name="first_name"  class="form-control" placeholder="<?php echo $this->lang->line('first_name');?>" required   autofocus>
@@ -39,10 +46,7 @@
 					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('last_name');?></label>
 					<input type="text"   name="last_name"  class="form-control" placeholder="<?php echo $this->lang->line('last_name');?>" required  autofocus>
 			</div>
-				<div class="form-group">
-					<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('contact_no');?></label>
-					<input type="number" name="contact_no"  class="form-control" placeholder="<?php echo $this->lang->line('contact_no');?>" required  autofocus>
-			</div>
+
       <div class="form-group">
           <label for="inputEmail" class="sr-only"><?php echo $this->lang->line('employee_id');?></label>
           <input type="text" name="employee_id"  class="form-control" placeholder="<?php echo $this->lang->line('employee_id');?>" required  autofocus>
@@ -52,8 +56,18 @@
           <input type="text" name="designation"  class="form-control" placeholder="<?php echo $this->lang->line('designation');?>" required  autofocus>
       </div>
       <div class="form-group">
-          <label for="inputEmail" class="sr-only"><?php echo $this->lang->line('designation');?></label>
-          <input type="text" name="department"  class="form-control" placeholder="<?php echo $this->lang->line('department');?>" required  autofocus>
+          <label><?php echo $this->lang->line('department');?></label>
+          <select class="form-control" name="department" id="department"  required>
+            <option value>Select Department</option>
+					<?php
+					foreach($department_list as $key => $val){
+						?>
+
+						<option value="<?php echo $val['did'];?>"><?php echo $val['department_name'];?> </option>
+						<?php
+					}
+					?>
+					</select>
       </div>
 				<div class="form-group">
 					<label   ><?php echo $this->lang->line('select_group');?></label>

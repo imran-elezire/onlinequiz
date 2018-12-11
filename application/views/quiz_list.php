@@ -92,8 +92,11 @@ foreach($result as $key => $val){
  <td><?php echo substr(strip_tags($val['quiz_name']),0,50);?></td>
 <td><?php echo $val['noq'];?></td>
  <td>
+   <?php
+   if($logged_in['su']!=1){
+     ?>
 <a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('attempt');?> </a>
-
+<?php } ?>
 <?php
 if($logged_in['su']=='1'){
 	?>
@@ -146,13 +149,16 @@ foreach($result as $key => $val){
                             <li class="list-group-item"><i class="fa fa-check"></i> <b>End Date</b>: <?php echo date("d-m-Y h:i:s",$val['end_date']);?></li>
 
                             <li class="list-group-item"><i class="fa fa-check"></i> <?php echo $this->lang->line('maximum_attempts');?>: <?php echo $val['maximum_attempts'];?></li>
+                            <!-- <li class="list-group-item"><i class="fa fa-check"></i> Attempted: <?php echo $val['maximum_attempts_by_user'];?></li> -->
 
                             </ul>
                         <div class="panel-footer">
 
-
-<a href="<?php echo ($val['end_date']<=time())?"#":site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-<?php echo ($val['end_date']<=time())?"danger":"success"; ?>" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;border:none;" ><?php echo ($val['end_date']<=time())?"Expired":$this->lang->line('attempt');?> </a>
-
+                          <?php
+                          if($logged_in['su']!=1){
+                            ?>
+<a href="<?php echo ($val['end_date']<=time() || $val['maximum_attempts_by_user']>=$val['maximum_attempts'])?"#":site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-<?php echo ($val['end_date']<=time() || $val['maximum_attempts_by_user']>=$val['maximum_attempts'])?"danger":"success"; ?>" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;border:none;" ><?php echo ($val['end_date']<=time())?"Expired":$this->lang->line('attempt');?> </a>
+<?php } ?>
 <?php
 if($logged_in['su']=='1'){
 	?>

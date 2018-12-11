@@ -6,7 +6,7 @@
 
 
 
-  
+
 
 <div class="col-md-4">
 </div>
@@ -29,15 +29,15 @@
 		}
 		?>
 			<div class="form-group">
-					<label for="inputEmail"  ><?php echo $this->lang->line('email_linked_account');?></label>
-					<input type="email" id="inputEmail" name="email" class="form-control" placeholder="<?php echo $this->lang->line('email_address');?>" required autofocus>
+					<label for="inputEmail"  ><?php echo $this->lang->line('mobile_linked_account');?></label>
+					<input type="number" id="inputEmail" name="mobile" class="form-control" placeholder="<?php echo $this->lang->line('contact_no');?>" required autofocus>
 			</div>
 
 			<div class="form-group">
 
 					<button class="btn btn-lg btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('send_new_password');?></button>
 			</div>
-<!-- <?php 
+<!-- <?php
 if($this->config->item('user_registration')){
 	?>
 	<a href="<?php echo site_url('login/registration');?>"><?php echo $this->lang->line('register_new_account');?></a>

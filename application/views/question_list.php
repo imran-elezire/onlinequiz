@@ -220,59 +220,6 @@ if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->co
 
 
 
-<div class="login-panel panel panel-default sha_div">
-<div class="panel-heading">
-<h4><?php echo $this->lang->line('import_question2');?></h4>
-</div>
-		<div class="panel-body">
-
-<?php echo form_open('word_import',array('enctype'=>'multipart/form-data')); ?>
-
-<div class="alert alert-danger"> <?php echo $this->lang->line('wordimportinfo');?></div>
-
- <select name="cid" class="in_sel" required >
- <option value=""><?php echo $this->lang->line('select_category');?></option>
-<?php
-					foreach($category_list as $key => $val){
-						?>
-
-						<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
-						<?php
-					}
-					?></select>
- <select name="lid" class="in_sel" required >
- <option value=""><?php echo $this->lang->line('select_level');?></option>
-<?php
-					foreach($level_list as $key => $val){
-						?>
-
-						<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
-						<?php
-					}
-					?>
-					</select>
-
-<?php echo $this->lang->line('upload_doc');?>
-	<input type="hidden" name="size" value="3500000">
-	<input type="file" name="word_file" style="width:150px;float:left;margin-left:10px;">
-	<div style="clear:both;"></div>
-	<p style="padding:10px;"><a style="color:rgb(255,0,140);" href="javascript:advanceconfig();">Advance</a></p>
-	<div id="advanceconfig" style="padding:10px;display:none">
-	<table>
-	<tr><td>Question Splitter:</td><td> <input type="text" name="question_split" value="/Q:[0-9]+\)/"></td></tr>
-	<tr><td>Description Splitter: </td><td><input type="text" name="description_split" value="/Desc:/"></td></tr>
-	<tr><td>Options Splitter: </td><td><input type="text" name="option_split" value="/[A-Z]:\)/"></td></tr>
-	<tr><td>Correct Option Splitter: </td><td><input type="text" name="correct_split" value="/Correct:/"></td></tr>
-	</table>
-	</div>
-
-	<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default loginbtn">
-
-<a style="color:rgb(255,0,140);" href="<?php echo base_url();?>sample/sample.docx" target="new">Click here</a> <?php echo $this->lang->line('upload_doc_info');?>
-</form>
-
-</div>
-				</div>
 <script>
 
 function advanceconfig(){

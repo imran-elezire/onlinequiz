@@ -63,7 +63,67 @@ foreach($reportees as $key => $val){
 
 <a href="<?php echo site_url('user2/view_reportees/'.$val['uid']);?>"><i class="fa fa-eye" style="color:rgb(255,0,140);" title="View Profile"></i></a>
 <a href="<?php echo site_url('result/reportees_result_list/'.$val['uid']);?>"><button class="btn loginbtn-hollow" style="background-color:#ffffff;">Result</button></a>
+<a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#verify_changes<?php echo $val['uid']; ?>">Verify Changes</a>
+<div id="verify_changes<?php echo $val['uid']; ?>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Verify Changes for <?php echo $val['first_name'].$val['last_name']; ?></h4>
+      </div>
+      <div class="modal-body">
+        <?php
+          if($val['changes']==False)
+          {
+            echo "<p>There is no changes !</p>";
+          }
+          else {
+         ?>
+          <table class="table table bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Request for</th>
+                <th>Current Use</th>
+                <th>New Changes</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $i=1;
+                foreach ($val['changes'] as $key => $value) {
+                  $change_for=$value->change_for;
+              ?>
+              <tr>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $val['first_name'].$val['last_name']; ?></td>
+                <td><?php echo $value->change_for; ?></td>
+                <td><?php echo $val[$value->change_for]; ?></td>
+                <td><?php echo $value->$change_for; ?></td>
+                <td>
+                  <a href="<?php echo site_url('user/verify_user_changes/'.$val['uid'].'/'.$value->change_id.'/0/'.md5($val['uid'].$value->change_id.'Ash')); ?>" class="btn btn-xs btn-success">Accept</a>
+                  <a href="<?php echo site_url('user/verify_user_changes/'.$val['uid'].'/'.$value->change_id.'/-1/'.md5($val['uid'].$value->change_id.'Ash')); ?>" class="btn btn-xs btn-danger">Reject</a>
+                </td>
+              </tr>
+              <?php
+                  $i++;
+                }
+               ?>
+            </tbody>
+          </table>
+         <?php
+       }
+        ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
+  </div>
+</div>
 </td>
 </tr>
 

@@ -34,7 +34,7 @@
 		<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('email_address');?></label>
 		<fieldset class="page-signin-form-group form-group form-group-lg">
                   <!-- <div class="page-signin-icon text-muted"><i class="fa fa-user"></i></div> -->
-                  <input class="page-signin-form-control form-control" name="email"  placeholder="<?php echo $this->lang->line('email_address');?>" type="text" required autofocus>
+                  <input class="page-signin-form-control form-control" name="mobile"  placeholder="<?php echo $this->lang->line('contact_no');?>" type="number" required autofocus>
                 </fieldset>
 
                 <label for="inputPassword" class="sr-only"><?php echo $this->lang->line('password');?></label>
