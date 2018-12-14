@@ -47,7 +47,8 @@
                         </div>
                         <a href="<?php echo site_url('user');?>">
                             <div class="panel-footer">
-                                <span class="pull-left"><?php echo $this->lang->line('users');?> <?php echo $this->lang->line('list');?></span>
+                                <span class="pull-left" style="color: rgb(255,0,140);"><?php echo $this->lang->line('users');?> <?php echo $this->lang->line('list');?></span>
+                                <span><a href="<?php echo site_url('user/new_user'); ?>" style="color: rgb(255,0,140);"><i class="fa fa-plus" style="padding-left:40px;"></i></a></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

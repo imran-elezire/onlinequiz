@@ -3,7 +3,7 @@
 <div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
 	<div class="row">
   		<div class="col-sm-10"><h1><?php echo $result['first_name'].' '.$result['last_name'];?></h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.profilepicturesdp.com/wp-content/uploads/2018/07/profile-picture-empty-7.jpg/<?php echo md5($result['email']);?>?s=100"></a></div>
+    	<div class="col-sm-2"><a href="#" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.profilepicturesdp.com/wp-content/uploads/2018/07/profile-picture-empty-7.jpg/<?php echo md5($result['email']);?>?s=100"></a></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->

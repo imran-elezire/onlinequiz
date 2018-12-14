@@ -62,9 +62,12 @@
 			</div>
 				<div class="form-group">
 					<label for="inputEmail"  ><?php echo $this->lang->line('select_group');?></label> <br>
+          <select name="gids[]"  class="form-control" multiple required>
           <?php foreach($group_list as $key=>$val) {?>
-					<input type="checkbox" name="gids[]"  value="<?php echo $val['gid'] ?>" <?php if($key==0){ echo 'checked'; } ?> > <?php echo $val['group_name'] ?>&nbsp;&nbsp;&nbsp;
+            <option value="<?php echo $val['gid'] ?>" <?php if($key==0){ echo 'selected'; } ?>><?php echo $val['group_name'] ?></option>
+					<!-- <input type="checkbox" name="gids[]"  value="<?php echo $val['gid'] ?>" <?php if($key==0){ echo 'checked'; } ?> > <?php echo $val['group_name'] ?>&nbsp;&nbsp;&nbsp; -->
         <?php } ?>
+      </select>
 			</div>
 
 

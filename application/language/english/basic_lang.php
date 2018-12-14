@@ -17,7 +17,7 @@ $lang['processing'] = "Processing...";
 $lang['install_now'] = "Install Now";
 $lang['email_address'] = "Email Address";
 $lang['password'] = "Password";
-$lang['invalid_login'] = "Email or password invalid.";
+$lang['invalid_login'] = "Mobile No or password invalid.";
 $lang['resend_link'] = "Resend verification link.";
 $lang['invalid_email'] = "Email id not registered";
 $lang['email_not_verified'] = "Email address not verified. <br> <a href='{resend_url}'>Resend</a>  verification link";

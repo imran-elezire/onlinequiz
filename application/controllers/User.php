@@ -152,6 +152,7 @@ class User extends CI_Controller {
 		// fetching user
 		$data['result']=$this->user_model->get_user($uid);
 		$data['user_list']=$this->user_model->get_user_by_usertype('0');
+				$data['department_list']=$this->user_model->department_list(1);
 		$this->load->model("payment_model");
 		$data['payment_history']=$this->payment_model->get_payment_history($uid);
 		// fetching group list

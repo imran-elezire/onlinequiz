@@ -59,7 +59,7 @@
       <p>Submit your new contact no, if your verified it. It will change.</p>
         <div class="form-group">
           <label for="inputEmail" class=""><?php echo $this->lang->line('contact_no');?></label>
-          <input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>"   autofocus>
+          <input type="number" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>"  min="0000000000" max="9999999999" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" required  autofocus>
       </div>
 
 

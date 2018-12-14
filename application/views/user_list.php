@@ -52,6 +52,8 @@ if(count($result)==0){
 	<?php
 }
 foreach($result as $key => $val){
+  if($val['uid']!=$this->session->userdata('logged_in')['uid'])
+  {
 ?>
 <tr>
  <td><?php echo $val['uid'];?></td>
@@ -75,6 +77,7 @@ $active="href=javascript:remove_entry('user/pre_remove_user/".$val['uid']."')";
 </tr>
 
 <?php
+}
 }
 ?>
 </table>

@@ -29,7 +29,7 @@
 
 
 
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('email_address');?></label>
 					<input type="email" id="inputEmail" name="email" value="<?php echo $result['email'];?>" class="form-control" placeholder="<?php echo $this->lang->line('email_address');?>" required autofocus>
 			</div>
@@ -55,11 +55,21 @@
 			</div>
       <div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('department');?></label>
-					<input type="text" name="department"  class="form-control" value="<?php echo $result['department'];?>" placeholder="<?php echo $this->lang->line('department');?>" required  autofocus>
-			</div> -->
+          <select class="form-control" name="department" id="department"  required>
+            <option value>Select Department</option>
+					<?php
+					foreach($department_list as $key => $val){
+						?>
+
+						<option value="<?php echo $val['did'];?>" <?php echo ($val['did']==$result['department'])?'selected':''; ?>><?php echo $val['department_name'];?> </option>
+						<?php
+					}
+					?>
+					</select>
+			</div>
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('contact_no');?></label>
-					<input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>" required  autofocus>
+					<input type="text" name="contact_no"  class="form-control"  value="<?php echo $result['contact_no'];?>"  placeholder="<?php echo $this->lang->line('contact_no');?>"  min="0000000000" max="9999999999" onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" required  autofocus>
 			</div>
       <div class="form-group">
         <label   ><?php echo $this->lang->line('select_group');?></label>

@@ -327,7 +327,9 @@ if(count($qcl)==0){
 
 
 
-	<button class="btn btn-primary loginbtn" type="submit"><?php echo $this->lang->line('submit');?></button>
+	<button class="btn btn-primary loginbtn" type="submit">ADD</button>
+<br><br><br>
+  	<a class="btn btn-primary loginbtn btn-bg" onclick="window.location='<?php echo site_url('quiz'); ?>';" >Submit</a>
 
  <br><br><br>
 		</div>
