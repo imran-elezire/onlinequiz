@@ -547,7 +547,7 @@ Auth function
 			$data['response']=FALSE;
 			$data['message']="Invalid Key !";
 		}
-		else if(!isset($_GET['userid']) || trim($_GET['userid'])=='' || !isset($_GET['fname']) || trim($_GET['fname'])=='' || !isset($_GET['lname']) || trim($_GET['lname'])=='' || !isset($_GET['contact']) || trim($_GET['contact'])=='' || !isset($_GET['designation']) || trim($_GET['designation'])==''  || !isset($_GET['department']) || trim($_GET['department'])==''  || !isset($_GET['employeeId']) || trim($_GET['employeeId'])=='' || !isset($_GET['email']) || trim($_GET['email'])=='' )
+		else if(!isset($_GET['userid']) || trim($_GET['userid'])=='' || !isset($_GET['fname']) || trim($_GET['fname'])=='' || !isset($_GET['lname']) || trim($_GET['lname'])=='' || !isset($_GET['contact']) || trim($_GET['contact'])=='' || !isset($_GET['designation']) || trim($_GET['designation'])==''  || !isset($_GET['department']) || trim($_GET['department'])==''  || !isset($_GET['employeeId']) || trim($_GET['employeeId'])=='' || !isset($_GET['email']) || trim($_GET['email'])=='' || !isset($_GET['usermanger']) || trim($_GET['usermanger'])=='' || !isset($_GET['accesstype']) || trim($_GET['accesstype'])!=1 )
 		{
 			$data['response']=FALSE;
 			$data['message']="All required key are not found !";
