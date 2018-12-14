@@ -236,7 +236,7 @@ $cia_tim_cate=cia_tim_cate($correct_incorrect_unattempted,explode(",",$result['i
 
 
 ?>
-<div class="col-md-12 row-clr" style="background-color:#ffffff;margin-top:-25px;">
+<div class="col-md-12" style="background-color:#ffffff;margin-top:-25px;">
 <div class="row noprint" style="display: inline; float: none;">
 <div class="col-lg-12 sha_div" style="background-image:url('<?php echo base_url('images/result_bg.jpg');?>');background-size:cover;font-size:18px;padding:20px;color:#ffffff;min-height:400px;border-radius:10px;margin-top:40px;">
 <div class="col-lg-12">
@@ -332,10 +332,12 @@ if($result['gen_certificate']=='1'){
 
 
 </div>
+<br>
 
 
 
-</div>
+
+<!-- </div>-->
 
 
 
@@ -343,17 +345,17 @@ if($result['gen_certificate']=='1'){
  
 
 
-  <div class="row" style="display: inline; float: none;">
+  <!-- <div class="row" style="display: inline; float: none;"> -->
      
-<div class="col-md-12 noprint">
+<!-- <div class="col-md-12">
 <br> 
  <div class="login-panel panel panel-default onlyprint" style="overflow-x:auto;">
-		<div class="panel-body"> 
+		<div class="panel-body">  -->
 	
 	
 	
 		 
-<table class="table table-bordered">
+<!-- <table class="table table-bordered">
 <?php 
 if($result['camera_req']=='1'){
 	?>
@@ -373,14 +375,20 @@ if($result['camera_req']=='1'){
 <tr><td><?php echo $this->lang->line('score_obtained');?></td><td><?php echo $result['score_obtained'];?></td></tr>
 <tr><td><?php echo $this->lang->line('status');?></td><td><?php echo $result['result_status'];?></td></tr>
 
-</table>
+</table> -->
   
  
+ <p><span>                      </span></p>
+ <p><span>                      </span></p>
+ <p><span>                      </span></p>
+ <p><span>                      </span></p>
+ <p><span>                      </span></p>
 		</div>
 </div>
-<br>
+
+
  
- <div class="col-md-12" >
+ <div class="col-md-12" style="background-color:#ffffff;">
  <div class="login-panel panel panel-default " style="overflow-x:auto;">
 		<div class="panel-body">
 		 <h3 class="ft_wt"><?php echo $this->lang->line('categorywise');?></h3>
@@ -541,7 +549,7 @@ if($result['camera_req']=='1'){
  
  
 	 <div id="page_break"></div>
- <div class="col-md-12 " >
+ <div class="col-md-12 row-clr" >
  <!-- <div class="login-panel panel panel-default sha_div" style="overflow-x:auto;">
 		<div class="panel-body"> -->
 
@@ -567,14 +575,20 @@ if($this->config->item('google_chart') == true ){
 
         var options = {
           title: '<?php echo $this->lang->line('top_10_result');?> <?php echo $result['quiz_name'];?>',
-          hAxis: {title: '<?php echo $this->lang->line('quiz');?>(<?php echo $this->lang->line('user');?>)', titleTextStyle: {color: 'red'}}
+		  hAxis: {title: '<?php echo $this->lang->line('quiz');?>(<?php echo $this->lang->line('user');?>)', titleTextStyle: {color: '#000000', fontSize: '16', italic: 'false', fontName: 'Rajdhani',}, textStyle : {fontName: 'Rajdhani',}},
+		  bar: {groupWidth: "20%"},
+		  colors: ['#FF008C'],
+		  fontName: 'Rajdhani',
+		  
+		  
+		  
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
     </script>
-		 <div id="chart_div" style="width: 800px; height: 500px;"></div>
+		 <div id="chart_div" style="width: 100%; height: 500px;"></div>
   
 
 <!-- google chart starts -->
@@ -583,17 +597,23 @@ if($this->config->item('google_chart') == true ){
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable(<?php echo $qtime;?>);
+		var data = google.visualization.arrayToDataTable(<?php echo $qtime;?>);
+		
 
         var options = {
-          title: '<?php echo $this->lang->line('time_spent_on_ind');?>'
+		  title: '<?php echo $this->lang->line('time_spent_on_ind');?>',
+		  bar: {groupWidth: "20%"},
+		  colors: ['#FF008C'],
+		  fontName: 'Rajdhani',
+		  hAxis: {titleTextStyle: {color: '#000000', fontSize: '16', italic: 'false', fontName: 'Rajdhani',}, textStyle : {fontName: 'Rajdhani',}},
+		  
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
         chart.draw(data, options);
       }
     </script>
-		 <div id="chart_div2" style="width:800px; height: 500px;"></div>
+		 <div id="chart_div2" style="width:100%; height: 500px;"></div>
 <!-- google chart ends -->
 
 

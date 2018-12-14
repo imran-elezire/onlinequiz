@@ -137,7 +137,7 @@ if($val['question_type']==$this->lang->line('long_answer')){
 
 ?>
 <a href="<?php echo site_url('qbank/edit_question_'.$qn.'/'.$val['qid']);?>"> <i style="color:rgb(255,0,140)" class="fa fa-pencil" aria-hidden="true"></i></a>
-<a href="javascript:remove_entry('qbank/remove_question/<?php echo $val['qid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>
+<!-- <a href="javascript:remove_entry('qbank/remove_question/<?php echo $val['qid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a> -->
 
 </td>
 </tr>

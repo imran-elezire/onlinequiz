@@ -426,16 +426,19 @@ foreach($questions as $qk => $question){
 
 
 
-<div class="col-md-6 col-md-offset-3 login-panel panel panel-default panel-body sha_div" style="overflow-x:auto;">
-	<button class="btn btn-warning" style="border-radius:40px;"  onClick="javascript:review_later();" style="margin-top:2px;" ><?php echo $this->lang->line('review_later');?></button>
+<div class="col-lg-12 footer_buttons" style="overflow-x:auto;">
 
-	<button class="btn btn-info" style="border-radius:40px;" onClick="javascript:clear_response();"  style="margin-top:2px;"  ><?php echo $this->lang->line('clear');?></button>
+<div class="col-lg-8 col-lg-offset-2">
+	<button class="btn btn-warning" style="border-radius:40px;margin-top:5px;width:100px;float: left;"  onClick="javascript:review_later();" style="margin-top:2px;" ><?php echo $this->lang->line('review_later');?></button>
 
-	<button class="btn btn-success" style="border-radius:40px;" id="backbtn" style="visibility:hidden;" onClick="javascript:show_back_question();"  style="margin-top:2px;" ><?php echo $this->lang->line('back');?></button>
+	<button class="btn btn-info" style="border-radius:40px;margin-top:5px;width:50px;float: left;" onClick="javascript:clear_response();"  style="margin-top:2px;"  ><?php echo $this->lang->line('clear');?></button>
 
-	<button class="btn btn-success" style="border-radius:40px;" id="nextbtn" onClick="javascript:show_next_question();" style="margin-top:2px;" ><?php echo $this->lang->line('save_next');?></button>
+	<button class="btn btn-success" style="border-radius:40px;margin-top:5px;width:50px;float: left;" id="backbtn" style="visibility:hidden;" onClick="javascript:show_back_question();"  style="margin-top:2px;" ><?php echo $this->lang->line('back');?></button>
 
-	<button class="btn btn-danger" style="border-radius:40px;" onClick="javascript:cancelmove();" style="margin-top:2px;" ><?php echo $this->lang->line('submit_quiz');?></button>
+	<button class="btn btn-success" style="border-radius:40px;margin-top:5px;width:100px;float: left;" id="nextbtn" onClick="javascript:show_next_question();" style="margin-top:2px;" ><?php echo $this->lang->line('save_next');?></button>
+
+	<button class="btn btn-danger" style="border-radius:40px;margin-top:5px;margin-left:50px;width:100px;float: right;" onClick="javascript:cancelmove();" style="margin-top:2px;" ><?php echo $this->lang->line('submit_quiz');?></button>
+</div>
 </div>
 
 <script>
@@ -471,8 +474,8 @@ function increasectime(){
 <center><b> <?php echo $this->lang->line('really_Want_to_submit');?></b> <br><br>
 <span id="processing"></span>
 
-<a href="javascript:cancelmove();"   class="btn btn-danger"  style="cursor:pointer;"><?php echo $this->lang->line('cancel');?></a> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="javascript:submit_quiz();"   class="btn btn-info"  style="cursor:pointer;"><?php echo $this->lang->line('submit_quiz');?></a>
+<a href="javascript:cancelmove();"   class="btn btn-danger loginbtn"  style="cursor:pointer;"><?php echo $this->lang->line('cancel');?></a> &nbsp; &nbsp; &nbsp; &nbsp;
+<a href="javascript:submit_quiz();"   class="btn btn-info loginbtn"  style="cursor:pointer;"><?php echo $this->lang->line('submit_quiz');?></a>
 
 </center>
 </div>

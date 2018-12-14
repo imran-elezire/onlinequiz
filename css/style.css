@@ -677,18 +677,18 @@ font-size: 30px;
 
 	.panel-info > .panel-heading {
 		color: rgb(255,0,140);
-		background-color: rgb(240, 216, 229); 
-		border-color: rgb(243, 169, 210);
+		background-color: rgb(230, 230, 230); 
+		border-color: rgb(230, 230, 230);
 	  }
 	  .panel-info > .panel-heading + .panel-collapse > .panel-body {
-		border-top-color: rgb(243, 169, 210);
+		border-top-color: rgb(230, 230, 230);
 	  }
 	  .panel-info > .panel-heading .badge {
 		color: rgb(240, 216, 229);
 		background-color: rgb(255,0,140);
 	  }
 	  .panel-info > .panel-footer + .panel-collapse > .panel-body {
-		border-bottom-color: rgb(243, 169, 210);
+		border-bottom-color: rgb(230, 230, 230);
 	  }
 
 	  .panel-footer{

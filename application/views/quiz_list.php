@@ -164,7 +164,7 @@ if($logged_in['su']=='1'){
 	?>
 
 <a href="<?php echo site_url('quiz/edit_quiz/'.$val['quid']);?>"><i style="color:rgb(255,0,140)" class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
-<a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times fa-2x" aria-hidden="true"></i></a>
+<!-- <a href="javascript:remove_entry('quiz/remove_quiz/<?php echo $val['quid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times fa-2x" aria-hidden="true"></i></a> -->
 <?php
 }
 ?>
