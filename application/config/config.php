@@ -41,8 +41,8 @@ $config['open_quiz']=false;
 
 
 // API key for android app
-$config['api_val']="onlinequizAsh";
-$config['api_key']="onlinequiz";
+$config['api_key']="onlinequizAsh";
+$config['auth_key']="onlinequiz";
 
 
 // enable or disable result email. use true or false

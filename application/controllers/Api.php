@@ -508,10 +508,16 @@ function forgot($user_email){
 
 	}
 
+/*
+Auth function
+
+	** Get Key = sid,authkey
+
+*/
 
 	public function auth()
 	{
-	 $authkey=$this->config->item('api_key');
+	 $authkey=$this->config->item('auth_key');
 		if(isset($_GET['sid']) && trim($_GET['sid'])!='' && isset($_GET['authkey']) && trim($_GET['authkey'])!='' && $_GET['authkey']=$authkey)
 		{
 			$sid=$_GET['sid'];
@@ -522,4 +528,38 @@ function forgot($user_email){
 		}
 
 	}
+
+
+	/*
+	getUser function
+
+		** Get Key = authkey,userid,fname,lname,contact,designation,department,employeeId,email,usermanger
+
+	*/
+
+	public function getUser()
+	{
+		$authkey=$this->config->item('auth_key');
+		$data=array();
+
+		if(!isset($_GET['authkey']) || trim($_GET['authkey'])=='' || $_GET['authkey']!=$authkey)
+		{
+			$data['response']=FALSE;
+			$data['message']="Invalid Key !";
+		}
+		else if(!isset($_GET['userid']) || trim($_GET['userid'])=='' || !isset($_GET['fname']) || trim($_GET['fname'])=='' || !isset($_GET['lname']) || trim($_GET['lname'])=='' || !isset($_GET['contact']) || trim($_GET['contact'])=='' || !isset($_GET['designation']) || trim($_GET['designation'])==''  || !isset($_GET['department']) || trim($_GET['department'])==''  || !isset($_GET['employeeId']) || trim($_GET['employeeId'])=='' || !isset($_GET['email']) || trim($_GET['email'])=='' )
+		{
+			$data['response']=FALSE;
+			$data['message']="All required key are not found !";
+		}
+		else
+		{
+			$data['response']=TRUE;
+			$data['message']="All key are valid !";
+		}
+
+		echo json_encode($data);
+	}
+
+
 }
