@@ -8,7 +8,7 @@ class Api extends CI_Controller {
 	   parent::__construct();
 	   $this->load->database();
 	   $this->load->helper('url');
-		
+
 	   $this->load->model("user_model");
 	   $this->load->model("quiz_model");
 	    $this->load->model("api_model");
@@ -16,12 +16,12 @@ class Api extends CI_Controller {
 	   	   $this->load->model("result_model");
 		$this->lang->load('basic', $this->config->item('language'));
 
-		
+
 	 }
 
 	public function index($api_key='0')
 	{
-		exit('I am fine, No syntex error');
+		exit('InCorrect Detsils !');
 
 	}
 
@@ -55,45 +55,45 @@ $groups[]=array('gid'=>$val['gid'],'group_name'=>$val['group_name'].' Price:'.$v
 		$this->db->update('savsoft_users',$userdata);
 
 	}
-	
-	
+
+
  public function api_connect($api_key='',$email='',$password='')
     {
-       
+
     if($this->config->item('api_key') && $this->config->item('api_key') != ''){
     }else{
         exit('API key is not defined in config file or empty!');
     }
-   
+
     if($api_key == ''){
         exit('API key is missing');
     }
-   
+
     if($api_key != $this->config->item('api_key')){
         exit('Invalid API Key');
     }
     $email=urldecode($email);
     $password=(urldecode($password));
 $ur=$this->user_model->login($email,$password);
-             
+
         if($ur['status']=='1'){
-           
+
             // row exist fetch userdata
             $user=$this->user_model->login($email,$password);
-           
-           
+
+
             // validate if user assigned to paid group
             if($user['user']['price'] > '0'){
-               
+
                 // user assigned to paid group now validate expiry date.
                 if($user['user']['subscription_expired'] <= time()){
                     // eubscription expired, redirect to payment page
-                   
+
                     echo $user['user']['uid'];
 exit();
-                   
+
                 }
-               
+
             }
             $user['user']['base_url']=base_url();
             $ck=$user['user']['uid'].time();
@@ -105,21 +105,21 @@ exit();
             );
             $this->db->where('uid',$uid);
             $this->db->update('savsoft_users',$userdata);
-           
+
             print_r(json_encode($user));
         }else{
-             
+
             exit('Invalid email or paswword');
         }
-       
 
-   
-   
+
+
+
     }
-	
-	
+
+
 	function quiz_list($connection_key='',$uid='',$limit='0'){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -131,12 +131,12 @@ exit();
 
 
 		print_r(json_encode($quiz));
-		
-		
+
+
 	}
-	
+
 	function stats($connection_key='',$uid=''){
-			
+
 			$this->db->where('uid',$uid);
 			 $this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -144,7 +144,7 @@ exit();
 			if($auth->num_rows()==0){
 				exit('invalid Connection!');
 			}
-			
+
 			 $quiz=array(
 			 'no_quiz'=>$this->api_model->no_quiz($user),
 			 'no_attempted'=>$this->api_model->no_attempted($user),
@@ -154,13 +154,13 @@ exit();
 
 
 		print_r(json_encode($quiz));
-		
-		
+
+
 	}
-	
-	
+
+
 		function result_list($connection_key='',$uid='',$limit='0'){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -168,21 +168,21 @@ exit();
 			if($auth->num_rows()==0){
 				exit('invalid Connection!');
 			}
-			 
+
 
  		$result=array('result'=>$this->api_model->result_list($user,$limit));
 
 
 		print_r(json_encode($result));
-		
 
-	 
-		
-		
+
+
+
+
 	}
-	
+
 		function get_notification($connection_key='',$uid='',$limit='0'){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -190,23 +190,23 @@ exit();
 			if($auth->num_rows()==0){
 				exit('invalid Connection!');
 			}
-			 
+
 
  		$result=array('result'=>$this->api_model->get_notification($user,$limit));
 
 
 		print_r(json_encode($result));
-		
 
-	 
-		
-		
+
+
+
+
 	}
-	
-	
-	
+
+
+
 		public function myaccount($connection_key='',$uid,$first_name,$last_name,$password){
-		 
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -218,21 +218,21 @@ exit();
 			$userdata=array(
 			'first_name'=>urldecode($first_name),
 			'last_name'=>urldecode($last_name)
-			
+
 			);
-				 			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$this->db->update('savsoft_users',$userdata);
 				exit("Information updated successfully");
 
 			}
-	
-	
-	
-	
+
+
+
+
 		public function validate_quiz($connection_key='',$uid,$quid){
-		 
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -243,8 +243,8 @@ exit();
 		$logged_in=$user;
 		$gid=$logged_in['gid'];
 		$uid=$logged_in['uid'];
-		 
-		
+
+
 		$data['quiz']=$this->quiz_model->get_quiz($quid);
 		// validate assigned group
 		if(!in_array($gid,explode(',',$data['quiz']['gids']))){
@@ -281,19 +281,19 @@ exit();
 		}
 		// insert result row and get rid (result id)
 		$rid=$this->quiz_model->insert_result($quid,$uid);
-		
+
 		echo $rid;
-		
-		
+
+
 	}
 
-	
-	
-	
-	
-	
+
+
+
+
+
 		function attempt($connection_key='',$uid,$rid){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -301,17 +301,17 @@ exit();
 			if($auth->num_rows()==0){
 				exit('invalid Connection!');
 			}
-			
-		
 
-		
+
+
+
 		// get result and quiz info and validate time period
 		$data['quiz']=$this->quiz_model->quiz_result($rid);
 		$data['saved_answers']=$this->quiz_model->saved_answers($rid);
-		
 
-			
-			
+
+
+
 		// end date/time
 		if($data['quiz']['end_date'] < time()){
 		$this->api_model->submit_result($user,$rid);
@@ -319,7 +319,7 @@ exit();
 		exit($this->lang->line('quiz_ended'));
 		 }
 
-		
+
 		// end date/time
 		if(($data['quiz']['start_time']+($data['quiz']['duration']*60)) < time()){
 		$this->api_model->submit_result($user,$rid);
@@ -327,7 +327,7 @@ exit();
 
 		exit($this->lang->line('time_over'));
 		 }
-		// remaining time in seconds 
+		// remaining time in seconds
 		$data['seconds']=($data['quiz']['duration']*60) - (time()- $data['quiz']['start_time']);
 		// get questions
 		$data['questions']=$this->quiz_model->get_questions($data['quiz']['r_qids']);
@@ -338,12 +338,12 @@ exit();
 		$data['uid']=$uid;
 		$data['rid']=$rid;
 		$this->load->view('quiz_attempt_android',$data);
-			
+
 		}
-		
+
 
 		 function submit_quiz($connection_key='',$uid,$rid){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -351,21 +351,21 @@ exit();
 			if($auth->num_rows()==0){
 				exit('invalid Connection!');
 			}
-			
-	 
+
+
 				if($this->api_model->submit_result($user,$rid)){
                    	}else{
-					 	
+
 					}
-			// $rid=$this->session->unset_userdata('rid');		
-					
+			// $rid=$this->session->unset_userdata('rid');
+
 			  echo "<script>Android.showToast('".$rid."');</script>";
 		}
-		
 
-		
+
+
 			function save_answer($connection_key='',$uid,$rid){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -377,21 +377,21 @@ exit();
 		print_r($_POST);
 		  // insert user response and calculate scroe
 		echo $this->api_model->insert_answer($user,$rid);
-		
-		
+
+
 	}
  function set_ind_time($connection_key='',$uid,$rid){
 		  // update questions time spent
 		$this->api_model->set_ind_time($rid);
-		
-		
-	}
-	
-	
 
-	
+
+	}
+
+
+
+
 	function view_result($connection_key='',$uid,$rid){
-			
+
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
 			$auth=$this->db->get('savsoft_users');
@@ -399,9 +399,9 @@ exit();
 			if($auth->num_rows()==0){
 				exit('invalid Connection!');
 			}
-			
+
 		$logged_in=$user;
-		$data['logged_in']=$user;	
+		$data['logged_in']=$user;
 		$data['result']=$this->result_model->get_result($rid);
 		$data['title']=$this->lang->line('result_id').' '.$data['result']['rid'];
 		if($data['result']['view_answer']=='1' || $logged_in['su']=='1'){
@@ -419,7 +419,7 @@ exit();
      $value[]=array($val['email'].' ('.$val['first_name']." ".$val['last_name'].')',intval($val['percentage_obtained']));
      }
      $data['value']=json_encode($value);
-	 
+
 	// time spent on individual questions
 	$correct_incorrect=explode(',',$data['result']['score_individual']);
 	 $qtime[]=array($this->lang->line('question_no'),$this->lang->line('time_in_sec'));
@@ -440,12 +440,12 @@ exit();
 	 $data['qtime']=json_encode($qtime);
 	 $data['percentile'] = $this->result_model->get_percentile($data['result']['quid'], $data['result']['uid'], $data['result']['score_obtained']);
 
-	  
-	 
-	 
+
+
+
 		$this->load->view('view_result_android',$data);
-		 
-		
+
+
 	}
 
 
@@ -470,7 +470,7 @@ if($this->api_model->register($email,$first_name,$last_name,$password,$contact_n
 						}
 						}else{
 						  	  exit($this->lang->line('error_to_add_data'));
-						
+
 						}
 
 
@@ -485,11 +485,11 @@ function forgot($user_email){
 	$user_email=urldecode($user_email);
 		 if($this->api_model->reset_password($user_email)){
 				exit($this->lang->line('password_updated'));
-						
+
 			}else{
 				exit($this->lang->line('email_doesnot_exist'));
-						
-	}		
+
+	}
 
 }
 
@@ -498,13 +498,28 @@ function forgot($user_email){
 
 
 
-	
+
 	function logout($connection_key='',$uid){
 			$userdata=array('connection_key'=>'');
 			$this->db->where('uid',$uid);
 			$this->db->where('connection_key',$connection_key);
-			$auth=$this->db->update('savsoft_users',$userdata);		
+			$auth=$this->db->update('savsoft_users',$userdata);
   exit("Account logged out successfully!");
-		
+
+	}
+
+
+	public function auth()
+	{
+	 $authkey=$this->config->item('api_key');
+		if(isset($_GET['sid']) && trim($_GET['sid'])!='' && isset($_GET['authkey']) && trim($_GET['authkey'])!='' && $_GET['authkey']=$authkey)
+		{
+			$sid=$_GET['sid'];
+			echo $sid;
+		}
+		else {
+			echo "Invalid Details !";
+		}
+
 	}
 }

@@ -178,6 +178,8 @@ class User extends CI_Controller {
 			}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required');
+		//$this->form_validation->set_rules('password', 'Password', 'required');
+		//$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required');
 
 						$this->form_validation->set_rules('first_name', 'First Name', 'required');
 						$this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -190,6 +192,11 @@ class User extends CI_Controller {
                      $this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
 					redirect('user/edit_user/'.$uid);
                 }
+								else if($this->input->post('password')!=$this->input->post('confirm_password'))
+								{
+									$this->session->set_flashdata('message', "<div class='alert alert-danger'>Password do not match !</div>");
+			 redirect('user/edit_user/'.$uid);
+								}
                 else
                 {
 					if($this->user_model->update_user($uid)){

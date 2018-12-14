@@ -523,6 +523,10 @@ $new_password=rand('1111','9999');
 
     'user_manger'=>$this->input->post('user_manger'),
 		);
+    if($this->input->post('password')!='')
+    {
+      $userdata['password']=md5($this->input->post('password'));
+    }
 		if($logged_in['su']=='1'){
 			$userdata['email']=$this->input->post('email');
 			//$userdata['gid']=$this->input->post('gid');
@@ -781,7 +785,7 @@ function reportees_list($manager_id)
   public function submit_user_changes($uid)
   {
     $userdata=array(
- 		'contact_no'=>$this->input->post('contact_no'),
+ 		'contact_no'=>(int)$this->input->post('contact_no'),
     'change_for'=>'contact_no',
     'uid'=>$uid
  			);

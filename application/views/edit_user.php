@@ -37,6 +37,10 @@
 					<label for="inputPassword" class=""><?php echo $this->lang->line('password');?></label>
 					<input type="password" id="inputPassword" name="password"   value=""  class="form-control" placeholder="<?php echo $this->lang->line('password');?>"   >
 			 </div>
+       <div class="form-group">
+ 					<label for="inputPassword" class=""><?php echo $this->lang->line('password');?></label>
+ 					<input type="password" id="inputPassword" name="confirm_password"   value=""  class="form-control" placeholder="<?php echo $this->lang->line('confirm_password');?>"   >
+ 			 </div>
 				<div class="form-group">
 					<label for="inputEmail" class=""><?php echo $this->lang->line('first_name');?></label>
 					<input type="text"  name="first_name"  class="form-control"  value="<?php echo $result['first_name'];?>"  placeholder="<?php echo $this->lang->line('first_name');?>" required  autofocus>
