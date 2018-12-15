@@ -32,7 +32,7 @@
 <div class="col-md-12 row-clr" style="background-color:#ffffff;height:100%;margin-top:-25px;">
 <div class="row" style="display: inline; float: none;margin-top:10px;">
 
-<div class="col-md-4" style="margin-top:20px;">
+<div class="col-md-4" style="margin-top:20px;font-size:16px">
                     <div class="panel panel-info sha_div">
                         <div class="panel-heading">
                             <div class="row">
@@ -40,7 +40,7 @@
                                 <i class="fa fa-user-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $num_users;?></div>
+                                    <div class="huge" style="font-size:24px;font-weight:bold;"><?php echo $num_users;?></div>
                                     <div><?php echo $this->lang->line('no_registered_user');?> </div>
                                 </div>
                             </div>
@@ -48,8 +48,8 @@
                         <a href="<?php echo site_url('user');?>">
                             <div class="panel-footer">
                                 <span class="pull-left" style="color: rgb(255,0,140);"><?php echo $this->lang->line('users');?> <?php echo $this->lang->line('list');?></span>
-                                <span><a href="<?php echo site_url('user/new_user'); ?>" style="color: rgb(255,0,140);"><i class="fa fa-plus" style="padding-left:40px;"></i></a></span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <span><a href="<?php echo site_url('user/new_user'); ?>" style="color: rgb(255,0,140);"><i class="fa fa-plus fa-2x" style="padding-left:40px;"></i></a></span>
+                                <span class="pull-right"><a href="<?php echo site_url('user');?>" style="color: rgb(255,0,140);"><i class="fa fa-arrow-circle-right fa-2x"></i></a></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -57,7 +57,7 @@
 </div>
 
 
-<div class="col-md-4" style="margin-top:20px;">
+<div class="col-md-4" style="margin-top:20px;font-size:16px">
                     <div class="panel panel-info sha_div">
                         <div class="panel-heading">
                             <div class="row">
@@ -65,22 +65,23 @@
                                     <i class="fa fa-comments-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $num_quiz;?></div>
+                                    <div class="huge" style="font-size:24px;font-weight:bold;"><?php echo $num_quiz;?></div>
                                     <div><?php echo $this->lang->line('no_registered_quiz');?> </div>
                                 </div>
                             </div>
                         </div>
                         <a href="<?php echo site_url('quiz');?>">
                             <div class="panel-footer">
-                                <span class="pull-left"><?php echo $this->lang->line('quiz');?> <?php echo $this->lang->line('list');?></span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <span class="pull-left" style="color: rgb(255,0,140);"><?php echo $this->lang->line('quiz');?> <?php echo $this->lang->line('list');?></span>
+                                <span><a href="<?php echo site_url('quiz/add_new'); ?>" style="color: rgb(255,0,140);"><i class="fa fa-plus fa-2x" style="padding-left:40px;"></i></a></span>
+                                <span class="pull-right"><a href="<?php echo site_url('quiz');?>" style="color: rgb(255,0,140);"><i class="fa fa-arrow-circle-right fa-2x"></i></a></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
 </div>
 
-<div class="col-md-4" style="margin-top:20px;">
+<div class="col-md-4" style="margin-top:20px;font-size:16px">
                     <div class="panel panel-info sha_div">
                         <div class="panel-heading">
                             <div class="row">
@@ -88,14 +89,16 @@
                                     <i class="fa fa-file-text-o fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $num_qbank;?></div>
+                                    <div class="huge" style="font-size:24px;font-weight:bold;"><?php echo $num_qbank;?></div>
                                     <div><?php echo $this->lang->line('no_questions_qbank');?></div>
                                 </div>
                             </div>
                         </div>
                         <a href="<?php echo site_url('qbank');?>">
-                            <div class="panel-footer"><?php echo $this->lang->line('question');?> <?php echo $this->lang->line('list');?></span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="panel-footer">
+                            <span class="pull-left" style="color: rgb(255,0,140);"><?php echo $this->lang->line('question');?> <?php echo $this->lang->line('list');?></span>
+                            <span><a href="<?php echo site_url('qbank/pre_new_question');?>" style="color: rgb(255,0,140);"><i class="fa fa-plus fa-2x" style="padding-left:40px;"></i></a></span>
+                                <span class="pull-right"><a href="<?php echo site_url('qbank');?>" style="color: rgb(255,0,140);"><i class="fa fa-arrow-circle-right fa-2x"></i></a></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
