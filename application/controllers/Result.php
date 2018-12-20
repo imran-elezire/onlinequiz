@@ -411,6 +411,14 @@ $tm=time();
 			$this->load->view('footer',$data);
 
 
+
+		}
+
+
+		public function view_certificateash($rid)
+		{
+			$this->load->library('Pdf');
+			$this->load->view('view_certificateash');
 		}
 
 }

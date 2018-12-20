@@ -99,6 +99,7 @@ class Login extends CI_Controller {
 		$username=urldecode($p1);
 		$password=urldecode($p2);
 		}
+
 		 $status=$this->user_model->login($username,$password);
 		if($status['status']=='1'){
 			$this->load->helper('url');

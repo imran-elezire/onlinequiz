@@ -10,7 +10,7 @@ $logged_in=$this->session->userdata('logged_in');
 if($logged_in['su']=='1'){
 	?>
 
-	
+
    <div class="row">
 
   <div class="col-lg-12">
@@ -41,7 +41,7 @@ foreach($group_list as $gk => $group){
 <input type="text" class="in_sel " name="date1" value="" placeholder="<?php echo $this->lang->line('date_from');?>">
 
  <input type="text" class="in_sel " name="date2" value="" placeholder="<?php echo $this->lang->line('date_to');?>"><span>  </span>
- 
+
 
  <button class="btn btn-default" style="background-image: linear-gradient(to bottom, rgb(255, 0, 140),rgb(255, 0, 140),rgb(226, 15, 68));color:#ffffff;" type="submit"><?php echo $this->lang->line('generate_report');?></button>
     </div><!-- /input-group -->

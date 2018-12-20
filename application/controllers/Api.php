@@ -533,7 +533,7 @@ Auth function
 	/*
 	getUser function
 
-		** Get Key = authkey,userid,fname,lname,contact,designation,department,employeeId,email,usermanger
+		** Get Key = authkey,userid,fname,lname,contact,designation,department,employeeId,email,usermanager,accesstype
 
 	*/
 
@@ -547,19 +547,64 @@ Auth function
 			$data['response']=FALSE;
 			$data['message']="Invalid Key !";
 		}
-		else if(!isset($_GET['userid']) || trim($_GET['userid'])=='' || !isset($_GET['fname']) || trim($_GET['fname'])=='' || !isset($_GET['lname']) || trim($_GET['lname'])=='' || !isset($_GET['contact']) || trim($_GET['contact'])=='' || !isset($_GET['designation']) || trim($_GET['designation'])==''  || !isset($_GET['department']) || trim($_GET['department'])==''  || !isset($_GET['employeeId']) || trim($_GET['employeeId'])=='' || !isset($_GET['email']) || trim($_GET['email'])=='' || !isset($_GET['usermanger']) || trim($_GET['usermanger'])=='' || !isset($_GET['accesstype']) || trim($_GET['accesstype'])!=1 )
+		else if(!isset($_GET['userid']) || trim($_GET['userid'])=='' || !isset($_GET['fname']) || trim($_GET['fname'])=='' || !isset($_GET['lname']) || trim($_GET['lname'])=='' || !isset($_GET['contact']) || trim($_GET['contact'])=='' || !isset($_GET['designation']) || trim($_GET['designation'])==''  || !isset($_GET['department']) || trim($_GET['department'])==''  || !isset($_GET['employeeId']) || trim($_GET['employeeId'])=='' || !isset($_GET['email']) || trim($_GET['email'])=='' || !isset($_GET['usermanager']) || trim($_GET['usermanager'])=='' || !isset($_GET['accesstype']) || trim($_GET['accesstype'])!=1 )
 		{
 			$data['response']=FALSE;
 			$data['message']="All required key are not found !";
 		}
 		else
 		{
-			$data['response']=TRUE;
-			$data['message']="All key are valid !";
+
+
+			$check=$this->user_model->check_user_api();
+
+
+
+			$data['response']=$check['response'];
+			$data['message']=$check['message'];
 		}
 
 		echo json_encode($data);
 	}
+
+
+
+		/*
+		updateUser function
+
+			** Get Key = authkey,userid,fname,lname,designation,department,employeeId,email,accesstype
+
+		*/
+
+		public function updateUser()
+		{
+			$authkey=$this->config->item('auth_key');
+			$data=array();
+
+			if(!isset($_GET['authkey']) || trim($_GET['authkey'])=='' || $_GET['authkey']!=$authkey)
+			{
+				$data['response']=FALSE;
+				$data['message']="Invalid Key !";
+			}
+			else if(!isset($_GET['userid']) || trim($_GET['userid'])=='' || !isset($_GET['fname']) || trim($_GET['fname'])=='' || !isset($_GET['lname']) || trim($_GET['lname'])==''  || !isset($_GET['designation']) || trim($_GET['designation'])==''  || !isset($_GET['department']) || trim($_GET['department'])==''  || !isset($_GET['employeeId']) || trim($_GET['employeeId'])=='' || !isset($_GET['email']) || trim($_GET['email'])=='' ||  !isset($_GET['accesstype']) || trim($_GET['accesstype'])!=1 )
+			{
+				$data['response']=FALSE;
+				$data['message']="All required key are not found !";
+			}
+			else
+			{
+
+
+				$check=$this->user_model->update_user_api();
+
+
+
+				$data['response']=$check['response'];
+				$data['message']=$check['message'];
+			}
+
+			echo json_encode($data);
+		}
 
 
 }

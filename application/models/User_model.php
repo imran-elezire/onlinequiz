@@ -350,7 +350,8 @@ return $revenue;
 		'gid'=>$this->input->post('gid'),
 		'subscription_expired'=>strtotime($this->input->post('subscription_expired')),
     'user_manger'=>$this->input->post('user_manger'),
-		'su'=>$this->input->post('su')
+		'su'=>$this->input->post('su'),
+    'user_id'=>bin2hex(openssl_random_pseudo_bytes(4))
 		);
 
 		if($this->db->insert('savsoft_users',$userdata)){
@@ -376,7 +377,8 @@ return $revenue;
     'department'=>$this->input->post('department'),
 		'gid'=>$this->input->post('gid'),
     'user_manger'=>$this->input->post('user_manger'),
-		'su'=>'0'
+		'su'=>'0',
+    'user_id'=>bin2hex(openssl_random_pseudo_bytes(4))
 		);
 		$veri_code=rand('1111','9999');
 		 if($this->config->item('verify_email')){
@@ -760,6 +762,8 @@ function reportees_list($manager_id)
  	 }
 
 
+
+
   }
 
 
@@ -840,6 +844,120 @@ function reportees_list($manager_id)
 
           }
       }
+  }
+
+
+
+  function check_user_api()
+  {
+    $data =array();
+    $data = array("response"=>False,"message"=>"Tecnical Error");
+    $this->db->where("user_id",$this->input->get("userid"));
+
+    $checkuser = $this->db->get("savsoft_users");
+
+    if($checkuser->num_rows()==0)
+    {
+      $check_contact = $this->db->where("contact_no",$this->input->get("contact"))->from("savsoft_users")->get();
+      if($check_contact->num_rows()!=0)
+      {
+        return array("response"=>FALSE,"message"=>"Contact No mismatch,Contact Admin");
+      }
+      $insertdata = array("user_id"=>$this->input->get("userid"),
+      "first_name"=>$this->input->get("fname"),
+      "last_name"=>$this->input->get("lname"),
+      "contact_no"=>$this->input->get("contact"),
+      "designation"=>$this->input->get("designation"),
+      "department"=>$this->input->get("department"),
+      "employee_id"=>$this->input->get("employeeId"),
+      "email"=>$this->input->get("email"),
+      "user_manger"=>$this->input->get("usermanager"),
+      "accesstype"=>1,
+      "gid"=>1,
+      "password"=>bin2hex(openssl_random_pseudo_bytes(14))
+      );
+        $this->db->insert("savsoft_users",$insertdata);
+
+        $data = array("response"=>true,"message"=>"User Inserted");
+
+    }
+
+    $this->db->where("user_id",$this->input->get("userid"));
+    $this -> db -> join('savsoft_group', 'savsoft_users.gid=savsoft_group.gid');
+    $this->db->limit(1);
+    $checkuser = $this->db->get("savsoft_users");
+
+      $user = $checkuser->row_array();
+      if($user['user_status']=='Active')
+      {
+        $this->db->where("uid",$user['uid']);
+        $token=md5($user['uid'].time());
+        $this->db->update('savsoft_users',array("web_token"=>$token));
+        $user['token']=$token;
+        $user['base_url']=base_url();
+  			// creating login cookie
+  			$this->session->set_userdata('logged_in', $user);
+        $data["response"] =TRUE;
+        $data["message"] = "Login Sucessfully ";
+      }
+      else
+      {
+        $data["response"] =false;
+        $data["message"] = "User is not active,Contact admin";
+      }
+
+return $data;
+
+  }
+
+
+  function update_user_api()
+  {
+    $data =array();
+    $data = array("response"=>False,"message"=>"Tecnical Error");
+    $this->db->where("user_id",$this->input->get("userid"));
+
+    $checkuser = $this->db->get("savsoft_users");
+
+    if($checkuser->num_rows()!=0)
+    {
+      $user=$checkuser->row_array();
+      if($user['contact_no']!=$this->input->get("contact"))
+      {
+        $check_contact = $this->db->where("contact_no",$this->input->get("contact"))->from("savsoft_users")->get();
+        if($check_contact->num_rows()!=0)
+        {
+          return array("response"=>FALSE,"message"=>"Contact No mismatch,Contact Admin");
+
+        }
+      }
+
+      $updatedata = array(
+      "first_name"=>$this->input->get("fname"),
+      "last_name"=>$this->input->get("lname"),
+      "designation"=>$this->input->get("designation"),
+      "department"=>$this->input->get("department"),
+      "employee_id"=>$this->input->get("employeeId"),
+      "email"=>$this->input->get("email"),
+      "accesstype"=>1,
+      "gid"=>1
+
+      );
+      $this->db->where("user_id",$this->input->get("userid"));
+        $this->db->update("savsoft_users",$updatedata);
+
+        $data = array("response"=>TRUE,"message"=>"User Updated");
+
+    }
+    else
+    {
+      $data = array("response"=>FALSE,"message"=>"User Not found ");
+    }
+
+
+
+  return $data;
+
   }
 
 
