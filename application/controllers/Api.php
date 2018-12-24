@@ -522,9 +522,10 @@ Auth function
 		if(isset($_GET['sid']) && trim($_GET['sid'])!='' && isset($_GET['authkey']) && trim($_GET['authkey'])!='' && $_GET['authkey']==$authkey)
 		{
 			$sid=$_GET['sid'];
+			$authlink=$this->config->item('auth_link');
 
 			$ch = curl_init();
-			curl_setopt($ch,CURLOPT_URL,"localhost/onlinequiz/index.php/api/testing?sid=".$sid);
+			curl_setopt($ch,CURLOPT_URL,$authlink."?sid=".$sid);
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 			curl_setopt($ch,CURLOPT_HEADER, false);
 
@@ -650,11 +651,11 @@ Auth function
 		{
 			$sid=$_GET['sid'];
 			$data["execute"] = TRUE;
-			$data['userid'] = "123312";
+			$data['userid'] = "123312244";
 			$data['fname'] = "Ashqq21";
 			$data['lname'] = "Kuma";
 			$data['email'] = "aassdd@gmail.com";
-			$data['contact'] = "1234567890";
+			$data['contact'] = "1234667890";
 			$data['designation'] = "dsaa";
 
 			$data['employeeid'] = "54asdad";

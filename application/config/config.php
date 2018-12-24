@@ -44,6 +44,8 @@ $config['open_quiz']=false;
 $config['api_key']="onlinequizAsh";
 $config['auth_key']="onlinequiz";
 
+$config['auth_link']="localhost/onlinequiz/index.php/api/testing";
+
 
 // enable or disable result email. use true or false
 $config['allow_result_email']=true;
