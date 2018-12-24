@@ -517,11 +517,49 @@ Auth function
 
 	public function auth()
 	{
-	 $authkey=$this->config->item('auth_key');
-		if(isset($_GET['sid']) && trim($_GET['sid'])!='' && isset($_GET['authkey']) && trim($_GET['authkey'])!='' && $_GET['authkey']=$authkey)
+	  $authkey=$this->config->item('auth_key');
+
+		if(isset($_GET['sid']) && trim($_GET['sid'])!='' && isset($_GET['authkey']) && trim($_GET['authkey'])!='' && $_GET['authkey']==$authkey)
 		{
 			$sid=$_GET['sid'];
-			echo $sid;
+
+			$ch = curl_init();
+			curl_setopt($ch,CURLOPT_URL,"localhost/onlinequiz/index.php/api/testing?sid=".$sid);
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+			curl_setopt($ch,CURLOPT_HEADER, false);
+
+			$result=curl_exec($ch);
+
+			curl_close($ch);
+
+			$userdata = json_decode($result);
+
+
+			if($userdata->execute==TRUE)
+			{
+				if(!isset($userdata->userid) || trim($userdata->userid)=='' || !isset($userdata->fname) || trim($userdata->fname)=='' || !isset($userdata->lname) || trim($userdata->lname)=='' || !isset($userdata->contact) || trim($userdata->contact)=='' || !isset($userdata->designation) || trim($userdata->designation)==''    || !isset($userdata->employeeid) || trim($userdata->employeeid)=='' || !isset($userdata->email) || trim($userdata->email)=='' || !isset($userdata->usermanager) || trim($userdata->usermanager)=='' || !isset($userdata->accesstype) || trim($userdata->accesstype)=="" )
+				{
+					echo "<script>alert('All correct data is not accessible !')</script>";
+				}
+				else
+				{
+					$check=$this->user_model->user_login_api($userdata);
+					if($check["response"]==FALSE)
+					{$this->session->unset_userdata('logged_in');
+						echo "<script>alert('".$check["message"]."')</script>";
+					}
+					else
+					 {
+						echo "<script>alert('".$check["message"]."')</script>";
+					 }
+				}
+			}
+			else
+			{
+				echo "<script>alert('".$userdata->message."')</script>";
+			}
+
+
 		}
 		else {
 			echo "Invalid Details !";
@@ -602,6 +640,29 @@ Auth function
 				$data['response']=$check['response'];
 				$data['message']=$check['message'];
 			}
+
+			echo json_encode($data);
+		}
+
+//code for email,mobile validate
+//What they send in user manager
+		public function testing()
+		{
+			$sid=$_GET['sid'];
+			$data["execute"] = TRUE;
+			$data['userid'] = "123312";
+			$data['fname'] = "Ashqq21";
+			$data['lname'] = "Kuma";
+			$data['email'] = "aassdd@gmail.com";
+			$data['contact'] = "1234567890";
+			$data['designation'] = "dsaa";
+
+			$data['employeeid'] = "54asdad";
+			$data['usermanager'] = "Assf";
+			$data['accesstype'] = 2;
+			$data['message'] = "";
+
+
 
 			echo json_encode($data);
 		}

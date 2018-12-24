@@ -36,9 +36,10 @@ if(count($department_list)==0){
 }
 
 foreach($department_list as $key => $val){
+  /*onBlur="updatedepartment(this.value,'<?php echo $val['did'];?>');" */
 ?>
 <tr>
- <td><input type="text"   class="form-control"  value="<?php echo $val['department_name'];?>" onBlur="updatedepartment(this.value,'<?php echo $val['did'];?>');" ></td>
+ <td><input type="text"   class="form-control"  value="<?php echo $val['department_name'];?>"  disabled></td>
 <td>
 
 <a href="<?php echo site_url('user/remove_department/'.$val['did'].'/'.(($val['status']==0)?1:0));?>" class="btn btn-xs <?php echo ($val['status']==0)?"btn-success":"btn-danger" ?>"><?php echo ($val['status']==0)?"Enable":"Disable" ?></a>

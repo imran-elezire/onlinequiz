@@ -962,6 +962,119 @@ return $data;
 
 
 
+  public function check_group($degignation,$accesstype)
+  {
+    $query = $this->db->where("did",$accesstype)->from("savsoft_department")->get();
+    if($query->num_rows()!=0)
+    {
+      $department=$query->row_array();
+      $querygroup = $this->db->where("group_name",$department["department_name"]." ".$degignation)->from("savsoft_group")->get();
+      if($querygroup->num_rows()!=0)
+      {
+        $group=$querygroup->row_array();
+        return $group["gid"];
+      }
+      else
+       {
+        $this->db->insert("savsoft_group",array("group_name"=>$department["department_name"]." ".$degignation));
+        return $this->db->insert_id();
+       }
+    }
+    else
+    {
+      return 0;
+    }
+
+  }
+
+
+  public function user_login_api($userdata)
+  {
+    $data =array();
+    $data = array("response"=>False,"message"=>"Tecnical Error");
+
+    $gid = $this->check_group($userdata->designation,$userdata->accesstype);
+
+    $insertdata = array("user_id"=>$userdata->userid,
+    "first_name"=>$userdata->fname,
+    "last_name"=>$userdata->lname,
+    "contact_no"=>$userdata->contact,
+    "designation"=>$userdata->designation,
+    "department"=>$userdata->accesstype,
+    "employee_id"=>$userdata->employeeid,
+    "email"=>$userdata->email,
+    "user_manger"=>$userdata->usermanager,
+    "accesstype"=>$userdata->accesstype,
+    "gid"=>$gid,
+    "password"=>bin2hex(openssl_random_pseudo_bytes(14))
+    );
+
+
+
+    $this->db->where("user_id",$userdata->userid);
+
+    $checkuser = $this->db->get("savsoft_users");
+
+    if($checkuser->num_rows()==0)
+    {
+      $check_contact = $this->db->where("contact_no",$userdata->contact)->from("savsoft_users")->get();
+      if($check_contact->num_rows()!=0)
+      {
+        return array("response"=>FALSE,"message"=>"Contact No mismatch,Contact Admin");
+      }
+
+        $this->db->insert("savsoft_users",$insertdata);
+
+        $data = array("response"=>true,"message"=>"User Inserted");
+
+    }
+    else
+    {
+      $user=$checkuser->row_array();
+      if($user['contact_no']!=$userdata->contact)
+      {
+        $check_contact = $this->db->where("contact_no",$userdata->contact)->from("savsoft_users")->get();
+        if($check_contact->num_rows()!=0)
+        {
+          return array("response"=>FALSE,"message"=>"Contact No mismatch,Contact Admin");
+
+        }
+      }
+
+
+      $this->db->where("user_id",$userdata->userid);
+        $this->db->update("savsoft_users",$insertdata);
+    }
+
+    $this->db->where("user_id",$userdata->userid);
+    $this -> db -> join('savsoft_group', 'savsoft_users.gid=savsoft_group.gid');
+    $this->db->limit(1);
+    $checkuser = $this->db->get("savsoft_users");
+
+      $user = $checkuser->row_array();
+      if($user['user_status']=='Active')
+      {
+        $this->db->where("uid",$user['uid']);
+        $token=md5($user['uid'].time());
+        $this->db->update('savsoft_users',array("web_token"=>$token));
+        $user['token']=$token;
+        $user['base_url']=base_url();
+        // creating login cookie
+        $this->session->set_userdata('logged_in', $user);
+        $data["response"] =TRUE;
+        $data["message"] = "Login Sucessfully ";
+      }
+      else
+      {
+        $data["response"] =false;
+        $data["message"] = "User is not active,Contact admin";
+      }
+
+return $data;
+  }
+
+
+
 
 }
 
