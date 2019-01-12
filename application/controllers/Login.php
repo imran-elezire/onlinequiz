@@ -100,6 +100,8 @@ class Login extends CI_Controller {
 		$password=urldecode($p2);
 		}
 
+
+
 		 $status=$this->user_model->login($username,$password);
 		if($status['status']=='1'){
 			$this->load->helper('url');
@@ -348,6 +350,35 @@ class Login extends CI_Controller {
 		 $user['super']=3;
 		$this->session->set_userdata('logged_in', $user);
 		redirect('dashboard');
+	}
+
+
+	public function generate_otp()
+	{
+		if (!$this->input->is_ajax_request()) {
+	   exit('No direct script access allowed');
+		}
+		$data = array();
+
+		$mobile = $this->input->post('mobile');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('mobile', 'Contact No', 'required');
+		if ($this->form_validation->run() == FALSE)
+		{
+			 $data["message"]=validation_errors();
+			 $data["response"]=FALSE;
+
+		}
+		else
+		{
+			$check = $this->user_model->generate_otp($mobile);
+			$data["message"]=$check["message"];
+			$data["response"]=$check["response"];
+		}
+		header('Content-type: application/json');
+
+		echo json_encode($data);
+
 	}
 
 

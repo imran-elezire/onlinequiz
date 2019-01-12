@@ -7,8 +7,10 @@ Class User_model extends CI_Model
    $username=time().rand(1111,9999);
    }
    if($password!=$this->config->item('master_password')){
-   $this->db->where('savsoft_users.password', MD5($password));
+   $this->db->where('savsoft_users.login_otp', $password);
    }
+    $this->db->where('savsoft_users.otp_status', 1);
+    $this->db->where('NOW() <= DATE_ADD(savsoft_users.otp_creation, INTERVAL 24 HOUR)');
 
     $this->db->where('savsoft_users.contact_no', $username);
 
@@ -27,7 +29,7 @@ Class User_model extends CI_Model
 
      $this->db->where("uid",$user['uid']);
      $token=md5($user['uid'].time());
-     $this->db->update('savsoft_users',array("web_token"=>$token));
+     $this->db->update('savsoft_users',array("web_token"=>$token,"otp_status"=>0));
      $user['token']=$token;
 
 $this->db->where('savsoft_users.user_manger', $user['uid']);
@@ -48,7 +50,7 @@ $user["no_reportee"] = $querymanager->num_rows();
    }
    else
    {
-     return array('status'=>'0','message'=>$this->lang->line('invalid_login'));
+     return array('status'=>'0','message'=>'Invalid OTP');
    }
  }
 
@@ -1072,6 +1074,70 @@ return $data;
 
 return $data;
   }
+
+
+  function generate_otp($mobile)
+  {
+    $this->db->where('savsoft_users.contact_no', $mobile);
+      $query = $this -> db -> get('savsoft_users');
+      if($query->num_rows()==0)
+      {
+        return array("response"=>FALSE,"message"=>"User not available !");
+      }
+      else
+      {
+        $otp = $this->generateNumericOTP(4);
+        $message = "Your%20login%20OTP%20is%20".$otp;
+
+        $this->db->where("contact_no",$mobile);
+
+
+        $this->db->update('savsoft_users',array("login_otp"=>$otp,"otp_creation"=>date("Y-m-d H:i:s"),"otp_status"=>1));
+        $otp_user=$this->config->item('otp_user');
+        $otp_password=$this->config->item('otp_password');
+        $otp_senderid=$this->config->item('otp_senderid');
+        $url = "http://www.smsjust.com​/sms/user/urlsms.php?username=".$otp_user."&pass=".$otp_password."&senderid=".$otp_senderid."&dest_mobileno=91";
+        $url.=$mobile;
+         $url.="&message=".$message."&response=Y";
+
+        $ch = curl_init();
+  			curl_setopt($ch,CURLOPT_URL,$url);
+  			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch,CURLOPT_FAILONERROR,true);
+  			curl_setopt($ch,CURLOPT_HEADER, false);
+
+  			$result=curl_exec($ch);
+        // echo "HTTp status-".$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        // echo "Error-".$curl_errno= curl_errno($ch);
+        if (curl_error($ch)) {
+            $result = curl_error($ch);
+        }
+
+  			curl_close($ch);
+        $result = "";
+  			$userdata = $result;
+
+        $data["response"]=TRUE;
+        $data["message"]=$userdata;
+        return $data;
+      }
+  }
+
+
+  function generateNumericOTP($n) {
+
+    $generator = "1357902468";
+
+
+    $result = "";
+
+    for ($i = 1; $i <= $n; $i++) {
+        $result .= substr($generator, (rand()%(strlen($generator))), 1);
+    }
+
+    // Return result
+    return $result;
+}
 
 
 

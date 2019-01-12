@@ -853,3 +853,34 @@ function update_check(sq_version){
 		});
 
 }
+
+
+$(document).ready(function(){
+	$(".otp-button").click(function() {
+			$("#err-login").html('');
+		$("#err").html("<div class='alert alert-danger'>Please Wait ...</div>");
+		var mobile = $("#contact_no").val();
+
+		$.ajax({
+			type: "post",
+			data : {mobile:mobile},
+			url : base_url+"index.php/login/generate_otp",
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				if(data.response==true)
+				{
+					$(".otp-login").css("display","block");
+					$(".next-login").css("display","none");
+					$(".submit-login").css("display","block");
+					$("#contact_no").prop('readonly', true);
+						$("#err").html('');
+				}
+				else
+				{
+					$("#err").html("<div class='alert alert-danger'>"+data.message+"</div>");
+				}
+			}
+		});
+	});
+});

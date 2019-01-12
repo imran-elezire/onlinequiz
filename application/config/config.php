@@ -7,6 +7,10 @@ include('sq_config.php');
 |--------------------------------------------------------------------------
 |
 */
+$config['otp_user']='ottomate_tran';
+$config['otp_password']='Smart@1234';
+$config['otp_senderid']='OTTOMT';
+
 $config['base_url'] = $sq_base_url;
 
 

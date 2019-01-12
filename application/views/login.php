@@ -24,36 +24,42 @@
 		<?php
 		if($this->session->flashdata('message')){
 			?>
-			<div class="alert alert-danger">
+			<div id="err-login"><div class="alert alert-danger">
 			<?php echo str_replace('{resend_url}',site_url('login/resend'),$this->session->flashdata('message'));?>
-			</div>
+		</div></div>
 		<?php
 		}
 		?>
+		<div id="err"></div>
 
-		<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('email_address');?></label>
+<div class="mobile-login">
+		<label for="inputEmail" class="sr-only"><?php echo $this->lang->line('contact_no');?></label>
 		<fieldset class="page-signin-form-group form-group form-group-lg">
                   <!-- <div class="page-signin-icon text-muted"><i class="fa fa-user"></i></div> -->
-                  <input class="page-signin-form-control form-control" name="mobile"  placeholder="<?php echo $this->lang->line('contact_no');?>" type="number" required autofocus>
-                </fieldset>
-
-                <label for="inputPassword" class="sr-only"><?php echo $this->lang->line('password');?></label>
+                  <input class="page-signin-form-control form-control" id="contact_no" name="mobile"  placeholder="<?php echo $this->lang->line('contact_no');?>" type="number" required autofocus>
+        </fieldset>
+</div>
+<div class="otp-login">
+                <label for="inputPassword" class="sr-only">OTP</label>
   		<fieldset class="page-signin-form-group form-group form-group-lg">
                   <!-- <div class="page-signin-icon text-muted"><i class="fa fa-star"></i></div> -->
-                  <input class="page-signin-form-control form-control" name="password"  id="inputPassword" placeholder="<?php echo $this->lang->line('password');?>" type="password" required  >
+                  <input class="page-signin-form-control form-control" class="otp-login" name="password"  id="inputPassword" placeholder="Enter OTP" type="password" required  >
                 </fieldset>
+</div>
 
+<div class="form-group next-login">
+		<button class="btn btn-lg btn-primary btn-block loginbtn otp-button">Get OTP</button>
+</div>
 
-			<div class="form-group">
-
+			<div class="form-group submit-login">
 					<button class="btn btn-lg btn-primary btn-block loginbtn" type="submit"><?php echo $this->lang->line('login');?></button>
 			</div>
 
-<div class="text-center">
+<!-- <div class="text-center">
 
 
 	<a class="logintxt" style="text-align:center;font-weight:bold;text-decoration: underline;" href="<?php echo site_url('login/forgot');?>"><?php echo $this->lang->line('forgot_password');?></a>
-</div>
+</div> -->
 			</form>
 
 
