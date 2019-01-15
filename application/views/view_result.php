@@ -298,9 +298,9 @@ if($result['view_answer']=='1' || $logged_in['su']=='1'){
 <a href="javascript:print();" class="btn btn-success printbtn" style="margin-top:10px;"><?php echo $this->lang->line('print');?></a>
 
 <?php
-if($result['gen_certificate']=='1'){
+if($result['result_status']=='Pass'){
 ?>
-<a href="<?php echo site_url('result/generate_certificate/'.$result['rid']);?>" class="btn btn-warning printbtn" style="margin-top:10px;"><?php echo $this->lang->line('download_certificate');?></a>
+<a href="<?php echo site_url('result/view_certificate/'.$result['rid']);?>" class="btn btn-warning printbtn" style="margin-top:10px;"><?php echo $this->lang->line('download_certificate');?></a>
 	
 <?php
 }

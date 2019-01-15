@@ -129,13 +129,13 @@
 
 
 
-							<div class="form-group">
+							<div class="form-group"  style="display:none;">
 					<label for="inputEmail" ><?php echo $this->lang->line('generate_certificate');?></label> <br>
 					<input type="radio" name="gen_certificate"    value="1"   <?php if($quiz['gen_certificate']==1){ echo 'checked'; } ?> > <?php echo $this->lang->line('yes');?><br>
 					<input type="radio" name="gen_certificate"    value="0"    <?php if($quiz['gen_certificate']==0){ echo 'checked'; } ?> > <?php echo $this->lang->line('no');?>
 			</div>
 
-				<div class="form-group">
+				<div class="form-group"  style="display:none;">
 					<label for="inputEmail"  ><?php echo $this->lang->line('certificate_text');?></label>
 					<textarea   name="certificate_text"  class="form-control" style="height:250px;"><?php echo $quiz['certificate_text'];?></textarea><br>
 					<?php echo $this->lang->line('tags_use');?> <?php echo htmlentities("<br>  <center></center>  <b></b>  <h1></h1>  <h2></h2>  <h3></h3>  <font></font>");?><br>

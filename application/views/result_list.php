@@ -130,6 +130,13 @@ foreach($result as $key => $val){
 <td>
 <a href="<?php echo site_url('result/view_result/'.$val['rid']);?>" class="btn loginbtn-hollow" ><?php echo $this->lang->line('view');?> </a>
 <?php
+if($val['result_status']=='Pass'){
+	?>
+<a href="<?php echo site_url('result/view_certificate/'.$val['rid']);?>" target="_blank" class="btn loginbtn-hollow" >Certificate</a>
+<?php
+}
+?>
+<?php
 if($logged_in['su']=='1'){
 	?>
 	<a href="javascript:remove_entry('result/remove_result/<?php echo $val['rid'];?>');"><i style="color:rgb(255,0,140)" class="fa fa-times" aria-hidden="true"></i></a>

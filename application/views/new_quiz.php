@@ -120,13 +120,13 @@
 					<input type="radio" name="question_selection"    value="1"  > <?php echo $this->lang->line('automatically');?><br>
 					<input type="radio" name="question_selection"    value="0"  checked > <?php echo $this->lang->line('manually');?>
 			</div>
-				<div class="form-group">
+				<div class="form-group" style="display:none;">
 					<label for="inputEmail" ><?php echo $this->lang->line('generate_certificate');?></label> <br>
 					<input type="radio" name="gen_certificate"    value="1"  > <?php echo $this->lang->line('yes');?><br>
 					<input type="radio" name="gen_certificate"    value="0"  checked > <?php echo $this->lang->line('no');?>
 			</div>
 
-				<div class="form-group">
+				<div class="form-group"  style="display:none;">
 					<label for="inputEmail"  ><?php echo $this->lang->line('certificate_text');?></label>
 					<textarea   name="certificate_text"  class="form-control" ></textarea><br>
 					<?php echo $this->lang->line('tags_use');?> <?php echo htmlentities("<br>  <center></center>  <b></b>  <h1></h1>  <h2></h2>   <h3></h3>    <font></font>");?><br>

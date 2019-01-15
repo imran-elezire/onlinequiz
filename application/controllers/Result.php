@@ -12,20 +12,20 @@ class Result extends CI_Controller {
 		 $this->load->model("user_model");
 	   $this->lang->load('basic', $this->config->item('language'));
 		// redirect if not loggedin
-		$logged_in=$this->session->userdata('logged_in');
-		if($logged_in['token']!="")
-		{
-			$user_id=$this->user_model->check_token($logged_in['token']);
-			if($user_id!=$logged_in['uid'])
-			{
-				$this->session->unset_userdata('logged_in');
-				redirect('login');
-			}
-		}
-		else {
-			$this->session->unset_userdata('logged_in');
-			redirect('login');
-		}
+		// $logged_in=$this->session->userdata('logged_in');
+		// if($logged_in['token']!="")
+		// {
+		// 	$user_id=$this->user_model->check_token($logged_in['token']);
+		// 	if($user_id!=$logged_in['uid'])
+		// 	{
+		// 		$this->session->unset_userdata('logged_in');
+		// 		redirect('login');
+		// 	}
+		// }
+		// else {
+		// 	$this->session->unset_userdata('logged_in');
+		// 	redirect('login');
+		// }
 
 	 }
 
@@ -415,10 +415,81 @@ $tm=time();
 		}
 
 
-		public function view_certificateash($rid)
+		public function view_certificate($rid)
 		{
+			
+		if(!$this->session->userdata('logged_in')){
+			if(!$this->session->userdata('logged_in_raw')){
+				redirect('login');
+			}
+			}
+			if(!$this->session->userdata('logged_in')){
+			$logged_in=$this->session->userdata('logged_in_raw');
+			}else{
+			$logged_in=$this->session->userdata('logged_in');
+			}
+			if($logged_in['base_url'] != base_url()){
+			$this->session->unset_userdata('logged_in');
+			redirect('login');
+			}
+	
+	
+	
+			$data['result']=$this->result_model->get_result($rid);
+			$data['attempt']=$this->result_model->no_attempt($data['result']['quid'],$data['result']['uid']);
+			$data['title']=$this->lang->line('result_id').' '.$data['result']['rid'];
+			if($data['result']['view_answer']=='1' || $logged_in['su']=='1'){
+			 $this->load->model("quiz_model");
+			$data['saved_answers']=$this->quiz_model->saved_answers($rid);
+			$data['questions']=$this->quiz_model->get_questions($data['result']['r_qids']);
+			$data['options']=$this->quiz_model->get_options($data['result']['r_qids']);
+	
+			}
+			// top 10 results of selected quiz
+		$last_ten_result = $this->result_model->last_ten_result($data['result']['quid']);
+		$value=array();
+		 $value[]=array('Quiz Name','Percentage (%)');
+		 foreach($last_ten_result as $val){
+		 $value[]=array($val['email'].' ('.$val['first_name']." ".$val['last_name'].')',intval($val['percentage_obtained']));
+		 }
+		 $data['value']=json_encode($value);
+	
+		// time spent on individual questions
+		$correct_incorrect=explode(',',$data['result']['score_individual']);
+		 $qtime[]=array($this->lang->line('question_no'),$this->lang->line('time_in_sec'));
+		foreach(explode(",",$data['result']['individual_time']) as $key => $val){
+		if($val=='0'){
+			$val=1;
+		}
+		 if($correct_incorrect[$key]=="1"){
+		 $qtime[]=array($this->lang->line('q')." ".($key+1).") - ".$this->lang->line('correct')." ",intval($val));
+		 }else if($correct_incorrect[$key]=='2' ){
+		  $qtime[]=array($this->lang->line('q')." ".($key+1).") - ".$this->lang->line('incorrect')."",intval($val));
+		 }else if($correct_incorrect[$key]=='0' ){
+		  $qtime[]=array($this->lang->line('q')." ".($key+1).") -".$this->lang->line('unattempted')." ",intval($val));
+		 }else if($correct_incorrect[$key]=='3' ){
+		  $qtime[]=array($this->lang->line('q')." ".($key+1).") - ".$this->lang->line('pending_evaluation')." ",intval($val));
+		 }
+		}
+		 $data['qtime']=json_encode($qtime);
+		 $data['percentile'] = $this->result_model->get_percentile($data['result']['quid'], $data['result']['uid'], $data['result']['score_obtained']);
+	
+	
+		  $uid=$data['result']['uid'];
+		  $quid=$data['result']['quid'];
+		  $score=$data['result']['score_obtained'];
+		  $query=$this->db->query(" select * from savsoft_result where score_obtained > '$score' and quid ='$quid' group by score_obtained ");
+		  $data['rank']=$query->num_rows() + 1;
+		  $query=$this->db->query(" select * from savsoft_result where quid ='$quid'  group by score_obtained  ");
+		  $data['last_rank']=$query->num_rows();
+		  $query=$this->db->query(" select * from savsoft_result where quid ='$quid'  group by score_obtained  order by score_obtained desc limit 3 ");
+		  $data['toppers']=$query->result_array();
+		  $query=$this->db->query(" select * from savsoft_result where quid ='$quid'  group by score_obtained  order by score_obtained asc limit 1 ");
+		  $data['looser']=$query->row_array();
+
+
 			$this->load->library('Pdf');
-			$this->load->view('view_certificateash');
+			$this->load->view('view_certificateash',$data);
 		}
 
 }
