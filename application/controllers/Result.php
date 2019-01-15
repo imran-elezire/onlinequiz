@@ -11,7 +11,7 @@ class Result extends CI_Controller {
 	   $this->load->model("result_model");
 		 $this->load->model("user_model");
 	   $this->lang->load('basic', $this->config->item('language'));
-		redirect if not loggedin
+		// redirect if not loggedin
 		$logged_in=$this->session->userdata('logged_in');
 		if($logged_in['token']!="")
 		{
