@@ -11,21 +11,21 @@ class Result extends CI_Controller {
 	   $this->load->model("result_model");
 		 $this->load->model("user_model");
 	   $this->lang->load('basic', $this->config->item('language'));
-		// redirect if not loggedin
-		// $logged_in=$this->session->userdata('logged_in');
-		// if($logged_in['token']!="")
-		// {
-		// 	$user_id=$this->user_model->check_token($logged_in['token']);
-		// 	if($user_id!=$logged_in['uid'])
-		// 	{
-		// 		$this->session->unset_userdata('logged_in');
-		// 		redirect('login');
-		// 	}
-		// }
-		// else {
-		// 	$this->session->unset_userdata('logged_in');
-		// 	redirect('login');
-		// }
+		redirect if not loggedin
+		$logged_in=$this->session->userdata('logged_in');
+		if($logged_in['token']!="")
+		{
+			$user_id=$this->user_model->check_token($logged_in['token']);
+			if($user_id!=$logged_in['uid'])
+			{
+				$this->session->unset_userdata('logged_in');
+				redirect('login');
+			}
+		}
+		else {
+			$this->session->unset_userdata('logged_in');
+			redirect('login');
+		}
 
 	 }
 
