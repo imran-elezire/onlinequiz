@@ -404,7 +404,7 @@ function open_quiz($limit='0'){
 
 
 
-		public function update_quiz($quid)
+		public function update_quiz($quid,$ch)
 	{
 				// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
@@ -434,7 +434,10 @@ function open_quiz($limit='0'){
 					$quid=$this->quiz_model->update_quiz($quid);
 					$this->session->set_flashdata('message', "<div class='alert alert-success'>Quiz Updated ! </div>");
 
-
+					if($ch==1)
+					{
+						redirect('quiz');
+					}
 					redirect('quiz/edit_quiz/'.$quid);
                 }
 

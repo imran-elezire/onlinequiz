@@ -10,7 +10,7 @@
 
 
   <div class="row align-self-center" style="display: inline; float: none;">
-     <form method="post" action="<?php echo site_url('quiz/update_quiz/'.$quiz['quid']);?>">
+     <form method="post" id="edit_quiz" action="<?php echo site_url('quiz/update_quiz/'.$quiz['quid'].'/0');?>">
 
 <div class="col-md-12">
 
@@ -329,7 +329,7 @@ if(count($qcl)==0){
 
 	<button class="btn btn-primary loginbtn" type="submit">ADD</button>
 <br><br><br>
-  	<a class="btn btn-primary loginbtn btn-bg" onclick="window.location='<?php echo site_url('quiz'); ?>';" >Submit</a>
+  	<a class="btn btn-primary loginbtn btn-bg" onclick="submit_edit_quiz(1);" >Submit</a>
 
  <br><br><br>
 		</div>
@@ -357,3 +357,12 @@ if(count($qcl)==0){
 </center>
 </div>
 </div>
+
+
+<script>
+function submit_edit_quiz(d)
+{
+	$("#edit_quiz").attr("action","<?php echo site_url('quiz/update_quiz/'.$quiz['quid'].'/1');?>");
+	$("#edit_quiz").submit();
+}
+</script>
