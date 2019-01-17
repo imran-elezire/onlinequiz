@@ -355,9 +355,9 @@ class Login extends CI_Controller {
 
 	public function generate_otp()
 	{
-		if (!$this->input->is_ajax_request()) {
-	   exit('No direct script access allowed');
-		}
+	// 	if (!$this->input->is_ajax_request()) {
+	//    exit('No direct script access allowed');
+	// 	}
 		$data = array();
 
 		$mobile = $this->input->post('mobile');
@@ -375,6 +375,7 @@ class Login extends CI_Controller {
 			$data["message"]=$check["message"];
 			$data["response"]=$check["response"];
 		}
+		header('Access-Control-Allow-Origin: *');
 		header('Content-type: application/json');
 
 		echo json_encode($data);

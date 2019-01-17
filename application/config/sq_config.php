@@ -1,14 +1,14 @@
 <?php
-		 $sq_base_url='http://localhost/onlinequiz/';
-		// $sq_hostname='omg.cmymhp6ktaco.us-east-2.rds.amazonaws.com';
-		// $sq_dbname='onlinetest';
-		// $sq_dbusername='omg_root';
-		// $sq_dbpassword='1Human_race';
-
+		 $sq_base_url='https://elezire.org/onlinetest/';
 		$sq_hostname='localhost';
-		$sq_dbname='onlinequiz';
-		$sq_dbusername='root';
-		$sq_dbpassword='';
+		$sq_dbname='elezire-onlinetest';
+		$sq_dbusername='elezire-admin';
+		$sq_dbpassword='elezire-password';
+
+		// $sq_hostname='localhost';
+		// $sq_dbname='onlinequiz';
+		// $sq_dbusername='root';
+		// $sq_dbpassword='';
 
 
 		?>

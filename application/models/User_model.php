@@ -1096,9 +1096,10 @@ return $data;
         $otp_user=$this->config->item('otp_user');
         $otp_password=$this->config->item('otp_password');
         $otp_senderid=$this->config->item('otp_senderid');
-        $url = "http://www.smsjust.com​/sms/user/urlsms.php?username=".$otp_user."&pass=".$otp_password."&senderid=".$otp_senderid."&dest_mobileno=91";
-        $url.=$mobile;
-         $url.="&message=".$message."&response=Y";
+        //$url = "http://www.smsjust.com​/sms/user/urlsms.php?username=".$otp_user."&pass=".$otp_password."&senderid=".$otp_senderid."&dest_mobileno=91";
+        $url = "http://api.msg91.com/api/sendhttp.php?country=91&sender=ELZIRE&route=4&mobiles=".$mobile."&authkey=147351AegMLMB0q58e0e449&message=".$message;
+        //$url.=$mobile;
+         //$url.="&message=".$message."&response=Y";
 
         $ch = curl_init();
   			curl_setopt($ch,CURLOPT_URL,$url);
@@ -1114,7 +1115,7 @@ return $data;
         }
 
   			curl_close($ch);
-        $result = "";
+        //$result = "";
   			$userdata = $result;
 
         $data["response"]=TRUE;
