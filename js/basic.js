@@ -857,6 +857,7 @@ function update_check(sq_version){
 
 $(document).ready(function(){
 	$(".otp-button").click(function() {
+	    $(".otp-button").prop('disabled', true);
 			$("#err-login").html('');
 		$("#err").html("<div class='alert alert-danger'>Please Wait ...</div>");
 		var mobile = $("#contact_no").val();
