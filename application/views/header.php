@@ -113,8 +113,13 @@
               <?php
 				}
 ?>				 <li><a href="<?php echo site_url('quiz');?>">Ongoing <?php echo $this->lang->line('quiz');?> <?php echo $this->lang->line('list');?></a></li>
-
+ <?php
+				if($logged_in['su']==1){
+			?> 
 <li><a href="<?php echo site_url('quiz/expired_quiz');?>">Expired <?php echo $this->lang->line('quiz');?></a></li>
+<?php
+				}
+?>             
                 </ul>
               </li>
 
@@ -164,7 +169,7 @@
              ?>
              <li><a href="<?php echo site_url('user/edit_user/'.$logged_in['uid']);?>">Change Details</a></li>
            <?php } ?>
-              <li><a href="<?php echo site_url('user/change_password');?>">Change Password</a></li>
+              <!-- <li><a href="<?php echo site_url('user/change_password');?>">Change Password</a></li> -->
             <li><a href="<?php echo site_url('user/logout');?>"><?php echo $this->lang->line('logout');?></a></li>
           </ul>
         </li>

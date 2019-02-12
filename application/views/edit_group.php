@@ -43,15 +43,7 @@
 					<label for="inputEmail"  ><?php echo $this->lang->line('description');?></label> 
 					<textarea  name="description"  class="form-control"   >   <?php echo $group['description'];?></textarea>
 			</div>
-			 
-			<div class="form-group">	 
-					<label for="inputEmail"  ><?php echo $this->lang->line('price');?></label> 
-					<input type="text" required  name="price"  class="form-control"    value="<?php echo $group['price'];?>"   > 
-			</div>
-			<div class="form-group">	 
-					<label for="inputEmail"  ><?php echo $this->lang->line('valid_for_days');?></label> 
-					<input type="text" required  name="valid_for_days"  class="form-control"  value="<?php echo $group['valid_for_days'];?>"  > 
-			</div>
+			
 		 
 
  

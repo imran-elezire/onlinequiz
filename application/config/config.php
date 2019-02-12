@@ -48,7 +48,8 @@ $config['open_quiz']=false;
 $config['api_key']="onlinequizAsh";
 $config['auth_key']="onlinequiz";
 
-$config['auth_link']="localhost/onlinequiz/index.php/api/testing";
+$config['auth_link']="http://service.ottomate.com/OttoService/api/dispatch/json";
+// $config['auth_link']="http://localhost/onlinequiz/index.php/api/testing";
 
 
 // enable or disable result email. use true or false

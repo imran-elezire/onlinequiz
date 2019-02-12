@@ -565,13 +565,8 @@ $new_password=rand('1111','9999');
 		if($this->input->post('group_name')){
 		$userdata['group_name']=$this->input->post('group_name');
 		}
-		if($this->input->post('price')){
-		$userdata['price']=$this->input->post('price');
-		}
-		if($this->input->post('valid_day')){
-		$userdata['valid_for_days']=$this->input->post('valid_day');
-		}
-		if($this->input->post('valid_day')){
+
+		if($this->input->post('description')){
 		$userdata['description']=$this->input->post('description');
 		}
 		 $this->db->where('gid',$gid);
@@ -997,13 +992,13 @@ return $data;
 
     $gid = $this->check_group($userdata->designation,$userdata->accesstype);
 
-    $insertdata = array("user_id"=>$userdata->userid,
+    $insertdata = array("user_id"=>$userdata->userId,
     "first_name"=>$userdata->fname,
     "last_name"=>$userdata->lname,
     "contact_no"=>$userdata->contact,
     "designation"=>$userdata->designation,
     "department"=>$userdata->accesstype,
-    "employee_id"=>$userdata->employeeid,
+    "employee_id"=>$userdata->employeeId,
     "email"=>$userdata->email,
     "user_manger"=>$userdata->usermanager,
     "accesstype"=>$userdata->accesstype,
@@ -1013,7 +1008,7 @@ return $data;
 
 
 
-    $this->db->where("user_id",$userdata->userid);
+    $this->db->where("user_id",$userdata->userId);
 
     $checkuser = $this->db->get("savsoft_users");
 
@@ -1044,11 +1039,11 @@ return $data;
       }
 
 
-      $this->db->where("user_id",$userdata->userid);
+      $this->db->where("user_id",$userdata->userId);
         $this->db->update("savsoft_users",$insertdata);
     }
 
-    $this->db->where("user_id",$userdata->userid);
+    $this->db->where("user_id",$userdata->userId);
     $this -> db -> join('savsoft_group', 'savsoft_users.gid=savsoft_group.gid');
     $this->db->limit(1);
     $checkuser = $this->db->get("savsoft_users");
@@ -1061,6 +1056,7 @@ return $data;
         $this->db->update('savsoft_users',array("web_token"=>$token));
         $user['token']=$token;
         $user['base_url']=base_url();
+
         // creating login cookie
         $this->session->set_userdata('logged_in', $user);
         $data["response"] =TRUE;

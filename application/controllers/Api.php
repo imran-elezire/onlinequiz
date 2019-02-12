@@ -649,24 +649,143 @@ Auth function
 //What they send in user manager
 		public function testing()
 		{
-			$sid=$_GET['sid'];
-			$data["execute"] = TRUE;
-			$data['userid'] = "123312244";
-			$data['fname'] = "Ashqq21";
-			$data['lname'] = "Kuma";
-			$data['email'] = "aassdd@gmail.com";
-			$data['contact'] = "1234667890";
-			$data['designation'] = "dsaa";
 
-			$data['employeeid'] = "54asdad";
-			$data['usermanager'] = "Assf";
-			$data['accesstype'] = 2;
-			$data['message'] = "";
+			if($_GET["Action"]=="AuthenticateDispatcher")
+			{
+				$data['SessionId'] = "123312244";
+					$data['Status'] = "OK";
+			}
+			else if($_GET["Action"]=="GetUserLogOnInfo")
+			{
+				$data['SessionId'] = "123312244";
+					$data['Status'] = "OK";
+					$nedata['userId'] = "45456";
+					$nedata['fname'] = "Ashqq21";
+					$nedata['lname'] = "Kuma";
+					$nedata['email'] = "aassdd@gmail.com";
+					$nedata['contact'] = "456120589";
+					$nedata['designation'] = "114dsaa";
+
+					$nedata['employeeId'] = "54asdad";
+					$nedata['usermanager'] = "Assf";
+					$nedata['accesstype'] = 2;
+
+					$data['Result'] = $nedata;
+			}
+
+
+
+
 
 
 
 			echo json_encode($data);
 		}
 
+		public function testing1()
+		{
+			$ch = curl_init();
+			curl_setopt($ch,CURLOPT_URL,"localhost/onlinequiz/index.php/api/testing");
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+			curl_setopt($ch,CURLOPT_HEADER, false);
+
+			$result=curl_exec($ch);
+
+			curl_close($ch);
+
+			$userdata = json_decode($result);
+
+			echo "<pre>";
+			print_r($userdata);
+			echo $userdata->Result->LastName;
+		}
+
+
+
+		public function authenicate()
+		{
+			if(isset($_GET['username']) && trim($_GET['username'])!='' && isset($_GET['password']) && trim($_GET['password'])!='' )
+			{
+				$username=$_GET['username'];
+				$password=$_GET['password'];
+				$authlink=$this->config->item('auth_link');
+
+				$ch = curl_init();
+				curl_setopt($ch,CURLOPT_URL,$authlink."?Action=AuthenticateDispatcher&username=".$username."&password=".$password);
+				curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+				curl_setopt($ch,CURLOPT_HEADER, false);
+
+				$result=curl_exec($ch);
+
+				curl_close($ch);
+
+				$userdata = json_decode($result);
+
+
+				if($userdata->Status=="OK")
+				{
+					if(!isset($userdata->SessionId) || trim($userdata->SessionId)=='' )
+					{
+						echo "<script>alert('All correct data is not accessible !')</script>";
+					}
+					else
+					{
+						$check=$this->_getuserlogininfo($userdata->SessionId);
+
+					}
+				}
+				else
+				{
+					echo "<script>alert('".$userdata->message."')</script>";
+				}
+
+
+			}
+			else {
+				echo "Invalid Details !";
+			}
+
+		}
+
+
+		function _getuserlogininfo($sessionId)
+		{
+			$authlink=$this->config->item('auth_link');
+
+			$ch = curl_init();
+			curl_setopt($ch,CURLOPT_URL,$authlink."?Action=GetUserLogOnInfo&sessionID=".$sessionId);
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+			curl_setopt($ch,CURLOPT_HEADER, false);
+
+			$result=curl_exec($ch);
+
+			curl_close($ch);
+
+			$userdata = json_decode($result);
+
+							if($userdata->Status=="OK")
+							{
+								if(!isset($userdata->Result->userId) || trim($userdata->Result->userId)=='' )
+								{
+									echo "<script>alert('All correct data is not accessible !')</script>";
+								}
+								else
+								{
+									$check=$this->user_model->user_login_api($userdata->Result);
+									if($check["response"]==FALSE)
+									{$this->session->unset_userdata('logged_in');
+										echo "<script>alert('".$check["message"]."')</script>";
+									}
+									else
+									 {
+										echo "<script>alert('".$check["message"]."')</script>";
+									 }
+								}
+							}
+							else
+							{
+								echo "<script>alert('".$userdata->message."')</script>";
+							}
+		}
 
 }

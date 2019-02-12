@@ -48,7 +48,7 @@
 					<!--<label for="inputEmail"  ><?php echo $this->lang->line('price');?></label> -->
 					<input type="hidden" required  name="price"  class="form-control"  value="0" > 
 			</div>
-			<div class="form-group">	 
+			<div class="form-group" style="display:none;">	 
 					<label for="inputEmail"  ><?php echo $this->lang->line('valid_for_days');?></label> 
 					<input type="text" required  name="valid_for_days"  class="form-control"  value="0" > 
 			</div>
